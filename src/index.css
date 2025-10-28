@@ -13,7 +13,7 @@
   background-color: #242424;
 
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: qoptimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -29,8 +29,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* allow content to use full width (removed centering flex to avoid side gutters) */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -47,7 +46,9 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  /* make buttons transparent by default so Tailwind utility classes control visible backgrounds
+     This prevents the navigation items from having a persistent dark pill background */
+  background-color: transparent;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -68,6 +69,8 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    /* keep buttons transparent in light mode too; specific components can opt into a background
+       using Tailwind utility classes (e.g., `bg-purple-600`) */
+    background-color: transparent;
   }
 }

@@ -10,20 +10,20 @@ function App() {
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
   const skills = [
-    { category: 'iOS', items: ['Swift', 'SwiftUI', 'UIKit', 'Xcode', 'Core Animation', 'MapKit'] },
-    { category: 'Flutter', items: ['Dart', 'Flutter', 'Provider', 'Riverpod', 'ObjectBox'] },
+    { category: 'iOS', items: ['Swift', 'SwiftUI', 'UIKit', 'Xcode',  'Core Animation', 'Core Data', 'Realm', 'MapKit', 'RxSwift', 'Combine', 'XCTest', 'GCD', 'Cocoapods', 'SPM'] },
+    { category: 'Flutter', items: ['Dart', 'Flutter', 'Android Studio', 'VS Code', 'Provider', 'Riverpod', 'GetX', 'ObjectBox', 'Flutter test'] },
     { category: 'Architecture', items: ['MVVM', 'MVC', 'MVP', 'Clean Architecture', 'SOLID Principles'] },
-    { category: 'Tools & Backend', items: ['Git', 'Firebase', 'RESTful API', 'GraphQL', 'CI/CD', 'Bitrise'] }
+    { category: 'Tools & Backend', items: ['Git', 'Firebase', 'RESTful API', 'GraphQL', 'CI/CD', 'Bitrise', 'Figma', 'Jira'] }
   ];
 
   const projects = [
     {
       title: 'Mobile Service Manager',
-      description: 'Comprehensive service management system for mobile repair shops with advanced reporting and offline-first architecture.',
-      tech: ['Flutter', 'Riverpod', 'ObjectBox', 'MVVM'],
+      description: 'Comprehensive service management system for mobile repair centers with advanced reporting and analytics.',
+      tech: ['Flutter', 'Riverpod', 'ObjectBox', 'MVVM', 'Repository Pattern'],
       type: 'Desktop & Mobile',
       year: '2025',
-      highlights: ['PDF/Excel exports', 'Revenue analytics', 'Offline-first sync']
+      highlights: ['PDF/Excel exports', 'Revenue analytics', 'technician performance' ]
     },
     {
       title: 'Tmovies',
@@ -59,7 +59,7 @@ function App() {
       title: 'Mobile Developer',
       company: 'Mega Z',
       period: '2023 Aug - Present',
-      description: 'Developing ERP solutions with Flutter for KTV and bar industry',
+      description: 'Developing ERP solutions with Flutter for Bar and Entertainment industry',
       achievements: [
         'Built real-time WebSocket communication system',
         'Integrated Firebase Cloud Messaging',
@@ -131,11 +131,11 @@ function App() {
               className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent cursor-pointer"
               onClick={() => scrollToSection('home')}
             >
-              Soe Min Thein
+              Soeminthein
             </motion.div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex space-x-2">
               {['Home', 'About', 'Experience', 'Projects', 'Skills', 'Contact'].map((item) => (
                 <motion.button
                   key={item}
@@ -242,7 +242,7 @@ function App() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-2xl md:text-3xl mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+            className="text-2xl md:text-4xl mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text font-medium text-transparent"
           >
             Mobile Developer
           </motion.div>
@@ -266,7 +266,7 @@ function App() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="mailto:soeminthein020@gmail.com"
-              className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full transition-colors"
+              className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full text-white hover:text-white transition-colors"
             >
               <Mail className="w-5 h-5" />
               Get in Touch
@@ -277,7 +277,7 @@ function App() {
               href="https://github.com/soemintheinsmt6"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-full transition-colors"
+              className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full text-white hover:text-white transition-colors"
             >
               <Github className="w-5 h-5" />
               GitHub
@@ -373,6 +373,7 @@ function App() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-bold mb-12 text-center"
           >
             Featured <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Projects</span>
@@ -385,7 +386,7 @@ function App() {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.2, duration: 0.8 }}
                 whileHover={{ y: -10 }}
                 className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20 group"
               >
@@ -468,7 +469,7 @@ function App() {
                     <motion.span
                       key={i}
                       whileHover={{ scale: 1.1 }}
-                      className="text-sm px-3 py-1 bg-slate-700 text-gray-300 rounded-full hover:bg-purple-900/50 transition-colors cursor-default"
+                      className="text-sm px-3 py-1 bg-slate-700 text-gray-300 rounded-full hover:bg-gradient-to-r from-purple-600 to-pink-600 transition-colors cursor-default"
                     >
                       {skill}
                     </motion.span>
@@ -486,7 +487,7 @@ function App() {
           >
             <h3 className="text-2xl font-bold mb-4">Additional Expertise</h3>
             <div className="flex flex-wrap justify-center gap-3">
-              {['Problem Solving', 'Critical Thinking', 'Agile/Scrum', 'CI/CD', 'Git', 'Team Work', 'Performance Optimization'].map((skill, i) => (
+              {['Problem Solving', 'Critical Thinking', 'Agile/Scrum', 'Team Work', 'Performance Optimization'].map((skill, i) => (
                 <motion.span
                   key={i}
                   whileHover={{ scale: 1.1 }}
@@ -531,7 +532,7 @@ function App() {
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
               href="mailto:soeminthein020@gmail.com"
-              className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-shadow"
+              className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold text-white hover:shadow-lg hover:shadow-purple-500/50 transition-shadow"
             >
               <Mail className="w-6 h-6" />
               Email Me
@@ -568,8 +569,7 @@ function App() {
             viewport={{ once: true }}
             className="mt-12 text-gray-400"
           >
-            <p>📍 Based in Myanmar (Burma)</p>
-            <p className="mt-2">📞 +959798813966</p>
+            <p>📍 Developing Apps from the place that feels like Home</p>
           </motion.div>
         </div>
       </section>
