@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { certificates } from '../data';
 
 export default function Certificates() {
-  const [showAll, setShowAll] = useState(false);
-  const visible = showAll ? certificates : certificates.slice(0, 4);
+  const visible = certificates.slice(0, 5);
 
   return (
     <section id="certificates" className="py-20 px-4">
@@ -30,8 +29,8 @@ export default function Certificates() {
               whileHover={{ y: -4 }}
               className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20"
             >
-              <h3 className="text-xl font-semibold mb-2 text-purple-300">{cert.title}</h3>
-              <p className="text-gray-400 mb-4">{cert.issuer}</p>
+              <h3 className="text-xl font-semibold mb-2 text-white">{cert.title}</h3>
+              <p className="text-gray-300 mb-4">{cert.issuer}</p>
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -44,20 +43,25 @@ export default function Certificates() {
               </motion.a>
             </motion.div>
           ))}
-        </div>
 
-        {certificates.length > 5 && (
-          <div className="text-center mt-10">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setShowAll(!showAll)}
-              className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold"
+          {/* See More card - acts like a certificate card and navigates to the full certificates page */}
+          {certificates.length > 5 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+              whileHover={{ y: -4 }}
+              onClick={() => { window.location.href = '/certificates'; }}
+              className="cursor-pointer flex items-center justify-center text-center bg-slate-800/30 backdrop-blur-lg rounded-2xl p-6 border border-gray-400"
             >
-              {showAll ? 'Show Less' : 'See More'}
-            </motion.button>
-          </div>
-        )}
+              <div>
+                <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">See More</h3>
+                <p className="text-gray-300">View the full list of certificates</p>
+              </div>
+            </motion.div>
+          )}
+        </div>
       </div>
     </section>
   );

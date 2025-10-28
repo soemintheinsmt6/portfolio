@@ -6,11 +6,22 @@ const EXPERIENCE = [
     title: 'Mobile Developer',
     company: 'Mega Z',
     period: '2023 Aug - Present',
-    description: 'Developing ERP solutions with Flutter for Bar and Entertainment industry',
+    description: 'ERP solution development for bar and entertainment business with multiple connected mobile applications',
     achievements: [
-      'Built real-time WebSocket communication system',
-      'Integrated Firebase Cloud Messaging',
-      'Optimized business processes with mobile solutions'
+      'Developed a comprehensive ERP ecosystem including Staff, Kitchen, Waiter and Customer apps to optimize operational workflows',
+      'Architected real-time communication between apps using WebSocket for instant data synchronization',
+      'Enhanced customer experience with live order tracking, notifications and streamlined interactions',
+      'Designed tablet-friendly waiter interface with split-screen layout for multitasking and improved user flow',
+      'Enabled reliable communication and coordination across multiple teams and apps via real-time messaging'
+    ],
+    tech_stacks: [
+      'Flutter',
+      'Dart',
+      'Riverpod',
+      'Provider',
+      'WebSocket',
+      'ObjectBox',
+      'Bitrise'
     ]
   },
   {
@@ -18,11 +29,20 @@ const EXPERIENCE = [
     title: 'iOS Developer',
     company: 'Slazh',
     period: '2021 Jun - 2023 Jul',
-    description: 'Fashion e-commerce iOS application development',
+    description: 'Fashion e-commerce iOS app development with focus on product design and secure transactions',
     achievements: [
-      'Developed high-performance e-commerce app',
-      'Implemented secure payment systems',
-      'Collaborated with UI/UX team on custom animations'
+      'Designed and developed an e-commerce app with a focus on modular architecture',
+      'Implemented secure mobile payment processing and data protection mechanisms',
+      'Integrated social media features to drive user engagement and retention',
+      'Collaborated with UI/UX team on custom animations and high-quality visual transitions',
+      'Conducted unit and integration testing to ensure application stability and performance optimization',
+    ],
+    tech_stacks: [
+      'Swift',
+      'Realm',
+      'Mobile Payment Integration',
+      'SHA256 Encryption',
+      'Core Animation',
     ]
   },
   {
@@ -32,9 +52,15 @@ const EXPERIENCE = [
     period: '2019 Aug - 2021 Apr',
     description: 'iOS application development and Agile methodology',
     achievements: [
-      'Contributed to multiple iOS applications',
-      'Applied best practices and coding standards',
-      'Participated in Agile development sprints'
+      'Contributed to multiple iOS applications under senior developer guidance',
+      'Applied best coding practices and design principles to improve maintainability',
+      'Participated in Agile sprint cycles, collaborating with cross-functional teams for feature delivery'
+    ],
+    tech_stacks: [
+      'Swift',
+      'Alamofire',
+      'Firebase Cloud Messaging', 
+      'Analytics'
     ]
   }
 ];

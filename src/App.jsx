@@ -8,6 +8,7 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Certificates from './components/Certificates';
+import CertificatesPage from './components/CertificatesPage';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -38,6 +39,12 @@ function App() {
       setMobileMenuOpen(false);
     }
   };
+
+  // Simple path-based rendering: if the path is /certificates render the full certificates page.
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+  if (currentPath === '/certificates' || currentPath === '/certificates/') {
+    return <CertificatesPage />;
+  }
 
   return (
     <div className="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white min-h-screen">

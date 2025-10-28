@@ -16,7 +16,7 @@ const PROJECTS = [
     description: 'Feature-rich movie streaming app with offline downloads and Picture-in-Picture support across Android, iOS and Android TV.',
     tech: ['Flutter', 'Firebase', 'ObjectBox', 'Provider'],
     type: 'Cross-platform',
-    year: '2024-2025',
+    year: '2024 - 2025',
     link: 'https://play.google.com/store/apps/details?id=com.thebillionaire.movie_server',
     highlights: ['Offline downloads', 'PiP mode', 'Multi-platform']
   },
@@ -26,7 +26,7 @@ const PROJECTS = [
     description: 'Comprehensive ERP system with separate apps for staff, kitchen, waiter and customers with real-time synchronization.',
     tech: ['Flutter', 'WebSocket', 'Provider', 'Riverpod'],
     type: 'Enterprise',
-    year: '2023-Present',
+    year: '2023 - Present',
     link: 'https://testflight.apple.com/join/syAmsdsM',
     highlights: ['Real-time sync', 'Multi-app system', 'Push notifications']
   },
@@ -36,7 +36,7 @@ const PROJECTS = [
     description: 'High-performance fashion e-commerce iOS app with secure payments and elegant animations.',
     tech: ['Swift', 'Alamofire', 'Realm', 'Core Animation'],
     type: 'iOS',
-    year: '2021-2023',
+    year: '2021 - 2023',
     link: 'https://apps.apple.com/us/app/slazh/id6447933375',
     highlights: ['Secure payments', 'Custom animations', 'Offline cart']
   }

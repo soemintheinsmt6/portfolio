@@ -21,7 +21,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-lg text-gray-300 mb-12"
         >
-          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+          I'm always open to discussing new projects, creative ideas and opportunities to be part of your visions.
         </motion.p>
 
         <motion.div
@@ -34,7 +34,7 @@ export default function Contact() {
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
             href="mailto:soeminthein020@gmail.com"
-            className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold text-white hover:shadow-lg hover:shadow-purple-500/50 transition-shadow"
+            className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold text-white hover:text-white hover:shadow-lg hover:shadow-purple-500/50 transition-shadow"
           >
             <Mail className="w-6 h-6" />
             Email Me
