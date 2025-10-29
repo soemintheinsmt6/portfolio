@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { certificates } from '../data';
 
 export default function Certificates() {
+  const navigate = useNavigate();
   const visible = certificates.slice(0, 5);
 
   return (
@@ -52,7 +54,7 @@ export default function Certificates() {
               viewport={{ once: true }}
               transition={{ delay: 0.15 }}
               whileHover={{ y: -4 }}
-              onClick={() => { window.location.href = '/certificates'; }}
+              onClick={() => navigate('/certificates')}
               className="cursor-pointer flex items-center justify-center text-center bg-slate-800/30 backdrop-blur-lg rounded-2xl p-6 border border-gray-400"
             >
               <div>

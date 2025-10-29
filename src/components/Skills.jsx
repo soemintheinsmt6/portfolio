@@ -22,7 +22,7 @@ export default function Skills() {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.2, duration: 0.3}}
               whileHover={{ scale: 1.05 }}
               className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20"
             >

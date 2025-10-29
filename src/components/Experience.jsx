@@ -22,7 +22,7 @@ export default function Experience() {
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
+              transition={{ delay: index * 0.3, duration: 0.3 }}
               whileHover={{ scale: 1.02 }}
               className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-8 border border-purple-500/20"
             >

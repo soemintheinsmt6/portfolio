@@ -72,7 +72,7 @@ export default function Hero() {
           transition={{ delay: 0.4 }}
           className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
         >
-          5+ years crafting beautiful mobile experiences with Swift, SwiftUI and Flutter
+          Blending art and technology to craft meaningful digital experiences...
         </motion.p>
 
         <motion.div

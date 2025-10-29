@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
@@ -10,14 +11,22 @@ import Footer from './components/Footer';
 import Certificates from './components/Certificates';
 import CertificatesPage from './components/CertificatesPage';
 
-function App() {
+function MainPage() {
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'certificates', 'contact'];
-      const current = sections.find(section => {
+      const sections = [
+        'home',
+        'about',
+        'experience',
+        'projects',
+        'skills',
+        'certificates',
+        'contact',
+      ];
+      const current = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -40,12 +49,6 @@ function App() {
     }
   };
 
-  // Simple path-based rendering: if the path is /certificates render the full certificates page.
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
-  if (currentPath === '/certificates' || currentPath === '/certificates/') {
-    return <CertificatesPage />;
-  }
-
   return (
     <div className="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white min-h-screen">
       <Nav
@@ -66,4 +69,13 @@ function App() {
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/certificates" element={<CertificatesPage />} />
+      </Routes>
+    </Router>
+  );
+}
