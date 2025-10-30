@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
@@ -16,6 +16,9 @@ function MainPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    // Ensure we start at the top on initial mount (mobile fix)
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
     const handleScroll = () => {
       const sections = [
         'home',
@@ -69,9 +72,18 @@ function MainPage() {
   );
 }
 
+function ScrollToTop() {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [location.pathname, location.search, location.hash]);
+  return null;
+}
+
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/certificates" element={<CertificatesPage />} />

@@ -48,9 +48,9 @@ export default function Skills() {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <h3 className="text-2xl font-bold mb-4">Additional Expertise</h3>
+          <h3 className="text-2xl font-bold mb-8">Additional Expertise</h3>
           <div className="flex flex-wrap justify-center gap-3">
-            {['Problem Solving', 'Critical Thinking', 'Agile/Scrum', 'Team Work', 'Performance Optimization'].map((skill, i) => (
+            {['Problem Solving', 'Critical Thinking', 'Team Work', 'Performance Optimization'].map((skill, i) => (
               <motion.span
                 key={i}
                 whileHover={{ scale: 1.1 }}
