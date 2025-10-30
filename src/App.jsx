@@ -37,7 +37,15 @@ function MainPage() {
         }
         return false;
       });
-      if (current) setActiveSection(current);
+      // If at bottom of the page, always set 'contact' active
+      const isAtBottom =
+        window.innerHeight + Math.round(window.scrollY) >=
+        Math.round(document.body.scrollHeight);
+      if (isAtBottom) {
+        setActiveSection('contact');
+      } else if (current) {
+        setActiveSection(current);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);

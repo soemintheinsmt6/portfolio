@@ -14,7 +14,7 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-bold mb-12 text-center"
         >
-          Featured <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Projects</span>
+          Notable <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Projects</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-8">
