@@ -35,6 +35,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-4xl md:text-5xl font-bold mb-8"
+          transition={{ duration: 1 }}
         >
           Let's <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Connect</span>
         </motion.h2>
@@ -44,6 +45,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-lg text-gray-300 mb-12"
+          transition={{ duration: 0.8, delay: 0.18 }}
         >
           I'm always open to discussing new projects, creative ideas and opportunities to be part of your visions.
         </motion.p>
@@ -53,6 +55,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-6"
+          transition={{ duration: 0.7, delay: 0.27 }}
         >
           <motion.a
             whileHover={{ scale: 1.1, rotate: 5 }}

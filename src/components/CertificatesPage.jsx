@@ -32,7 +32,7 @@ export default function CertificatesPage() {
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 1 }}
               className="text-4xl md:text-5xl font-bold text-center"
             >
               All <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Certificates</span>
@@ -45,7 +45,7 @@ export default function CertificatesPage() {
                 key={cert.id || idx}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.03, duration: 0.4 }}
+                transition={{ delay: idx * 0.18, duration: 0.3 }}
                 whileHover={{ scale: 1.03 }}
                 className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20"
               >

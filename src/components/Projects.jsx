@@ -11,10 +11,10 @@ export default function Projects() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 1 }}
           className="text-4xl md:text-5xl font-bold mb-12 text-center"
         >
-          Notable <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Projects</span>
+          Featured <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Projects</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -24,7 +24,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.8 }}
+              transition={{ delay: index * 0.18, duration: 0.7 }}
               whileHover={{ y: -10 }}
               className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20 group"
             >

@@ -11,6 +11,7 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-4xl md:text-5xl font-bold mb-12 text-center"
+          transition={{ duration: 1 }}
         >
           Technical <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Skills</span>
         </motion.h2>
@@ -22,7 +23,7 @@ export default function Skills() {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.3}}
+              transition={{ delay: index * 0.13, duration: 0.6 }}
               whileHover={{ scale: 1.05 }}
               className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20"
             >

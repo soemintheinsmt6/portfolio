@@ -51,7 +51,7 @@ export default function Hero() {
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
           className="text-5xl md:text-7xl font-bold mb-4"
         >
           Soe Min Thein
@@ -60,7 +60,7 @@ export default function Hero() {
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.35, duration: 0.4 }}
           className="text-2xl md:text-4xl mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text font-medium text-transparent"
         >
           Mobile Developer
@@ -69,7 +69,7 @@ export default function Hero() {
         <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.5, duration: 0.4 }}
           className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
         >
           Blending art and technology to craft meaningful digital experiences...
@@ -78,7 +78,7 @@ export default function Hero() {
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.65, duration: 0.2 }}
           className="flex flex-wrap justify-center gap-4"
         >
           <motion.a
