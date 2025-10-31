@@ -11,6 +11,8 @@ import Footer from './components/Footer';
 import Certificates from './components/Certificates';
 import CertificatesPage from './components/CertificatesPage';
 
+const GA_TRACKING_ID = import.meta.env.VITE_GA_ID;
+
 function MainPage() {
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -88,10 +90,24 @@ function ScrollToTop() {
   return null;
 }
 
+function AnalyticsTracker() {
+  const location = useLocation();
+  useEffect(() => {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('config', GA_TRACKING_ID, {
+        page_path: location.pathname + (location.search || ''),
+        page_title: document.title,
+      });
+    }
+  }, [location.pathname, location.search]);
+  return null;
+}
+
 export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <AnalyticsTracker />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/certificates" element={<CertificatesPage />} />

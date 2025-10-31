@@ -4,7 +4,25 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio-web</title>
+    <title>Soe Min Thein</title>
+
+    <!-- Google Analytics via Vite env -->
+    <script type="module">
+      const GA_ID = import.meta.env.VITE_GA_ID;
+      if (GA_ID) {
+        const s = document.createElement('script');
+        s.async = true;
+        s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+        document.head.appendChild(s);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);} // eslint-disable-line no-inner-declarations
+        window.gtag = gtag;
+        gtag('js', new Date());
+        // Disable automatic page_view; SPA sends page_view on route change
+        gtag('config', GA_ID, { send_page_view: false });
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
