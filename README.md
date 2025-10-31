@@ -1,16 +1,75 @@
-# React + Vite
+# Portfolio (React + Vite + Framer Motion)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio with animated sections, modular structure and Google Analytics.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Build and preview:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm run build
+npm run preview
+```
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+src/
+  app/          # App setup (router, providers, store) [future]
+  core/         # Core services (api, storage, config)
+    config/
+      ga.js     # GA id from env (VITE_GA_ID)
+  features/     # Each feature is a self-contained module
+    about/
+    certificates/
+    contact/
+    experience/
+    footer/
+    hero/
+    nav/
+    projects/
+    skills/
+  shared/       # Reusable modules
+    data/       # Re-exports central data
+  components/   # Existing presentational components (kept for now)
+  data/         # Existing data modules
+```
+
+Notes:
+- `features/*` currently re-export from `components/*`. We can fully move code into features later.
+- Data is split and frozen for immutability in `src/data/*` and re-exported via `src/shared/data`.
+
+## Environment Variables
+
+Create a `.env` file at the project root:
+
+```env
+VITE_GA_ID=G-XXXXXXXXXX
+```
+
+Vite exposes this at `import.meta.env.VITE_GA_ID`.
+
+## Google Analytics (SPA)
+
+- `index.html` dynamically loads `gtag.js` using `VITE_GA_ID` and sets `send_page_view: false`.
+- `AnalyticsTracker` in `src/App.jsx` sends a page view on every route change:
+  - Tracks both the main page (`/`) and certificates page (`/certificates`).
+
+## Tech
+
+- React 19, Vite, TailwindCSS
+- framer-motion for animations
+- react-router-dom for routing
+- lucide-react + inline SVG icons
+
+## Scripts
+
+- `npm run dev` — start dev server
+- `npm run build` — build production assets
+- `npm run preview` — preview production build
+- `npm run lint` — run ESLint

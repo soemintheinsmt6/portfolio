@@ -1,17 +1,16 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import Nav from './components/Nav';
-import Hero from './components/Hero';
-import About from './components/About';
-import Experience from './components/Experience';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import Certificates from './components/Certificates';
-import CertificatesPage from './components/CertificatesPage';
-
-const GA_TRACKING_ID = import.meta.env.VITE_GA_ID;
+import Nav from './features/nav/Nav';
+import Hero from './features/hero/Hero';
+import About from './features/about/About';
+import Experience from './features/experience/Experience';
+import Projects from './features/projects/Projects';
+import Skills from './features/skills/Skills';
+import Contact from './features/contact/Contact';
+import Footer from './features/footer/Footer';
+import Certificates from './features/certificates/Certificates';
+import CertificatesPage from './features/certificates/CertificatesPage';
+import { GA_TRACKING_ID } from './core/config/ga';
 
 function MainPage() {
   const [activeSection, setActiveSection] = useState('home');
