@@ -10,6 +10,7 @@ import Contact from './features/contact/Contact';
 import Footer from './features/footer/Footer';
 import Certificates from './features/certificates/Certificates';
 import CertificatesPage from './features/certificates/CertificatesPage';
+import SkillsPage from './features/skills/SkillsPage';
 import { GA_TRACKING_ID } from './core/config/ga';
 
 function MainPage() {
@@ -110,6 +111,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/certificates" element={<CertificatesPage />} />
+        <Route path="/skills" element={<SkillsPage />} />
       </Routes>
     </Router>
   );

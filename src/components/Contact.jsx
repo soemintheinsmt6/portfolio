@@ -44,7 +44,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-lg text-gray-300 mb-12"
+          className="text-lg text-white mb-12"
           transition={{ duration: 0.8, delay: 0.18 }}
         >
           I'm always open to discussing new projects, creative ideas and opportunities to be part of your visions.

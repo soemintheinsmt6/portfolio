@@ -33,7 +33,7 @@ export default function Skills() {
                   <motion.span
                     key={i}
                     whileHover={{ scale: 1.1 }}
-                    className="text-sm px-3 py-1 bg-slate-700 text-gray-300 rounded-full hover:bg-gradient-to-r from-purple-600 to-pink-600 transition-colors cursor-default"
+                    className="text-sm px-3 py-1 bg-slate-700 text-white rounded-full hover:bg-gradient-to-r from-purple-600 to-pink-600 transition-colors cursor-default"
                   >
                     {skill}
                   </motion.span>

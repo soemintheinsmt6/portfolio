@@ -37,10 +37,10 @@ export default function Projects() {
               </div>
 
               <h3 className="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">{project.title}</h3>
-              <p className="text-gray-300 mb-4">{project.description}</p>
+              <p className="text-white mb-4">{project.description}</p>
 
               <div className="mb-4">
-                <p className="text-sm text-gray-400 mb-2">Key Features:</p>
+                <p className="text-sm text-gray-300 mb-2">Key Features:</p>
                 <div className="flex flex-wrap gap-2">
                   {project.highlights.map((highlight, i) => (
                     <span key={i} className="text-xs px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full">
