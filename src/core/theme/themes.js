@@ -1,7 +1,7 @@
 // Theme definitions
 export const themes = {
-  purple: {
-    name: 'purple',
+  amethyst: {
+    name: 'amethyst',
     colors: {
       // Primary gradient colors
       primary: {
@@ -34,7 +34,7 @@ export const themes = {
         default: 'border-purple-500/20',
         card: 'border-purple-500/20',
         nav: 'border-purple-500/20',
-        secondary: 'border-gray-400',
+        secondary: 'border border-gray-400/60',
       },
       // Button colors
       button: {
@@ -58,6 +58,12 @@ export const themes = {
         secondary: 'text-pink-400',
         accent: 'text-purple-400',
       },
+      // Footer colors
+      footer: {
+        border: 'border-purple-500/20',
+        background: 'bg-slate-900/50',
+        text: 'text-gray-400',
+      },
       // Decorative elements
       decorative: {
         particle: 'bg-purple-500/10',
@@ -74,6 +80,8 @@ export const themes = {
       activeNav: 'text-purple-400',
     },
   },
+
+  // Minimalist theme
   minimalist: {
     name: 'minimalist',
     colors: {
@@ -108,6 +116,7 @@ export const themes = {
         default: 'border-gray-200',
         card: 'border-gray-200',
         nav: 'border-gray-200',
+        secondary: 'border border-blue-200',
       },
       // Button colors
       button: {
@@ -115,7 +124,7 @@ export const themes = {
         primaryHover: 'hover:bg-gray-800',
         secondary: 'bg-gray-100',
         secondaryHover: 'hover:bg-gray-200',
-        gradient: 'bg-gradient-to-r from-gray-800 to-gray-900',
+        gradient: 'bg-gradient-to-r from-blue-50 to-blue-100/80',
       },
       // Badge/Tag colors
       badge: {
@@ -123,7 +132,7 @@ export const themes = {
         accent: 'bg-gray-200',
         accentText: 'text-gray-700',
         gradient: 'bg-gradient-to-r from-gray-700 to-gray-800',
-        hoverGradient: 'hover:bg-gradient-to-r hover:from-gray-700 hover:to-gray-800',
+        hoverGradient: 'hover:bg-gradient-to-r hover:from-gray-700 hover:to-gray-800 hover:text-white',
       },
       // Icon colors
       icon: {
@@ -131,9 +140,15 @@ export const themes = {
         secondary: 'text-gray-700',
         accent: 'text-gray-900',
       },
+      // Footer colors
+      footer: {
+        border: 'border-gray-200',
+        background: 'bg-gray-50/50',
+        text: 'text-gray-700',
+      },
       // Decorative elements
       decorative: {
-        particle: 'bg-gray-200/20',
+        particle: 'bg-blue-50/10',
         gradientCircle: 'bg-gradient-to-r from-gray-300 to-gray-400',
       },
     },
@@ -150,5 +165,5 @@ export const themes = {
 };
 
 // Default theme
-export const defaultTheme = 'purple';
+export const defaultTheme = 'amethyst';
 

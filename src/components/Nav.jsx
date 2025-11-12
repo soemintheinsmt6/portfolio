@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useTheme } from '../core/theme/ThemeContext';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobileMenuOpen }) {
   const { theme } = useTheme();
@@ -22,7 +23,7 @@ export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobi
             Soeminthein
           </motion.div>
 
-          <div className="hidden md:flex space-x-2">
+          <div className="hidden md:flex items-center space-x-2">
             {items.map((item) => (
               <motion.button
                 key={item}
@@ -38,11 +39,15 @@ export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobi
                 {item}
               </motion.button>
             ))}
+            <ThemeSwitcher />
           </div>
 
-          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X /> : <Menu />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeSwitcher />
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X className={theme.colors.text.primary} /> : <Menu className={theme.colors.text.primary} />}
+            </button>
+          </div>
         </div>
       </div>
 

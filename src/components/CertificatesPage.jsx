@@ -6,10 +6,8 @@ import { useTheme } from '../core/theme/ThemeContext';
 
 export default function CertificatesPage() {
   const { theme } = useTheme();
-  // Use a simple history-based back helper so this page doesn't require React Router context.
   const goBack = () => {
     if (typeof window === 'undefined') return;
-    // Prefer going back in history if possible; otherwise navigate to root.
     if (window.history.length > 1) {
       window.history.back();
     } else {

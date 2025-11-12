@@ -106,14 +106,6 @@ export default function Contact() {
           </motion.a>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className={`mt-12 ${theme.colors.text.tertiary}`}
-        >
-          <p>📍 Developing Apps from the place that feels like Home</p>
-        </motion.div>
       </div>
     </section>
   );
