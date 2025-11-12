@@ -1,10 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { skills } from '../data';
+import { useTheme } from '../core/theme/ThemeContext';
 
-export default function Skills() {
+export default function Skills({useSectionBackground = true }) {
+  const { theme } = useTheme();
+  const backgroundColor = useSectionBackground ? theme.colors.background.section : 'bg-transparent';
+  
   return (
-    <section id="skills" className="py-20 px-4 bg-slate-900/50">
+    <section id="skills" className={`py-20 px-4 ${backgroundColor}`}>
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
@@ -13,7 +17,7 @@ export default function Skills() {
           className="text-4xl md:text-5xl font-bold mb-12 text-center"
           transition={{ duration: 1 }}
         >
-          Technical <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Skills</span>
+          Technical <span className={theme.classes.gradientText}>Skills</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -25,15 +29,15 @@ export default function Skills() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.13, duration: 0.6 }}
               whileHover={{ scale: 1.05 }}
-              className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20"
+              className={theme.classes.card + ' p-6'}
             >
-              <h3 className="text-xl font-bold text-purple-400 mb-4">{skillGroup.category}</h3>
+              <h3 className={`text-xl font-bold ${theme.colors.text.accent} mb-4`}>{skillGroup.category}</h3>
               <div className="flex flex-wrap gap-2">
                 {skillGroup.items.map((skill, i) => (
                   <motion.span
                     key={i}
                     whileHover={{ scale: 1.1 }}
-                    className="text-sm px-3 py-1 bg-slate-700 text-white rounded-full hover:bg-gradient-to-r from-purple-600 to-pink-600 transition-colors cursor-default"
+                    className={`text-sm px-3 py-1 ${theme.colors.badge.default} ${theme.colors.text.primary} rounded-full ${theme.colors.badge.hoverGradient} transition-colors cursor-default`}
                   >
                     {skill}
                   </motion.span>
@@ -49,13 +53,13 @@ export default function Skills() {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <h3 className="text-2xl font-bold mb-8">Additional Expertise</h3>
+          <h3 className={`text-2xl font-bold mb-8 ${theme.colors.text.primary}`}>Additional Expertise</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {['Problem Solving', 'Critical Thinking', 'Team Work', 'Attention to Detail', 'Time Management'].map((skill, i) => (
               <motion.span
                 key={i}
                 whileHover={{ scale: 1.1 }}
-                className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold cursor-default"
+                className={`px-4 py-2 ${theme.colors.button.gradient} ${theme.colors.text.primary} rounded-full font-semibold cursor-default`}
               >
                 {skill}
               </motion.span>

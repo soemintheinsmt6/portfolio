@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { ThemeProvider, useTheme } from './core/theme/ThemeContext';
 import Nav from './features/nav/Nav';
 import Hero from './features/hero/Hero';
 import About from './features/about/About';
@@ -14,6 +15,7 @@ import SkillsPage from './features/skills/SkillsPage';
 import { GA_TRACKING_ID } from './core/config/ga';
 
 function MainPage() {
+  const { theme } = useTheme();
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -63,7 +65,7 @@ function MainPage() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white min-h-screen">
+    <div className={`${theme.colors.background.main} ${theme.colors.text.primary} min-h-screen`}>
       <Nav
         activeSection={activeSection}
         onNavigate={scrollToSection}
@@ -105,14 +107,16 @@ function AnalyticsTracker() {
 
 export default function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <AnalyticsTracker />
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/certificates" element={<CertificatesPage />} />
-        <Route path="/skills" element={<SkillsPage />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <ScrollToTop />
+        <AnalyticsTracker />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/certificates" element={<CertificatesPage />} />
+          <Route path="/skills" element={<SkillsPage />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }

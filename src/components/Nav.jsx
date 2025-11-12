@@ -1,20 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useTheme } from '../core/theme/ThemeContext';
 
 export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobileMenuOpen }) {
+  const { theme } = useTheme();
   const items = ['Home', 'About', 'Experience', 'Projects', 'Skills', 'Certificates', 'Contact'];
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 w-full bg-slate-900/80 backdrop-blur-lg z-50 border-b border-purple-500/20"
+      className={`fixed top-0 w-full ${theme.colors.background.nav} backdrop-blur-lg z-50 ${theme.classes.navBorder}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent cursor-pointer"
+            className={`text-2xl font-bold ${theme.classes.gradientText} cursor-pointer`}
             onClick={() => onNavigate('home')}
           >
             Soeminthein
@@ -29,8 +31,8 @@ export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobi
                 onClick={() => onNavigate(item.toLowerCase())}
                 className={`${
                   activeSection === item.toLowerCase()
-                    ? 'text-purple-400'
-                    : 'text-gray-300 hover:text-white'
+                    ? theme.classes.activeNav
+                    : `${theme.colors.text.secondary} hover:${theme.colors.text.primary}`
                 } transition-colors`}
               >
                 {item}
@@ -48,14 +50,14 @@ export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobi
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-slate-800 border-t border-purple-500/20"
+          className={`md:hidden ${theme.colors.background.mobileMenu} border-t ${theme.colors.border.nav}`}
         >
           <div className="px-4 py-4 space-y-3">
             {items.map((item) => (
               <button
                 key={item}
                 onClick={() => onNavigate(item.toLowerCase())}
-                className="block w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 rounded-lg transition-colors"
+                className={`block w-full text-left px-4 py-2 ${theme.colors.text.secondary} hover:${theme.colors.text.primary} hover:${theme.colors.background.cardHover} rounded-lg transition-colors`}
               >
                 {item}
               </button>

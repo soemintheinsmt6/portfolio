@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { certificates } from '../data';
+import { useTheme } from '../core/theme/ThemeContext';
 
 export default function Certificates() {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const visible = certificates.slice(0, 5);
 
@@ -17,7 +19,7 @@ export default function Certificates() {
           viewport={{ once: true }}
           className="text-4xl md:text-5xl font-bold mb-12 text-center"
         >
-          Professional <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Certificates</span>
+          Professional <span className={theme.classes.gradientText}>Certificates</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -29,17 +31,17 @@ export default function Certificates() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
               whileHover={{ y: -4 }}
-              className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20"
+              className={theme.classes.card + ' p-6'}
             >
-              <h3 className="text-xl font-semibold mb-2 text-white">{cert.title}</h3>
-              <p className="text-gray-300 mb-4">{cert.issuer}</p>
+              <h3 className={`text-xl font-semibold mb-2 ${theme.colors.text.primary}`}>{cert.title}</h3>
+              <p className={`${theme.colors.text.secondary} mb-4`}>{cert.issuer}</p>
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href={cert.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300"
+                className={`inline-flex items-center gap-2 ${theme.colors.text.link} hover:${theme.colors.text.linkHover}`}
               >
                 View Certificate <ExternalLink className="w-4 h-4" />
               </motion.a>
@@ -55,11 +57,11 @@ export default function Certificates() {
               transition={{ delay: 0.15 }}
               whileHover={{ y: -4 }}
               onClick={() => navigate('/certificates')}
-              className="cursor-pointer flex items-center justify-center text-center bg-slate-800/30 backdrop-blur-lg rounded-2xl p-6 border border-gray-400"
+              className={`cursor-pointer flex items-center justify-center text-center ${theme.colors.background.card} backdrop-blur-lg rounded-2xl p-6 border ${theme.colors.border.secondary}`}
             >
               <div>
-                <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">See More</h3>
-                <p className="text-gray-300">View the full list of certificates</p>
+                <h3 className={`text-xl font-semibold mb-2 ${theme.classes.gradientText}`}>See More</h3>
+                <p className={theme.colors.text.secondary}>View the full list of certificates</p>
               </div>
             </motion.div>
           )}

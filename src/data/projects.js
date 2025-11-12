@@ -28,7 +28,7 @@ const PROJECTS = [
     tech: ['Flutter', 'Riverpod', 'ObjectBox', 'MVVM', 'Repository Pattern', 'GitHub Actions'],
     type: 'Desktop & Mobile',
     year: '2025',
-    highlights: ['Service Tracking', 'PDF/Excel exports', 'Revenue analytics', 'technician performance' ]
+    highlights: ['Service Tracking', 'PDF/Excel exports', 'Revenue analytics', 'Technician performance' ]
   },
   {
     id: 'tmovies',

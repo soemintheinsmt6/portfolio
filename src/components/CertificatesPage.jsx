@@ -2,8 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, ArrowLeft } from 'lucide-react';
 import { certificates } from '../data';
+import { useTheme } from '../core/theme/ThemeContext';
 
 export default function CertificatesPage() {
+  const { theme } = useTheme();
   // Use a simple history-based back helper so this page doesn't require React Router context.
   const goBack = () => {
     if (typeof window === 'undefined') return;
@@ -16,13 +18,13 @@ export default function CertificatesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    <div className={`min-h-screen ${theme.colors.background.main} ${theme.colors.text.primary}`}>
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="relative mb-8">
             <motion.button
               onClick={goBack}
-              className="absolute left-0 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full bg-slate-800/60 border border-purple-500/20 text-gray-200 inline-flex items-center gap-2"
+              className={`absolute left-0 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full ${theme.colors.background.card} ${theme.colors.border.card} ${theme.colors.text.secondary} inline-flex items-center gap-2`}
               aria-label="Back to Home"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -35,7 +37,7 @@ export default function CertificatesPage() {
               transition={{ duration: 1 }}
               className="text-4xl md:text-5xl font-bold text-center"
             >
-              All <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Certificates</span>
+              All <span className={theme.classes.gradientText}>Certificates</span>
             </motion.h2>
           </div>
 
@@ -47,17 +49,17 @@ export default function CertificatesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.18, duration: 0.3 }}
                 whileHover={{ scale: 1.03 }}
-                className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20"
+                className={theme.classes.card + ' p-6'}
               >
-                <h3 className="text-xl font-semibold mb-2 text-white">{cert.title}</h3>
-                <p className="text-gray-300 mb-4">{cert.issuer}</p>
+                <h3 className={`text-xl font-semibold mb-2 ${theme.colors.text.primary}`}>{cert.title}</h3>
+                <p className={`${theme.colors.text.secondary} mb-4`}>{cert.issuer}</p>
                 <motion.a
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.95 }}
                   href={cert.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300"
+                  className={`inline-flex items-center gap-2 ${theme.colors.text.link} hover:${theme.colors.text.linkHover}`}
                 >
                   View Certificate <ExternalLink className="w-4 h-4" />
                 </motion.a>

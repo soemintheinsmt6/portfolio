@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { experience } from '../data';
+import { useTheme } from '../core/theme/ThemeContext';
 
 function ExperienceCard({ exp, index }) {
+  const { theme } = useTheme();
   const [expanded, setExpanded] = useState(false);
   const hasMore = exp.achievements.length > 2;
   const mobileVisible = expanded ? exp.achievements : exp.achievements.slice(0, 2);
@@ -15,31 +17,31 @@ function ExperienceCard({ exp, index }) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.2, duration: 0.7 }}
       whileHover={{ scale: 1.02 }}
-      className="bg-slate-800/50 backdrop-blur-lg rounded-2xl p-8 border border-purple-500/20"
+      className={theme.classes.card + ' p-8'}
     >
       <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
         <div>
-          <h3 className="text-2xl font-bold text-purple-400 mb-2">{exp.title}</h3>
-          <p className="text-xl text-gray-300">{exp.company}</p>
+          <h3 className={`text-2xl font-bold ${theme.colors.text.accent} mb-2`}>{exp.title}</h3>
+          <p className={`text-xl ${theme.colors.text.secondary}`}>{exp.company}</p>
         </div>
-        <span className="text-pink-400 font-semibold mt-2 md:mt-0">{exp.period}</span>
+        <span className={`${theme.colors.text.accentSecondary} font-semibold mt-2 md:mt-0`}>{exp.period}</span>
       </div>
-      <p className="text-gray-400 mb-4">{exp.description}</p>
+      <p className={`${theme.colors.text.tertiary} mb-4`}>{exp.description}</p>
 
       {/* Mobile: truncated to 2 with See more inline */}
       <ul className="space-y-2 md:hidden">
         {mobileVisible.map((achievement, i) => {
           const isLastVisible = i === mobileVisible.length - 1;
           return (
-            <li key={i} className="flex items-start gap-2 text-gray-300">
-              <span className="text-purple-400">▹</span>
+            <li key={i} className={`flex items-start gap-2 ${theme.colors.text.secondary}`}>
+              <span className={theme.colors.text.accent}>▹</span>
               <span className="inline">
                 {achievement}
                 {!expanded && hasMore && isLastVisible && (
                   <button
                     type="button"
                     onClick={() => setExpanded(true)}
-                    className="text-purple-400 italic"
+                    className={`${theme.colors.text.accent} italic`}
                   >
                   ...See more
                   </button>
@@ -53,8 +55,8 @@ function ExperienceCard({ exp, index }) {
       {/* Desktop and up: show all */}
       <ul className="space-y-2 hidden md:block">
         {exp.achievements.map((achievement, i) => (
-          <li key={i} className="flex items-start gap-2 text-gray-300">
-            <span className="text-purple-400">▹</span>
+          <li key={i} className={`flex items-start gap-2 ${theme.colors.text.secondary}`}>
+            <span className={theme.colors.text.accent}>▹</span>
             <span>{achievement}</span>
           </li>
         ))}
@@ -64,8 +66,9 @@ function ExperienceCard({ exp, index }) {
 }
 
 export default function Experience() {
+  const { theme } = useTheme();
   return (
-    <section id="experience" className="py-20 px-4 bg-slate-900/50">
+    <section id="experience" className={`py-20 px-4 ${theme.colors.background.section}`}>
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
@@ -74,7 +77,7 @@ export default function Experience() {
           className="text-4xl md:text-5xl font-bold mb-12 text-center"
           transition={{ duration: 1 }}
         >
-          Professional <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Journey</span>
+          Professional <span className={theme.classes.gradientText}>Journey</span>
         </motion.h2>
 
         <div className="space-y-8">

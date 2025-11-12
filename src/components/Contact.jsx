@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
+import { useTheme } from '../core/theme/ThemeContext';
 
 function GitHubIcon(props) {
   return (
@@ -27,6 +28,7 @@ function FacebookIcon(props) {
 }
 
 export default function Contact() {
+  const { theme } = useTheme();
   return (
     <section id="contact" className="py-20 px-4">
       <div className="max-w-4xl mx-auto text-center">
@@ -37,14 +39,14 @@ export default function Contact() {
           className="text-4xl md:text-5xl font-bold mb-8"
           transition={{ duration: 1 }}
         >
-          Let's <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Connect</span>
+          Let's <span className={theme.classes.gradientText}>Connect</span>
         </motion.h2>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-lg text-white mb-12"
+          className={`text-lg ${theme.colors.text.primary} mb-12`}
           transition={{ duration: 0.8, delay: 0.18 }}
         >
           I'm always open to discussing new projects, creative ideas and opportunities to be part of your visions.
@@ -61,7 +63,7 @@ export default function Contact() {
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
             href="mailto:soeminthein020@gmail.com"
-            className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold text-white hover:text-white hover:shadow-lg hover:shadow-purple-500/50 transition-shadow"
+            className={`flex items-center gap-2 px-8 py-4 ${theme.colors.button.gradient} rounded-full text-lg font-semibold ${theme.colors.text.primary} hover:shadow-lg transition-shadow`}
           >
             <Mail className="w-6 h-6" />
             Email Me
@@ -73,7 +75,7 @@ export default function Contact() {
             href="https://github.com/soemintheinsmt6"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-8 py-4 bg-slate-800 rounded-full text-lg font-semibold hover:bg-slate-700 transition-colors"
+            className={`flex items-center gap-2 px-8 py-4 ${theme.colors.button.secondary} rounded-full text-lg font-semibold ${theme.colors.button.secondaryHover} transition-colors`}
           >
             <GitHubIcon className="w-6 h-6" />
             GitHub
@@ -85,7 +87,7 @@ export default function Contact() {
             href="https://linkedin.com/in/soemin-thein"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-8 py-4 bg-slate-800 rounded-full text-lg font-semibold hover:bg-slate-700 transition-colors"
+            className={`flex items-center gap-2 px-8 py-4 ${theme.colors.button.secondary} rounded-full text-lg font-semibold ${theme.colors.button.secondaryHover} transition-colors`}
           >
             <LinkedInIcon className="w-6 h-6" />
             LinkedIn
@@ -97,7 +99,7 @@ export default function Contact() {
             href="https://www.facebook.com/soemin.thein.16696"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-8 py-4 bg-slate-800 rounded-full text-lg font-semibold hover:bg-slate-700 transition-colors"
+            className={`flex items-center gap-2 px-8 py-4 ${theme.colors.button.secondary} rounded-full text-lg font-semibold ${theme.colors.button.secondaryHover} transition-colors`}
           >
             <FacebookIcon className="w-6 h-6" />
             Facebook
@@ -108,7 +110,7 @@ export default function Contact() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-12 text-gray-400"
+          className={`mt-12 ${theme.colors.text.tertiary}`}
         >
           <p>📍 Developing Apps from the place that feels like Home</p>
         </motion.div>
