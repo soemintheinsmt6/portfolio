@@ -46,8 +46,8 @@ export default function CertificatesPage() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.18, duration: 0.3 }}
-                whileHover={{ scale: 1.03 }}
-                className={theme.classes.card + ' p-6'}
+                whileHover={{ scale: 1.02 }}
+                className={theme.classes.card + ' p-5'}
               >
                 <h3 className={`text-xl font-semibold mb-2 ${theme.colors.text.primary}`}>{cert.title}</h3>
                 <p className={`${theme.colors.text.secondary} mb-4`}>{cert.issuer}</p>

@@ -159,7 +159,7 @@ export const themes = {
       buttonPrimary: 'bg-gray-900 hover:bg-gray-800 text-white',
       buttonGradient: 'bg-gradient-to-r from-gray-800 to-gray-900 text-white',
       navBorder: 'border-b border-gray-200',
-      activeNav: 'text-gray-900',
+      activeNav: 'text-blue-500',
     },
   },
 };
