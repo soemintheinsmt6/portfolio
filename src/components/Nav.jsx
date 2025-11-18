@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useTheme } from '../core/theme/ThemeContext';
@@ -6,6 +6,17 @@ import ThemeSwitcher from './ThemeSwitcher';
 
 export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobileMenuOpen }) {
   const { theme } = useTheme();
+  // Inject signature-style font (Great Vibes) once when component mounts
+  useEffect(() => {
+    const id = 'signature-font-great-vibes';
+    if (!document.getElementById(id)) {
+      const link = document.createElement('link');
+      link.id = id;
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Pacifico&display=swap';
+      document.head.appendChild(link);
+    }
+  }, []);
   const items = ['Home', 'About', 'Experience', 'Projects', 'Skills', 'Certificates', 'Contact'];
   return (
     <motion.nav
@@ -19,6 +30,7 @@ export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobi
             whileHover={{ scale: 1.05 }}
             className={`text-2xl font-bold ${theme.classes.gradientText} cursor-pointer`}
             onClick={() => onNavigate('home')}
+            style={{ fontFamily: "'Pacifico', cursive" }}
           >
             Soeminthein
           </motion.div>
