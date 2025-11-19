@@ -51,16 +51,18 @@ export default function CertificatesPage() {
               >
                 <h3 className={`text-xl font-semibold mb-2 ${theme.colors.text.primary}`}>{cert.title}</h3>
                 <p className={`${theme.colors.text.secondary} mb-4`}>{cert.issuer}</p>
-                <motion.a
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.95 }}
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-2 ${theme.colors.text.link} hover:${theme.colors.text.linkHover}`}
-                >
-                  View Certificate <ExternalLink className="w-4 h-4" />
-                </motion.a>
+                {cert.link && (
+                  <motion.a
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.95 }}
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-2 ${theme.colors.text.link} hover:${theme.colors.text.linkHover}`}
+                  >
+                    View Certificate <ExternalLink className="w-4 h-4" />
+                  </motion.a>
+                )}
               </motion.div>
             ))}
           </div>

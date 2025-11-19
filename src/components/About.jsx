@@ -18,13 +18,13 @@ export default function About() {
           </h2>
           <div className={theme.classes.card + ' p-8'}>
             <p className={`text-lg ${theme.colors.text.primary} leading-relaxed mb-6`}>
-              A passionate mobile developer with over 5 years of experience in designing, developing and maintaining mobile applications. I specialize in creating reusable and efficient code with a strong focus on enhancing user experiences and delivering innovative mobile solutions.
+              Hi, my name is Soe Min Thein. I’m a mobile developer experienced in designing, building and maintaining high-quality mobile applications. I focus on creating reusable, efficient code and crafting user-centered experiences that turn ideas into smooth, intuitive products.
             </p>
             <p className={`text-lg ${theme.colors.text.primary} leading-relaxed mb-6`}>
-              Currently working on mobile app development projects using Swift, UIKit, SwiftUI and Flutter. I'm proficient in various mobile development frameworks and always eager to collaborate on open-source projects related to mobile development.
+              I work extensively with Swift, UIKit, SwiftUI and Flutter, and I enjoy contributing to open-source projects within the mobile development ecosystem.
             </p>
             <p className={`text-lg ${theme.colors.text.primary} leading-relaxed`}>
-              Fun fact: Besides coding, I'm also a footballer who enjoys playing competitively in my free time!
+              Besides coding, I'm also a footballer who enjoys playing competitively in my free time!
             </p>
           </div>
         </motion.div>

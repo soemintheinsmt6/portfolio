@@ -18,6 +18,21 @@ export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobi
     }
   }, []);
   const items = ['Home', 'About', 'Experience', 'Projects', 'Skills', 'Certificates', 'Contact'];
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,   // delay between each item
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    show: { opacity: 1, y: 0 },
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -35,24 +50,32 @@ export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobi
             Soeminthein
           </motion.div>
 
-          <div className="hidden md:flex items-center space-x-2">
+          <motion.div
+            className="hidden md:flex items-center space-x-2"
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+          >
             {items.map((item) => (
               <motion.button
                 key={item}
+                variants={itemVariants}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => onNavigate(item.toLowerCase())}
-                className={`${
-                  activeSection === item.toLowerCase()
+                className={`${activeSection === item.toLowerCase()
                     ? theme.classes.activeNav
                     : `${theme.colors.text.secondary} hover:${theme.colors.text.primary}`
-                } transition-colors`}
+                  } transition-colors`}
               >
                 {item}
               </motion.button>
             ))}
-            <ThemeSwitcher />
-          </div>
+            <motion.div variants={itemVariants}>
+              <ThemeSwitcher />
+            </motion.div>
+          </motion.div>
+
 
           <div className="flex items-center gap-2 md:hidden">
             <ThemeSwitcher />
