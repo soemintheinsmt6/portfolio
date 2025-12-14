@@ -1,7 +1,7 @@
 import { deepFreeze } from './utils';
 
 const PROJECTS = [
-    {
+  {
     id: 'slazh',
     title: 'Slazh',
     description: 'High-performance fashion e-commerce iOS app with secure payments and elegant animations.',
@@ -11,7 +11,7 @@ const PROJECTS = [
     link: 'https://apps.apple.com/us/app/slazh/id6447933375',
     highlights: ['Secure payments', 'Custom animations', 'Seamless product listing', 'Offline/Online cart']
   },
-    {
+  {
     id: 'mega-z-erp',
     title: 'Mega Z ERP',
     description: 'Comprehensive ERP system with separate apps for staff, kitchen, waiter and customers with real-time data synchronization.',
@@ -26,9 +26,9 @@ const PROJECTS = [
     title: 'Mobile Service Manager',
     description: 'Comprehensive service management system for mobile repair centers with advanced reporting and analytics.',
     tech: ['Flutter', 'Riverpod', 'ObjectBox', 'MVVM', 'Repository Pattern', 'GitHub Actions'],
-    type: 'Desktop & Mobile',
+    type: 'Desktop(Windows & macOS)',
     year: '2025',
-    highlights: ['Service Tracking', 'PDF/Excel exports', 'Revenue analytics', 'Technician performance' ]
+    highlights: ['Service Tracking', 'PDF/Excel exports', 'Revenue analytics', 'Technician performance']
   },
   {
     id: 'tmovies',

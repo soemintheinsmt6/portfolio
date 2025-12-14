@@ -1,6 +1,6 @@
 # Portfolio (React + Vite + Framer Motion)
 
-Personal portfolio with animated sections, modular structure and Google Analytics.
+Soe Min Thein's personal portfolio with animated sections, modular structure and Google Analytics.
 
 ## Getting Started
 

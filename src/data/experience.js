@@ -59,7 +59,7 @@ const EXPERIENCE = [
     tech_stacks: [
       'Swift',
       'Alamofire',
-      'Firebase Cloud Messaging', 
+      'Firebase Cloud Messaging',
       'Analytics'
     ]
   }
