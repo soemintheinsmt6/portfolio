@@ -28,7 +28,7 @@ export default function Projects() {
           Notable <span className={theme.classes.gradientText}>Projects</span>
         </motion.h2>
 
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col gap-20">
           {projects.map((project, index) => {
             const imageUrl = getProjectImage(project.image);
             const isEven = index % 2 === 0;
@@ -56,7 +56,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className="block"
                       >
-                        <div className={`relative aspect-video rounded-xl overflow-hidden ${theme.colors.background.secondary} shadow-2xl cursor-pointer group/image`}>
+                        <div className={`relative aspect-[1.85/1] rounded-xl overflow-hidden ${theme.colors.background.secondary} shadow-2xl cursor-pointer group/image`}>
                           {imageUrl ? (
                             <img
                               src={imageUrl}
@@ -75,7 +75,7 @@ export default function Projects() {
                         </div>
                       </a>
                     ) : (
-                      <div className={`relative aspect-video rounded-xl overflow-hidden ${theme.colors.background.secondary} shadow-2xl`}>
+                      <div className={`relative aspect-[1.85/1] rounded-xl overflow-hidden ${theme.colors.background.secondary} shadow-2xl`}>
                         {imageUrl ? (
                           <img
                             src={imageUrl}
