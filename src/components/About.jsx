@@ -21,13 +21,13 @@ export default function About() {
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className={theme.classes.card + ' p-8 flex-1'}>
               <p className={`text-lg ${theme.colors.text.primary} leading-relaxed mb-6`}>
-                Hi, my name is Soe Min Thein. I'm a mobile developer experienced in designing, building and maintaining high-quality mobile applications. I focus on creating reusable, efficient code and crafting user-centered experiences that turn ideas into smooth, intuitive products.
+                Hi, my name is <strong>Soe Min Thein</strong>. I'm a <strong>Mobile Developer</strong> experienced in designing, building and maintaining high-quality mobile applications. I focus on creating <strong>reusable, efficient code</strong> and crafting <strong>user-centered experiences</strong> that turn ideas into smooth, intuitive products.
               </p>
               <p className={`text-lg ${theme.colors.text.primary} leading-relaxed mb-6`}>
-                I work extensively with Swift, UIKit, SwiftUI and Flutter, and I enjoy contributing to open-source projects within the mobile development ecosystem.
+                I work extensively with <strong>Swift</strong>, <strong>UIKit</strong>, <strong>SwiftUI</strong> and <strong>Flutter</strong>, and I enjoy contributing to <strong>open-source projects</strong> within the mobile development ecosystem.
               </p>
               <p className={`text-lg ${theme.colors.text.primary} leading-relaxed`}>
-                Besides coding, I'm also a footballer who enjoys playing competitively in my free time!
+                Besides coding, I'm also a <strong>footballer</strong> who enjoys playing competitively in my free time!
               </p>
             </div>
             <motion.div

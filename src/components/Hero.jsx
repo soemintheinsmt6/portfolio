@@ -128,7 +128,19 @@ export default function Hero() {
           className={`text-2xl md:text-4xl mb-4 ${theme.classes.gradientText} font-medium h-10 md:h-14`}
         >
           <span>{displayText}</span>
-          <span className="animate-pulse">|</span>
+          <span
+            className="inline-block w-[3px] md:w-[4px] h-7 md:h-10 ml-1 align-middle rounded-sm"
+            style={{
+              backgroundColor: '#38bdf8',
+              animation: 'cursorBlink 1s step-end infinite'
+            }}
+          />
+          <style>{`
+            @keyframes cursorBlink {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0; }
+            }
+          `}</style>
         </motion.div>
 
         <motion.p

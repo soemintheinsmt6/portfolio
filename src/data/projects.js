@@ -26,7 +26,7 @@ const PROJECTS = [
     title: 'Mobile Service Manager',
     description: 'Comprehensive service management system for mobile repair centers with advanced reporting and analytics.',
     tech: ['Flutter', 'Riverpod', 'ObjectBox', 'MVVM', 'Repository Pattern', 'GitHub Actions'],
-    type: 'Desktop(Windows & macOS)',
+    type: 'Windows & macOS',
     year: '2025',
     highlights: ['Service Tracking', 'PDF/Excel exports', 'Revenue analytics', 'Technician performance']
   },
