@@ -83,7 +83,7 @@ export default function Experience() {
 
         <div className="flex flex-col lg:flex-row items-start gap-8">
           <motion.div
-            className="w-full lg:w-80 xl:w-96 lg:sticky lg:top-24 hidden lg:block"
+            className="w-full max-w-xs mx-auto lg:mx-0 lg:w-80 xl:w-96 lg:sticky lg:top-24"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}

@@ -41,14 +41,14 @@ export default function Certificates() {
           Recognized achievements and certifications
         </motion.p>
 
-        <div className="flex flex-col-reverse lg:flex-row gap-12 items-center">
-          {/* Certification Illustration - Left side on desktop */}
+        <div className="flex flex-col lg:flex-row gap-12 items-center">
+          {/* Certification Illustration - Under title on mobile, left side on desktop */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full lg:w-2/5 flex justify-center"
+            className="w-full max-w-xs mx-auto lg:mx-0 lg:w-2/5 flex justify-center"
             dangerouslySetInnerHTML={{ __html: svgContent }}
             style={{ maxWidth: '400px' }}
           />
