@@ -9,7 +9,7 @@ import CertificationIllustrationUrl from '../assets/Illustrations/certification.
 export default function Certificates() {
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const visible = certificates.slice(0, 4);
+  const visible = certificates.slice(0, 5);
   const [svgContent, setSvgContent] = useState('');
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function Certificates() {
           transition={{ delay: 0.1 }}
           className={`text-center ${theme.colors.text.secondary} mb-12 max-w-2xl mx-auto`}
         >
-          Recognized achievements and certifications in software development
+          Recognized achievements and certifications
         </motion.p>
 
         <div className="flex flex-col-reverse lg:flex-row gap-12 items-center">
@@ -87,28 +87,37 @@ export default function Certificates() {
                   </div>
                 </motion.a>
               ))}
-            </div>
 
-            {/* See More Button */}
-            {certificates.length > 4 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-                className="mt-6 text-center"
-              >
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+              {/* See More Card - 6th item in 2x3 grid */}
+              {certificates.length > 5 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  whileHover={{ y: -6, scale: 1.02 }}
                   onClick={() => navigate('/certificates')}
-                  className={`inline-flex items-center gap-2 px-6 py-3 rounded-full ${theme.colors.background.card} border ${theme.colors.border.secondary} ${theme.colors.text.primary} hover:border-current transition-colors`}
+                  className={`${theme.classes.card} p-5 group cursor-pointer block`}
                 >
-                  View All {certificates.length} Certificates
-                  <ArrowRight className="w-4 h-4" />
-                </motion.button>
-              </motion.div>
-            )}
+                  <div className="flex items-start gap-3">
+                    <div className={`p-2 rounded-lg ${theme.colors.background.secondary} group-hover:scale-110 transition-transform`}>
+                      <ArrowRight className={`w-5 h-5 ${theme.colors.text.link}`} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className={`text-lg font-semibold mb-1 ${theme.colors.text.primary}`}>
+                        View All Certificates
+                      </h3>
+                      <p className={`text-sm ${theme.colors.text.secondary} mb-2`}>
+                        View the full list of certificates
+                      </p>
+                      <span className={`inline-flex items-center gap-1 text-sm ${theme.colors.text.link} group-hover:gap-2 transition-all`}>
+                        See more <ExternalLink className="w-3 h-3" />
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
       </div>
