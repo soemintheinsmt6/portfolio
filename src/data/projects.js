@@ -9,6 +9,7 @@ const PROJECTS = [
     type: 'iOS',
     year: '2021 - 2023',
     link: 'https://apps.apple.com/us/app/slazh/id6447933375',
+    image: 'slazh.jpg',
     highlights: ['Secure payments', 'Custom animations', 'Seamless product listing', 'Offline/Online cart']
   },
   {
@@ -38,6 +39,7 @@ const PROJECTS = [
     type: 'Cross-platform',
     year: '2024 - 2025',
     link: 'https://play.google.com/store/apps/details?id=com.thebillionaire.movie_server',
+    image: 'tmovies.PNG',
     highlights: ['Offline downloads', 'PiP mode', 'Multi-platform', 'VLC plugin', 'Better player controls']
   },
 ];
