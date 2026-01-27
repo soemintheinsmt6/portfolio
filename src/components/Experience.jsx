@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { experience } from '../data';
 import { useTheme } from '../core/theme/ThemeContext';
+import collaborateIllustration from '../assets/Illustrations/colloborate.svg';
 
 function ExperienceCard({ exp, index }) {
   const { theme } = useTheme();
@@ -43,7 +44,7 @@ function ExperienceCard({ exp, index }) {
                     onClick={() => setExpanded(true)}
                     className={`${theme.colors.text.accent} italic`}
                   >
-                  ...See more
+                    ...See more
                   </button>
                 )}
               </span>
@@ -80,10 +81,25 @@ export default function Experience() {
           Professional <span className={theme.classes.gradientText}>Journey</span>
         </motion.h2>
 
-        <div className="space-y-8">
-          {experience.map((exp, index) => (
-            <ExperienceCard key={exp.id || index} exp={exp} index={index} />
-          ))}
+        <div className="flex flex-col lg:flex-row items-start gap-8">
+          <motion.div
+            className="w-full lg:w-80 xl:w-96 lg:sticky lg:top-24 hidden lg:block"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <img
+              src={collaborateIllustration}
+              alt="Collaboration illustration"
+              className="w-full h-auto"
+            />
+          </motion.div>
+          <div className="space-y-8 flex-1">
+            {experience.map((exp, index) => (
+              <ExperienceCard key={exp.id || index} exp={exp} index={index} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

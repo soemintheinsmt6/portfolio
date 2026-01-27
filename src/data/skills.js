@@ -36,10 +36,10 @@ const SKILLS = [
     category: 'Engineering Ecosystem',
     items: [
       'Git', 'Firebase', 'RESTful API', 'GraphQL',
-      'CI/CD', 'Bitrise', 'GitHub Actions', 'Fastlane',
+      'CI/CD', 'Bitrise', 'GitHub Actions',
       'Figma', 'Jira',
       'JavaScript', 'React', 'Tailwind CSS',
-      'Vite', 'Framer Motion'
+      'Vite',
     ]
   }
 ];

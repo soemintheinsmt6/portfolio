@@ -8,11 +8,10 @@ const EXPERIENCE = [
     period: '2023 Aug - Present',
     description: 'ERP solution development for bar and entertainment business with multiple connected mobile applications',
     achievements: [
-      'Developed a comprehensive ERP ecosystem including Staff, Kitchen, Waiter and Customer apps to optimize operational workflows',
-      'Architected real-time communication between apps using WebSocket for instant data synchronization',
-      'Enhanced customer experience with live order tracking, notifications and streamlined interactions',
-      'Designed tablet-friendly waiter interface with split-screen layout for multitasking and improved user flow',
-      'Enabled reliable communication and coordination across multiple teams and apps via real-time messaging'
+      'Built a multi-app ERP ecosystem (Staff, Kitchen, Waiter, Customer) to streamline operational workflows',
+      'Implemented real-time data synchronization and messaging across apps using WebSocket',
+      'Improved customer and staff experience with live order tracking, notifications, and split-screen tablet UI',
+      'Established CI/CD pipelines with Bitrise to automate builds, testing, and deployment across multiple apps'
     ],
     tech_stacks: [
       'Flutter',
@@ -31,11 +30,9 @@ const EXPERIENCE = [
     period: '2021 Jun - 2023 Jul',
     description: 'Fashion e-commerce iOS app development with focus on product design and secure transactions',
     achievements: [
-      'Designed and developed an e-commerce app with a focus on modular architecture',
-      'Implemented secure mobile payment processing and data protection mechanisms',
-      'Integrated social media features to drive user engagement and retention',
-      'Collaborated with UI/UX team on custom animations and high-quality visual transitions',
-      'Conducted unit and integration testing to ensure application stability and performance optimization',
+      'Developed a modular and scalable iOS e-commerce application',
+      'Implemented secure payment processing with encryption and data protection',
+      'Enhanced user experience through social features, custom animations, and performance-focused testing'
     ],
     tech_stacks: [
       'Swift',

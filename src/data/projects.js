@@ -34,7 +34,7 @@ const PROJECTS = [
     id: 'tmovies',
     title: 'Tmovies',
     description: 'Feature-rich movie streaming app with offline downloads and Picture-in-Picture support across Android, iOS and Android TV.',
-    tech: ['Flutter', 'Firebase', 'ObjectBox', 'Provider'],
+    tech: ['Flutter', 'Firebase', 'ObjectBox', 'Provider', 'Method Channel'],
     type: 'Cross-platform',
     year: '2024 - 2025',
     link: 'https://play.google.com/store/apps/details?id=com.thebillionaire.movie_server',

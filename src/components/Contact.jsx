@@ -54,7 +54,8 @@ export default function Contact() {
               className={`text-lg ${theme.colors.text.primary} mb-8`}
               transition={{ duration: 0.8, delay: 0.18 }}
             >
-              I'm always open to discussing new projects, creative ideas and opportunities to be part of your visions.
+              I'm always open to discussing new projects, creative ideas, opportunities and potential collaborations. Whether you have a question or just want
+              to say hi, feel free to reach out!
             </motion.p>
 
             <motion.div
