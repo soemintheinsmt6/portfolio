@@ -1,4 +1,8 @@
 import { deepFreeze } from './utils';
+import slazhImage from '../assets/images/slazh.jpg';
+import megaZImage from '../assets/images/mega-z.png';
+import mobileServiceManagerImage from '../assets/images/mobile-service-manager.jpg';
+import tmoviesImage from '../assets/images/tmovies.PNG';
 
 const PROJECTS = [
   {
@@ -9,7 +13,7 @@ const PROJECTS = [
     type: 'iOS',
     year: '2021 - 2023',
     link: 'https://apps.apple.com/us/app/slazh/id6447933375',
-    image: 'slazh.jpg',
+    image: slazhImage,
     highlights: ['Secure payments', 'Custom animations', 'Seamless product listing', 'Offline/Online cart']
   },
   {
@@ -20,7 +24,7 @@ const PROJECTS = [
     type: 'Enterprise',
     year: '2023 - Present',
     link: 'https://testflight.apple.com/join/syAmsdsM',
-    image: 'mega-z.png',
+    image: megaZImage,
     highlights: ['Real-time sync', 'Multi-app system', 'Push notifications', 'Split-screen layout']
   },
   {
@@ -30,7 +34,7 @@ const PROJECTS = [
     tech: ['Flutter', 'Riverpod', 'ObjectBox', 'MVVM', 'Repository Pattern', 'GitHub Actions'],
     type: 'Windows & macOS',
     year: '2025',
-    image: 'mobile-service-manager.jpg',
+    image: mobileServiceManagerImage,
     highlights: ['Service Tracking', 'PDF/Excel exports', 'Revenue analytics', 'Technician performance']
   },
   {
@@ -41,7 +45,7 @@ const PROJECTS = [
     type: 'Cross-platform',
     year: '2024 - 2025',
     link: 'https://play.google.com/store/apps/details?id=com.thebillionaire.movie_server',
-    image: 'tmovies.PNG',
+    image: tmoviesImage,
     highlights: ['Offline downloads', 'PiP mode', 'Multi-platform', 'VLC plugin', 'Better player controls']
   },
 ];
@@ -49,5 +53,3 @@ const PROJECTS = [
 export const projects = deepFreeze(PROJECTS.map((p) => ({ ...p, tech: [...p.tech], highlights: [...(p.highlights || [])] })));
 
 export default projects;
-
-

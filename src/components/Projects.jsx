@@ -4,15 +4,6 @@ import { Smartphone, ExternalLink, Image } from 'lucide-react';
 import { projects } from '../data';
 import { useTheme } from '../core/theme/ThemeContext';
 
-// Import all project images
-const projectImages = import.meta.glob('../assets/images/*', { eager: true, import: 'default' });
-
-function getProjectImage(imageName) {
-  if (!imageName) return null;
-  const key = `../assets/images/${imageName}`;
-  return projectImages[key] || null;
-}
-
 export default function Projects() {
   const { theme } = useTheme();
   return (
@@ -30,7 +21,7 @@ export default function Projects() {
 
         <div className="flex flex-col gap-20">
           {projects.map((project, index) => {
-            const imageUrl = getProjectImage(project.image);
+            const imageUrl = project.image;
             const isEven = index % 2 === 0;
 
             return (

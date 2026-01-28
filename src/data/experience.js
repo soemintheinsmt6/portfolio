@@ -1,10 +1,14 @@
 import { deepFreeze } from './utils';
+import megaZLogo from '../assets/logos/mega-z-logo.png';
+import slazhLogo from '../assets/logos/slazh-logo.jpg';
+import swanArrLogo from '../assets/logos/swan-arr-logo.jpg';
 
 const EXPERIENCE = [
   {
     id: 'mega-z-mobile-developer',
     title: 'Mobile Developer',
     company: 'Mega Z',
+    logo: megaZLogo,
     period: '2023 Aug - Present',
     description: 'ERP solution development for bar and entertainment business with multiple connected mobile applications',
     achievements: [
@@ -27,6 +31,7 @@ const EXPERIENCE = [
     id: 'slazh-ios-developer',
     title: 'iOS Developer',
     company: 'Slazh',
+    logo: slazhLogo,
     period: '2021 Jun - 2023 Jul',
     description: 'Fashion e-commerce iOS app development with focus on product design and secure transactions',
     achievements: [
@@ -46,6 +51,7 @@ const EXPERIENCE = [
     id: 'swan-arr-junior-ios-developer',
     title: 'Junior iOS Developer',
     company: 'Swan Arr Electronics',
+    logo: swanArrLogo,
     period: '2019 Aug - 2021 Apr',
     description: 'iOS application development and Agile methodology',
     achievements: [

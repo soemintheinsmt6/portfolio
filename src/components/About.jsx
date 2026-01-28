@@ -33,7 +33,7 @@ export default function About() {
                 style={{ width: '100%', height: 'auto' }}
               />
             </motion.div>
-            <div className={theme.classes.card + ' p-8 flex-1 md:order-1'}>
+            <div className="p-8 flex-1 md:order-1">
               <p className={`text-lg ${theme.colors.text.primary} leading-relaxed mb-6`}>
                 Hi, my name is <strong>Soe Min Thein</strong>. I'm a <strong>Mobile Developer</strong> experienced in designing, building and maintaining high-quality mobile applications. I focus on creating <strong>reusable, efficient code</strong> and crafting <strong>user-centered experiences</strong> that turn ideas into smooth, intuitive products.
               </p>
