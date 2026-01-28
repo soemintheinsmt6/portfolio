@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { skills } from '../data';
 import { useTheme } from '../core/theme/ThemeContext';
 
-export default function Skills({useSectionBackground = true }) {
+export default function Skills({ useSectionBackground = true }) {
   const { theme } = useTheme();
   const backgroundColor = useSectionBackground ? theme.colors.background.section : 'bg-transparent';
-  
+
   return (
     <section id="skills" className={`py-20 px-4 ${backgroundColor}`}>
       <div className="max-w-6xl mx-auto">
@@ -14,11 +14,21 @@ export default function Skills({useSectionBackground = true }) {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold mb-12 text-center"
+          className="text-4xl md:text-5xl font-bold mb-4 text-center"
           transition={{ duration: 1 }}
         >
           Technical <span className={theme.classes.gradientText}>Skills</span>
         </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className={`text-center ${theme.colors.text.secondary} mb-12 max-w-2xl mx-auto`}
+        >
+          Technologies and tools I work with
+        </motion.p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skills.map((skillGroup, index) => (

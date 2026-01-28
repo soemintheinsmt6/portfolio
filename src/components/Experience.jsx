@@ -110,7 +110,7 @@ export default function Experience() {
           <div className="flex-1 relative">
             {/* Timeline Line - starts from first dot */}
             <div
-              className={`absolute left-4 md:left-6 top-8 bottom-8 w-px hidden md:block ${theme.name === 'minimalist' ? 'bg-gray-300' : 'bg-gradient-to-b from-purple-500 via-pink-500 to-purple-500/20'
+              className={`absolute left-4 md:left-6 top-8 bottom-8 w-px ${theme.name === 'minimalist' ? 'bg-gray-300' : 'bg-gradient-to-b from-purple-500 via-pink-500 to-purple-500/20'
                 }`}
             />
 
@@ -118,17 +118,17 @@ export default function Experience() {
               {experience.map((exp, index) => (
                 <div key={exp.id || index} className="relative">
                   {/* Timeline Dot */}
-                  <div className="absolute left-4 md:left-6 top-8 -translate-x-1/2 z-10 hidden md:block">
+                  <div className="absolute left-4 md:left-6 top-8 -translate-x-1/2 z-10">
                     <div
                       className={`w-3 h-3 rounded-full ${theme.name === 'minimalist'
-                          ? 'bg-gray-400 ring-4 ring-gray-200'
-                          : 'bg-gradient-to-r from-purple-400 to-pink-400 ring-4 ring-purple-500/20'
+                        ? 'bg-gray-400 ring-4 ring-gray-200'
+                        : 'bg-gradient-to-r from-purple-400 to-pink-400 ring-4 ring-purple-500/20'
                         }`}
                     />
                   </div>
 
                   {/* Card with left padding for timeline */}
-                  <div className="md:pl-12">
+                  <div className="pl-10 md:pl-12">
                     <ExperienceCard exp={exp} index={index} />
                   </div>
                 </div>
