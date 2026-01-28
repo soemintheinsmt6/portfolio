@@ -124,6 +124,12 @@ export default function Certificates() {
                       <p className={`text-sm ${theme.colors.text.secondary}`}>
                         View the full list of certificates
                       </p>
+                      {/* Mobile: inline link - consistent with certificate cards */}
+                      <span
+                        className={`md:hidden mt-2 inline-flex items-center gap-1 text-sm ${theme.colors.text.link}`}
+                      >
+                        See more <ExternalLink className="w-3 h-3" />
+                      </span>
                     </div>
                     {/* Desktop: hover icon indicator */}
                     <ExternalLink className={`hidden md:block w-4 h-4 ${theme.colors.text.tertiary} opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0`} />
