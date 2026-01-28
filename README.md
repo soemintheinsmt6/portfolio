@@ -20,28 +20,53 @@ npm run preview
 
 ```text
 src/
-  app/          # App setup (router, providers, store) [future]
-  core/         # Core services (api, storage, config)
+  assets/               # Static assets
+    Illustrations/      # SVG and Lottie animations
+      certification.svg
+      colloborate.svg
+      contact.json
+      developer.json
+      team.json
+    images/             # Project screenshots
+    logos/              # Brand logos
+  components/           # Presentational components
+    About.jsx
+    Certificates.jsx
+    CertificatesPage.jsx
+    Contact.jsx
+    Experience.jsx
+    Footer.jsx
+    Hero.jsx
+    Nav.jsx
+    Projects.jsx
+    Skills.jsx
+    SkillsPage.jsx
+    ThemeSwitcher.jsx
+  core/                 # Core services
     config/
-      ga.js     # GA id from env (VITE_GA_ID)
-  features/     # Each feature is a self-contained module
-    about/
-    certificates/
-    contact/
-    experience/
-    footer/
-    hero/
-    nav/
-    projects/
-    skills/
-  shared/       # Reusable modules
-    data/       # Re-exports central data
-  components/   # Existing presentational components (kept for now)
-  data/         # Existing data modules
+      ga.js             # GA id from env (VITE_GA_ID)
+    theme/
+      ThemeContext.jsx  # Theme provider
+      themes.js         # Theme definitions
+  data/                 # Data modules
+    certificates.js
+    experience.js
+    index.js
+    projects.js
+    skills.js
+    utils.js
+  shared/               # Reusable modules
+    data/
+      index.js          # Re-exports central data
+  App.jsx               # Main app component
+  data.js               # Legacy data exports
+  index.css             # Global styles
+  main.jsx              # Entry point
+public/
+  s-icon.png            # Favicon
 ```
 
 Notes:
-- `features/*` currently re-export from `components/*`. We can fully move code into features later.
 - Data is split and frozen for immutability in `src/data/*` and re-exported via `src/shared/data`.
 
 ## Environment Variables

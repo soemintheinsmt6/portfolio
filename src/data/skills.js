@@ -25,8 +25,8 @@ const SKILLS = [
     category: 'Concepts',
     items: [
       'Agile/Scrum', 'Clean Architecture',
-      'MVVM', 'MVC', 'SOLID Principles',
-      'Repository Pattern', 'Unit Testing',
+      'MVVM', 'MVC', 'Repository Pattern',
+      'SOLID Principles', 'Unit Testing',
       'OOP', 'Reactive Programming',
       'Performance Optimization'
     ]
