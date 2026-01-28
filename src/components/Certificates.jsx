@@ -57,35 +57,49 @@ export default function Certificates() {
           <div className="w-full lg:w-3/5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {visible.map((cert, idx) => (
-                <motion.a
+                <motion.div
                   key={idx}
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
                   whileHover={{ y: -6, scale: 1.02 }}
-                  className={`${theme.classes.card} p-5 group cursor-pointer block`}
+                  className={`${theme.classes.card} p-5 group block relative overflow-hidden`}
                 >
+                  {/* Desktop: clickable overlay */}
+                  <a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hidden md:block absolute inset-0 z-10"
+                    aria-label={`View ${cert.title}`}
+                  />
+
                   <div className="flex items-start gap-3">
-                    <div className={`p-2 rounded-lg ${theme.colors.background.secondary} group-hover:scale-110 transition-transform`}>
+                    <div className={`p-2 rounded-lg ${theme.colors.background.secondary} group-hover:scale-110 transition-transform flex-shrink-0`}>
                       <Award className={`w-5 h-5 ${theme.colors.text.link}`} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className={`text-lg font-semibold mb-1 ${theme.colors.text.primary} line-clamp-2`}>
                         {cert.title}
                       </h3>
-                      <p className={`text-sm ${theme.colors.text.secondary} mb-2`}>
+                      <p className={`text-sm ${theme.colors.text.secondary}`}>
                         {cert.issuer}
                       </p>
-                      <span className={`inline-flex items-center gap-1 text-sm ${theme.colors.text.link} group-hover:gap-2 transition-all`}>
-                        View <ExternalLink className="w-3 h-3" />
-                      </span>
+                      {/* Mobile: inline link - aligned with title */}
+                      <a
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`md:hidden mt-2 inline-flex items-center gap-1 text-sm ${theme.colors.text.link}`}
+                      >
+                        View Certificate <ExternalLink className="w-3 h-3" />
+                      </a>
                     </div>
+                    {/* Desktop: hover icon indicator */}
+                    <ExternalLink className={`hidden md:block w-4 h-4 ${theme.colors.text.tertiary} opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0`} />
                   </div>
-                </motion.a>
+                </motion.div>
               ))}
 
               {/* See More Card - 6th item in 2x3 grid */}
@@ -97,23 +111,22 @@ export default function Certificates() {
                   transition={{ delay: 0.5 }}
                   whileHover={{ y: -6, scale: 1.02 }}
                   onClick={() => navigate('/certificates')}
-                  className={`${theme.classes.card} p-5 group cursor-pointer block`}
+                  className={`${theme.classes.card} p-5 group cursor-pointer block relative overflow-hidden`}
                 >
                   <div className="flex items-start gap-3">
-                    <div className={`p-2 rounded-lg ${theme.colors.background.secondary} group-hover:scale-110 transition-transform`}>
+                    <div className={`p-2 rounded-lg ${theme.colors.background.secondary} group-hover:scale-110 transition-transform flex-shrink-0`}>
                       <ArrowRight className={`w-5 h-5 ${theme.colors.text.link}`} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className={`text-lg font-semibold mb-1 ${theme.colors.text.primary}`}>
                         View All Certificates
                       </h3>
-                      <p className={`text-sm ${theme.colors.text.secondary} mb-2`}>
+                      <p className={`text-sm ${theme.colors.text.secondary}`}>
                         View the full list of certificates
                       </p>
-                      <span className={`inline-flex items-center gap-1 text-sm ${theme.colors.text.link} group-hover:gap-2 transition-all`}>
-                        See more <ExternalLink className="w-3 h-3" />
-                      </span>
                     </div>
+                    {/* Desktop: hover icon indicator */}
+                    <ExternalLink className={`hidden md:block w-4 h-4 ${theme.colors.text.tertiary} opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0`} />
                   </div>
                 </motion.div>
               )}

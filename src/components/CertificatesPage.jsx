@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, ArrowLeft } from 'lucide-react';
+import { ExternalLink, ArrowLeft, Award } from 'lucide-react';
 import { certificates } from '../data';
 import { useTheme } from '../core/theme/ThemeContext';
 
@@ -47,22 +47,48 @@ export default function CertificatesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.18, duration: 0.3 }}
                 whileHover={{ scale: 1.02 }}
-                className={theme.classes.card + ' p-5'}
+                className={theme.classes.card + ' p-5 group relative overflow-hidden'}
               >
-                <h3 className={`text-xl font-semibold mb-2 ${theme.colors.text.primary}`}>{cert.title}</h3>
-                <p className={`${theme.colors.text.secondary} mb-4`}>{cert.issuer}</p>
+                {/* Desktop: clickable overlay */}
                 {cert.link && (
-                  <motion.a
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.95 }}
+                  <a
                     href={cert.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-2 ${theme.colors.text.link} hover:${theme.colors.text.linkHover}`}
-                  >
-                    View Certificate <ExternalLink className="w-4 h-4" />
-                  </motion.a>
+                    className="hidden md:block absolute inset-0 z-10"
+                    aria-label={`View ${cert.title}`}
+                  />
                 )}
+
+                <div className="flex items-start gap-4">
+                  <div className={`p-2 rounded-lg ${theme.colors.background.secondary} group-hover:scale-110 transition-transform flex-shrink-0`}>
+                    <Award className={`w-5 h-5 ${theme.colors.text.link}`} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h3 className={`text-xl font-semibold mb-1 ${theme.colors.text.primary}`}>{cert.title}</h3>
+                        <p className={`${theme.colors.text.secondary}`}>{cert.issuer}</p>
+                      </div>
+                      {/* Desktop: hover icon indicator */}
+                      {cert.link && (
+                        <ExternalLink className={`hidden md:block w-5 h-5 ${theme.colors.text.tertiary} opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0`} />
+                      )}
+                    </div>
+
+                    {/* Mobile: inline link - aligned with title */}
+                    {cert.link && (
+                      <a
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`md:hidden mt-3 inline-flex items-center gap-1 text-sm ${theme.colors.text.link}`}
+                      >
+                        View Certificate <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
