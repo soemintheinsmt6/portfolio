@@ -121,8 +121,8 @@ export default function Experience() {
                   <div className="absolute left-4 md:left-6 top-8 -translate-x-1/2 z-10 hidden md:block">
                     <div
                       className={`w-3 h-3 rounded-full ${theme.name === 'minimalist'
-                        ? 'bg-gray-400 ring-4 ring-gray-200'
-                        : 'bg-gradient-to-r from-purple-400 to-pink-400 ring-4 ring-purple-500/20'
+                          ? 'bg-gray-400 ring-4 ring-gray-200'
+                          : 'bg-gradient-to-r from-purple-400 to-pink-400 ring-4 ring-purple-500/20'
                         }`}
                     />
                   </div>
