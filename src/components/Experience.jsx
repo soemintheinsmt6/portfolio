@@ -23,7 +23,7 @@ function ExperienceCard({ exp, index }) {
       <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-4">
         <div className="flex items-center gap-4">
           {exp.logo && (
-            <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl overflow-hidden flex-shrink-0">
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden flex-shrink-0">
               <img
                 src={exp.logo}
                 alt={`${exp.company} logo`}
@@ -32,8 +32,8 @@ function ExperienceCard({ exp, index }) {
             </div>
           )}
           <div>
-            <h3 className={`text-2xl font-bold ${theme.colors.text.accent} mb-1`}>{exp.title}</h3>
-            <p className={`text-xl ${theme.colors.text.secondary}`}>{exp.company}</p>
+            <h3 className={`text-xl font-bold ${theme.colors.text.accent} mb-1`}>{exp.title}</h3>
+            <p className={`text-lg ${theme.colors.text.secondary}`}>{exp.company}</p>
           </div>
         </div>
         <span className={`${theme.colors.text.accentSecondary} font-semibold mt-2 md:mt-0`}>{exp.period}</span>
@@ -98,7 +98,7 @@ export default function Experience() {
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
             <img
               src={collaborateIllustration}

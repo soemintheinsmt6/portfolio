@@ -47,7 +47,7 @@ export default function Certificates() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             className="w-full max-w-xs mx-auto lg:mx-0 lg:w-2/5 flex justify-center"
             dangerouslySetInnerHTML={{ __html: svgContent }}
             style={{ maxWidth: '400px' }}

@@ -96,7 +96,7 @@ export default function Projects() {
                       </span>
                     </div>
 
-                    <h3 className={`text-2xl md:text-3xl font-bold mb-4 ${theme.colors.text.primary}`}>
+                    <h3 className={`text-xl md:text-2xl font-bold mb-4 ${theme.colors.text.primary}`}>
                       {project.title}
                     </h3>
 
