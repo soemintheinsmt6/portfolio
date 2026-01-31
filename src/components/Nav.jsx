@@ -60,12 +60,12 @@ export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobi
               <motion.button
                 key={item}
                 variants={itemVariants}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => onNavigate(item.toLowerCase())}
-                className={`${activeSection === item.toLowerCase()
-                    ? theme.classes.activeNav
-                    : `${theme.colors.text.secondary} hover:${theme.colors.text.primary}`
+                className={`px-4 py-2 border-none bg-transparent ${activeSection === item.toLowerCase()
+                  ? theme.classes.activeNav
+                  : `${theme.colors.text.secondary} hover:${theme.colors.text.primary}`
                   } transition-colors`}
               >
                 {item}
@@ -97,7 +97,7 @@ export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobi
               <button
                 key={item}
                 onClick={() => onNavigate(item.toLowerCase())}
-                className={`block w-full text-left px-4 py-2 ${theme.colors.text.secondary} hover:${theme.colors.text.primary} hover:${theme.colors.background.cardHover} rounded-lg transition-colors`}
+                className={`block w-full text-left px-4 py-2 ${theme.colors.text.secondary} hover:${theme.colors.text.primary} transition-colors`}
               >
                 {item}
               </button>
