@@ -20,7 +20,7 @@ const PROJECTS = [
     id: 'mega-z-erp',
     title: 'Mega Z ERP',
     description: 'Comprehensive ERP system with separate apps for staff, kitchen, waiter and customers with real-time data synchronization.',
-    tech: ['Flutter', 'WebSocket', 'Riverpod', 'Provider', 'Bitrise'],
+    tech: ['Flutter', 'Clean Architecture', 'WebSocket', 'Riverpod', 'Provider', 'Bitrise'],
     type: 'Enterprise',
     year: '2023 - Present',
     link: 'https://testflight.apple.com/join/syAmsdsM',

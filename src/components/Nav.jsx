@@ -63,7 +63,7 @@ export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobi
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => onNavigate(item.toLowerCase())}
-                className={`px-4 py-2 border-none bg-transparent ${activeSection === item.toLowerCase()
+                className={`px-4 py-2 border-none bg-transparent outline-none focus:outline-none ${activeSection === item.toLowerCase()
                   ? theme.classes.activeNav
                   : `${theme.colors.text.secondary} hover:${theme.colors.text.primary}`
                   } transition-colors`}
@@ -97,7 +97,7 @@ export default function Nav({ activeSection, onNavigate, mobileMenuOpen, setMobi
               <button
                 key={item}
                 onClick={() => onNavigate(item.toLowerCase())}
-                className={`block w-full text-left px-4 py-2 ${theme.colors.text.secondary} hover:${theme.colors.text.primary} transition-colors`}
+                className={`block w-full text-left px-4 py-2 outline-none focus:outline-none ${theme.colors.text.secondary} hover:${theme.colors.text.primary} transition-colors`}
               >
                 {item}
               </button>

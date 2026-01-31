@@ -7,7 +7,7 @@ import developerAnimation from '../assets/Illustrations/developer.json';
 export default function About() {
   const { theme } = useTheme();
   return (
-    <section id="about" className="py-20 px-4">
+    <section id="about" className="py-20">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
