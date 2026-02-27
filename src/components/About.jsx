@@ -38,7 +38,7 @@ export default function About() {
                 Hi, my name is <strong>Soe Min Thein</strong>. I'm a <strong>Mobile Developer</strong> experienced in designing, building and maintaining high-quality mobile applications. I focus on creating <strong>reusable, efficient code</strong> and crafting <strong>user-centered experiences</strong> that turn ideas into smooth, intuitive products.
               </p>
               <p className={`text-lg ${theme.colors.text.primary} leading-relaxed mb-6`}>
-                I work extensively with <strong>Swift</strong>, <strong>UIKit</strong>, <strong>SwiftUI</strong> and <strong>Flutter</strong>, and I enjoy contributing to <strong>open-source projects</strong> within the mobile development ecosystem.
+                I work extensively with <strong>Swift</strong>, <strong>UIKit</strong>, <strong>SwiftUI</strong> and <strong>Flutter</strong>, and I enjoy contributing to <strong>open-source projects</strong> in the broader software engineering community.
               </p>
               <p className={`text-lg ${theme.colors.text.primary} leading-relaxed`}>
                 Besides coding, I'm also a <strong>footballer</strong> who enjoys playing competitively in my free time!

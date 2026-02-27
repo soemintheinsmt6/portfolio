@@ -9,7 +9,7 @@ const PROJECTS = [
     id: 'slazh',
     title: 'Slazh',
     description: 'High-performance fashion e-commerce iOS app with secure payments and elegant animations.',
-    tech: ['Swift', 'Alamofire', 'Realm', 'Core Animation', 'SHA256 encryption', 'Analytics/Remote Config'],
+    tech: ['Swift', 'Alamofire', 'Realm', 'Core Animation', 'SHA256 hashing', 'Analytics/Remote Config'],
     type: 'iOS',
     year: '2021 - 2023',
     link: 'https://apps.apple.com/us/app/slazh/id6447933375',
@@ -19,7 +19,7 @@ const PROJECTS = [
   {
     id: 'mega-z-erp',
     title: 'Mega Z ERP',
-    description: 'Comprehensive ERP system with separate apps for staff, kitchen, waiter and customers with real-time data synchronization.',
+    description: 'Comprehensive ERP system with separate apps for HR, Kitchen, Waiter and Customer with real-time data synchronization.',
     tech: ['Flutter', 'Clean Architecture', 'WebSocket', 'Riverpod', 'Provider', 'Bitrise'],
     type: 'Enterprise',
     year: '2023 - Present',

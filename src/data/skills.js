@@ -27,7 +27,7 @@ const SKILLS = [
       'Agile/Scrum', 'Clean Architecture',
       'MVVM', 'MVC', 'Repository Pattern',
       'SOLID Principles', 'Unit Testing',
-      'OOP', 'Reactive Programming',
+      'OOP', 'DI', 'Reactive Programming',
       'Performance Optimization'
     ]
   },

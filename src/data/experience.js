@@ -12,7 +12,7 @@ const EXPERIENCE = [
     period: '2023 Aug - Present',
     description: 'ERP solution development for bar and entertainment business with multiple connected mobile applications',
     achievements: [
-      'Built a multi-app ERP ecosystem (Staff, Kitchen, Waiter, Customer) to streamline operational workflows',
+      'Built a multi-app ERP ecosystem (HR, Kitchen, Waiter, Customer) to streamline operational workflows',
       'Implemented real-time data synchronization and messaging across apps using WebSocket',
       'Improved customer and staff experience with live order tracking, notifications, and split-screen tablet UI',
       'Established CI/CD pipelines with Bitrise to automate builds, testing, and deployment across multiple apps'
