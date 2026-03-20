@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Home, User, Briefcase, FolderOpen, Wrench, Award, Mail } from 'lucide-react';
+import { Home, Briefcase, FolderOpen, Wrench, Mail } from 'lucide-react';
 import { useTheme } from '../core/theme/ThemeContext';
 import ThemeSwitcher from './ThemeSwitcher';
 
-// HIG: Bottom tab bar items with icons for always-visible mobile navigation
+// HIG: Bottom tab bar — max 5 items for mobile
 const tabItems = [
   { label: 'Home', id: 'home', Icon: Home },
-  { label: 'About', id: 'about', Icon: User },
   { label: 'Work', id: 'experience', Icon: Briefcase },
   { label: 'Projects', id: 'projects', Icon: FolderOpen },
   { label: 'Skills', id: 'skills', Icon: Wrench },
-  { label: 'Certs', id: 'certificates', Icon: Award },
   { label: 'Contact', id: 'contact', Icon: Mail },
 ];
 

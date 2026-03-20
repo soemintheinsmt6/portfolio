@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { experience } from '../data';
 import { useTheme } from '../core/theme/ThemeContext';
@@ -6,9 +5,6 @@ import collaborateIllustration from '../assets/Illustrations/colloborate.svg';
 
 function ExperienceCard({ exp, index }) {
   const { theme } = useTheme();
-  const [expanded, setExpanded] = useState(false);
-  const hasMore = exp.achievements.length > 2;
-  const mobileVisible = expanded ? exp.achievements : exp.achievements.slice(0, 2);
 
   return (
     <motion.div
@@ -40,32 +36,7 @@ function ExperienceCard({ exp, index }) {
       </div>
       <p className={`${theme.colors.text.tertiary} mb-4`}>{exp.description}</p>
 
-      {/* Mobile: truncated to 2 with See more inline */}
-      <ul className="space-y-2 md:hidden">
-        {mobileVisible.map((achievement, i) => {
-          const isLastVisible = i === mobileVisible.length - 1;
-          return (
-            <li key={i} className={`flex items-start gap-2 ${theme.colors.text.secondary}`}>
-              <span className={theme.colors.text.accent}>▹</span>
-              <span className="inline">
-                {achievement}
-                {!expanded && hasMore && isLastVisible && (
-                  <button
-                    type="button"
-                    onClick={() => setExpanded(true)}
-                    className={`${theme.colors.text.accent} italic min-h-[44px] min-w-[44px] inline-flex items-center`}
-                  >
-                    ...See more
-                  </button>
-                )}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
-
-      {/* Desktop and up: show all */}
-      <ul className="space-y-2 hidden md:block">
+      <ul className="space-y-2">
         {exp.achievements.map((achievement, i) => (
           <li key={i} className={`flex items-start gap-2 ${theme.colors.text.secondary}`}>
             <span className={theme.colors.text.accent}>▹</span>

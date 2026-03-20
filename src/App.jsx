@@ -63,7 +63,7 @@ function MainPage() {
   };
 
   return (
-    <div className={`${theme.colors.background.main} ${theme.colors.text.primary} min-h-screen pb-16 md:pb-0`}>
+    <div className={`${theme.colors.background.main} ${theme.colors.text.primary} min-h-screen pb-14 md:pb-0`}>
       <Nav
         activeSection={activeSection}
         onNavigate={scrollToSection}
