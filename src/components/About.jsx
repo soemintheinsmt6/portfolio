@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Lottie from 'lottie-react';
 import { useTheme } from '../core/theme/ThemeContext';
+import LazyLottie from './LazyLottie';
 import developerAnimation from '../assets/Illustrations/developer.json';
 
 export default function About() {
@@ -26,10 +26,9 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.15 }}
             >
-              <Lottie
+              <LazyLottie
                 animationData={developerAnimation}
                 loop={true}
-                autoplay={true}
                 style={{ width: '100%', height: 'auto' }}
               />
             </motion.div>

@@ -16,9 +16,11 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
 
-  // Memoize particle configurations — reduced count for performance & HIG restraint
+  // Memoize particle configurations — fewer on mobile for performance
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const particleCount = prefersReducedMotion ? 0 : isMobile ? 6 : 15;
   const particles = useMemo(() =>
-    prefersReducedMotion ? [] : [...Array(15)].map((_, i) => ({
+    [...Array(particleCount)].map((_, i) => ({
       id: i,
       width: Math.random() * 300 + 50,
       height: Math.random() * 300 + 50,
@@ -29,7 +31,7 @@ export default function Hero() {
       scaleAnimation: Math.random() * 0.3 + 0.8,
       duration: Math.random() * 5 + 8,
     }))
-    , [prefersReducedMotion]);
+    , [particleCount]);
 
   // Delay the start of typewriter animation
   useEffect(() => {

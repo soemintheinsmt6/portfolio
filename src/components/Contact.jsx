@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
-import Lottie from 'lottie-react';
 import { useTheme } from '../core/theme/ThemeContext';
+import LazyLottie from './LazyLottie';
 import contactAnimation from '../assets/Illustrations/contact.json';
 
 function GitHubIcon(props) {
@@ -121,10 +121,9 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.3, delay: 0.15 }}
           >
-            <Lottie
+            <LazyLottie
               animationData={contactAnimation}
               loop={true}
-              autoplay={true}
               style={{ width: '100%', maxWidth: '400px', height: 'auto' }}
             />
           </motion.div>
