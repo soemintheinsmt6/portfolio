@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { Code, ChevronDown, Mail } from 'lucide-react';
 import { useTheme } from '../core/theme/ThemeContext';
 
@@ -7,6 +7,7 @@ const roles = ['Mobile Developer', 'iOS Developer', 'Flutter Developer', 'Softwa
 
 export default function Hero() {
   const { theme } = useTheme();
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
@@ -15,20 +16,20 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
 
-  // Memoize particle configurations to prevent regeneration on re-renders
+  // Memoize particle configurations — reduced count for performance & HIG restraint
   const particles = useMemo(() =>
-    [...Array(50)].map((_, i) => ({
+    prefersReducedMotion ? [] : [...Array(15)].map((_, i) => ({
       id: i,
       width: Math.random() * 300 + 50,
       height: Math.random() * 300 + 50,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      yAnimation: Math.random() * 100 - 50,
-      xAnimation: Math.random() * 100 - 50,
-      scaleAnimation: Math.random() + 0.5,
-      duration: Math.random() * 10 + 10,
+      yAnimation: Math.random() * 60 - 30,
+      xAnimation: Math.random() * 60 - 30,
+      scaleAnimation: Math.random() * 0.3 + 0.8,
+      duration: Math.random() * 5 + 8,
     }))
-    , []);
+    , [prefersReducedMotion]);
 
   // Delay the start of typewriter animation
   useEffect(() => {
@@ -102,7 +103,7 @@ export default function Hero() {
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          transition={{ type: 'spring', stiffness: 100 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
           className="mb-8"
         >
           <div className={`w-32 h-32 mx-auto rounded-full ${theme.colors.decorative.gradientCircle} p-1`}>
@@ -115,8 +116,8 @@ export default function Hero() {
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.4 }}
-          className="text-5xl md:text-7xl font-bold mb-4"
+          transition={{ delay: 0.15, duration: 0.3 }}
+          className="text-5xl md:text-6xl font-bold mb-4"
         >
           Soe Min Thein
         </motion.h1>
@@ -124,12 +125,12 @@ export default function Hero() {
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.35, duration: 0.4 }}
-          className={`text-2xl md:text-4xl mb-4 ${theme.classes.gradientText} font-medium h-10 md:h-14`}
+          transition={{ delay: 0.25, duration: 0.3 }}
+          className={`text-2xl md:text-3xl mb-4 ${theme.classes.gradientText} font-medium h-9 md:h-11`}
         >
           <span>{displayText}</span>
           <span
-            className="inline-block w-[3px] md:w-[4px] h-7 md:h-10 ml-1 align-middle rounded-sm"
+            className="inline-block w-[2px] md:w-[3px] h-7 md:h-8 ml-1 align-middle rounded-sm"
             style={{
               backgroundColor: '#38bdf8',
               animation: 'cursorBlink 1s step-end infinite'
@@ -146,7 +147,7 @@ export default function Hero() {
         <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.4 }}
+          transition={{ delay: 0.35, duration: 0.3 }}
           className={`text-lg md:text-xl ${theme.colors.text.secondary} mb-8 max-w-2xl mx-auto`}
         >
           Blending art and technology to craft meaningful digital experiences...
@@ -155,7 +156,7 @@ export default function Hero() {
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.65, duration: 0.2 }}
+          transition={{ delay: 0.45, duration: 0.25 }}
           className="flex flex-wrap justify-center gap-4"
         >
           <motion.a
@@ -183,8 +184,8 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
+          animate={prefersReducedMotion ? {} : { y: [0, 10, 0] }}
+          transition={prefersReducedMotion ? {} : { repeat: Infinity, duration: 2 }}
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <ChevronDown className={`w-8 h-8 ${theme.colors.icon.primary}`} />

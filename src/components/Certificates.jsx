@@ -26,7 +26,7 @@ export default function Certificates() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold mb-4 text-center"
+          className="text-3xl md:text-4xl font-bold mb-4 text-center"
         >
           Professional <span className={theme.classes.gradientText}>Certificates</span>
         </motion.h2>
@@ -47,7 +47,7 @@ export default function Certificates() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
             className="w-full max-w-xs mx-auto lg:mx-0 lg:w-2/5 flex justify-center"
             dangerouslySetInnerHTML={{ __html: svgContent }}
             style={{ maxWidth: '400px' }}
@@ -91,7 +91,7 @@ export default function Certificates() {
                         href={cert.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`md:hidden mt-2 inline-flex items-center gap-1 text-sm ${theme.colors.text.link}`}
+                        className={`md:hidden mt-2 inline-flex items-center gap-1 text-sm min-h-[44px] ${theme.colors.text.link}`}
                       >
                         View Certificate <ExternalLink className="w-3 h-3" />
                       </a>

@@ -13,9 +13,9 @@ export default function About() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.95 }}
+          transition={{ duration: 0.35 }}
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-8 text-center`}>
+          <h2 className={`text-3xl md:text-4xl font-bold mb-8 text-center`}>
             About <span className={theme.classes.gradientText}>Me</span>
           </h2>
           <div className="flex flex-col md:flex-row items-center gap-8">
@@ -24,7 +24,7 @@ export default function About() {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.3, delay: 0.15 }}
             >
               <Lottie
                 animationData={developerAnimation}

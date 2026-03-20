@@ -38,8 +38,8 @@ export default function Contact() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold mb-8 text-center"
-          transition={{ duration: 1 }}
+          className="text-3xl md:text-4xl font-bold mb-8 text-center"
+          transition={{ duration: 0.35 }}
         >
           Let's <span className={theme.classes.gradientText}>Connect</span>
         </motion.h2>
@@ -52,7 +52,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className={`text-lg ${theme.colors.text.primary} mb-8`}
-              transition={{ duration: 0.8, delay: 0.18 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
             >
               I'm always open to discussing new projects, creative ideas, opportunities and potential collaborations. Whether you have a question or just want
               to say hi, feel free to reach out!
@@ -63,7 +63,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="flex flex-wrap justify-center md:justify-start gap-4"
-              transition={{ duration: 0.7, delay: 0.27 }}
+              transition={{ duration: 0.3, delay: 0.15 }}
             >
               <motion.a
                 whileHover={{ scale: 1.05 }}
@@ -119,7 +119,7 @@ export default function Contact() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
           >
             <Lottie
               animationData={contactAnimation}

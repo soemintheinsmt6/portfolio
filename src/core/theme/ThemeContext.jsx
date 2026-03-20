@@ -17,10 +17,13 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
   const [themeName, setThemeName] = useState(() => {
-    // Try to get theme from localStorage, fallback to default
     if (typeof window !== 'undefined') {
+      // Use saved preference if it exists
       const saved = localStorage.getItem('portfolio-theme');
-      return saved && themes[saved] ? saved : defaultTheme;
+      if (saved && themes[saved]) return saved;
+      // HIG: Auto-detect system color scheme on first visit
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return prefersDark ? 'amethyst' : 'minimalist';
     }
     return defaultTheme;
   });

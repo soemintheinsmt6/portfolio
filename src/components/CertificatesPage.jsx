@@ -33,7 +33,7 @@ export default function CertificatesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="text-4xl md:text-5xl font-bold text-center"
+              className="text-3xl md:text-4xl font-bold text-center"
             >
               All <span className={theme.classes.gradientText}>Certificates</span>
             </motion.h2>

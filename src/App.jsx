@@ -17,7 +17,6 @@ import { GA_TRACKING_ID } from './core/config/ga';
 function MainPage() {
   const { theme } = useTheme();
   const [activeSection, setActiveSection] = useState('home');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Ensure we start at the top on initial mount (mobile fix)
@@ -60,17 +59,14 @@ function MainPage() {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
     }
   };
 
   return (
-    <div className={`${theme.colors.background.main} ${theme.colors.text.primary} min-h-screen`}>
+    <div className={`${theme.colors.background.main} ${theme.colors.text.primary} min-h-screen pb-16 md:pb-0`}>
       <Nav
         activeSection={activeSection}
         onNavigate={scrollToSection}
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}
       />
       <Hero />
       <About />

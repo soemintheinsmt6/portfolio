@@ -19,22 +19,22 @@ export const themes = {
         nav: 'bg-slate-900/80',
         mobileMenu: 'bg-slate-800',
       },
-      // Text colors
+      // Text colors — HIG: minimum 4.5:1 contrast for body, 3:1 for large text
       text: {
         primary: 'text-white',
         secondary: 'text-gray-300',
-        tertiary: 'text-gray-400',
+        tertiary: 'text-gray-300',
         accent: 'text-purple-400',
         accentSecondary: 'text-pink-400',
         link: 'text-purple-400',
         linkHover: 'text-purple-300',
       },
-      // Border colors
+      // Border colors — increased opacity for visibility
       border: {
-        default: 'border-purple-500/20',
-        card: 'border-purple-500/20',
-        nav: 'border-purple-500/20',
-        secondary: 'border border-gray-400/60',
+        default: 'border-purple-500/30',
+        card: 'border-purple-500/30',
+        nav: 'border-purple-500/30',
+        secondary: 'border border-gray-300/60',
       },
       // Button colors
       button: {
@@ -48,7 +48,7 @@ export const themes = {
       badge: {
         default: 'bg-slate-700',
         accent: 'bg-purple-900/30',
-        accentText: 'text-purple-300',
+        accentText: 'text-purple-200',
         gradient: 'bg-gradient-to-r from-purple-600 to-pink-600',
         hoverGradient: 'hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600',
       },
@@ -60,9 +60,9 @@ export const themes = {
       },
       // Footer colors
       footer: {
-        border: 'border-purple-500/20',
+        border: 'border-purple-500/30',
         background: 'bg-slate-900/50',
-        text: 'text-gray-400',
+        text: 'text-gray-300',
       },
       // Decorative elements
       decorative: {
@@ -73,10 +73,10 @@ export const themes = {
     // Utility class generators
     classes: {
       gradientText: 'bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent',
-      card: 'bg-slate-800/50 backdrop-blur-lg rounded-2xl border border-purple-500/20',
+      card: 'bg-slate-800/50 backdrop-blur-lg rounded-2xl border border-purple-500/30',
       buttonPrimary: 'bg-purple-600 hover:text-white text-white',
       buttonGradient: 'bg-gradient-to-r from-purple-600 to-pink-600 text-white',
-      navBorder: 'border-b border-purple-500/20',
+      navBorder: 'border-b border-purple-500/30',
       activeNav: 'text-purple-400',
     },
   },
@@ -101,11 +101,11 @@ export const themes = {
         nav: 'bg-white/90',
         mobileMenu: 'bg-white',
       },
-      // Text colors
+      // Text colors — HIG: minimum 4.5:1 contrast on white backgrounds
       text: {
         primary: 'text-gray-900',
         secondary: 'text-gray-700',
-        tertiary: 'text-gray-500',
+        tertiary: 'text-gray-600',
         accent: 'text-gray-900',
         accentSecondary: 'text-gray-700',
         link: 'text-gray-900',

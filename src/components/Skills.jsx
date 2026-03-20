@@ -14,8 +14,8 @@ export default function Skills({ useSectionBackground = true }) {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold mb-4 text-center"
-          transition={{ duration: 1 }}
+          className="text-3xl md:text-4xl font-bold mb-4 text-center"
+          transition={{ duration: 0.35 }}
         >
           Technical <span className={theme.classes.gradientText}>Skills</span>
         </motion.h2>
@@ -37,7 +37,7 @@ export default function Skills({ useSectionBackground = true }) {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.13, duration: 0.6 }}
+              transition={{ delay: index * 0.08, duration: 0.3 }}
               whileHover={{ scale: 1.05 }}
               className={theme.classes.card + ' p-6'}
             >

@@ -13,8 +13,8 @@ export default function Projects() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="text-4xl md:text-5xl font-bold mb-12 text-center"
+          transition={{ duration: 0.35 }}
+          className="text-3xl md:text-4xl font-bold mb-12 text-center"
         >
           Notable <span className={theme.classes.gradientText}>Projects</span>
         </motion.h2>
@@ -30,7 +30,7 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="group"
               >
                 <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center`}>
@@ -145,7 +145,7 @@ export default function Projects() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
         >
           <motion.a
             href="https://github.com/soemintheinsmt6"

@@ -16,7 +16,7 @@ function ExperienceCard({ exp, index }) {
       initial={{ opacity: 0, x: -50 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.2, duration: 0.7 }}
+      transition={{ delay: index * 0.1, duration: 0.35 }}
       whileHover={{ scale: 1.02 }}
       className={theme.classes.card + ' p-8'}
     >
@@ -53,7 +53,7 @@ function ExperienceCard({ exp, index }) {
                   <button
                     type="button"
                     onClick={() => setExpanded(true)}
-                    className={`${theme.colors.text.accent} italic`}
+                    className={`${theme.colors.text.accent} italic min-h-[44px] min-w-[44px] inline-flex items-center`}
                   >
                     ...See more
                   </button>
@@ -86,8 +86,8 @@ export default function Experience() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold mb-12 text-center"
-          transition={{ duration: 1 }}
+          className="text-3xl md:text-4xl font-bold mb-12 text-center"
+          transition={{ duration: 0.35 }}
         >
           Professional <span className={theme.classes.gradientText}>Journey</span>
         </motion.h2>
@@ -98,7 +98,7 @@ export default function Experience() {
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
           >
             <img
               src={collaborateIllustration}
