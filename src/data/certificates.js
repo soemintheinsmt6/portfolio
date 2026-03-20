@@ -9,7 +9,7 @@ const CERTIFICATES = [
   { id: 'claude-code-in-action', title: 'Claude Code in Action', issuer: 'Anthropic', link: 'https://www.coursera.org/account/accomplishments/certificate/FKV01RI2ITZB' },
   { id: 'google-ai-essentials', title: 'Google AI Essentials', issuer: 'Google', link: 'https://www.coursera.org/account/accomplishments/specialization/certificate/E08ZWTCCOYFQ' },
   { id: 'swift-5-ios-application-developer', title: 'Swift 5 iOS Application Developer', issuer: 'LearnQuest', link: 'https://www.coursera.org/account/accomplishments/specialization/certificate/TN2RCLFP1QR2' },
-  { id: 'uc-irvine-english', title: 'Learn English: Advanced Academic Speaking and Listening Specialization', issuer: 'University of California, Irvine', link: 'https://www.coursera.org/account/accomplishments/specialization/certificate/6P5E8SR6C7K7' },
+  { id: 'uc-irvine-english', title: 'Advanced Academic Speaking and Listening Specialization', issuer: 'University of California, Irvine', link: 'https://www.coursera.org/account/accomplishments/specialization/certificate/6P5E8SR6C7K7' },
   { id: 'upenn-english-for-career-development', title: 'English for Career Development', issuer: 'University of Pennsylvania', link: 'https://www.coursera.org/account/accomplishments/certificate/9MAZGM9FKHOO' },
   { id: 'java-inet', title: 'Fundamentals of Programming in Java', issuer: 'iNet College', link: 'https://drive.google.com/file/d/12hfDsqPfmt9n5of-7PlIhV3mX58xdvek/view?usp=sharing' },
   { id: 'bsc', title: 'B.Sc Industrial Chemistry', issuer: 'Yadanabon University' },

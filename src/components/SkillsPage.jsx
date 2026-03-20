@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import Skills from './Skills';
@@ -7,13 +8,10 @@ import { useTheme } from '../core/theme/ThemeContext';
 
 export default function SkillsPage() {
   const { theme } = useTheme();
+  const navigate = useNavigate();
   const goBack = () => {
-    if (typeof window === 'undefined') return;
-    if (window.history.length > 1) {
-      window.history.back();
-    } else {
-      window.location.href = '/';
-    }
+    sessionStorage.setItem('scrollToSection', 'skills');
+    navigate('/');
   };
 
   return (

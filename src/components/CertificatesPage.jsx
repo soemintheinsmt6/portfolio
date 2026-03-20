@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ExternalLink, ArrowLeft, Award } from 'lucide-react';
 import { certificates } from '../data';
@@ -6,13 +7,10 @@ import { useTheme } from '../core/theme/ThemeContext';
 
 export default function CertificatesPage() {
   const { theme } = useTheme();
+  const navigate = useNavigate();
   const goBack = () => {
-    if (typeof window === 'undefined') return;
-    if (window.history.length > 1) {
-      window.history.back();
-    } else {
-      window.location.href = '/';
-    }
+    sessionStorage.setItem('scrollToSection', 'certificates');
+    navigate('/');
   };
 
   return (
@@ -65,7 +63,7 @@ export default function CertificatesPage() {
                     <Award className={`w-5 h-5 ${theme.colors.text.link}`} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-start justify-between gap-2">
                       <div>
                         <h3 className={`text-xl font-semibold mb-1 ${theme.colors.text.primary}`}>{cert.title}</h3>
                         <p className={`${theme.colors.text.secondary}`}>{cert.issuer}</p>

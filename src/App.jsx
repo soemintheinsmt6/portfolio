@@ -1,5 +1,10 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+
+// Disable browser scroll restoration immediately, before any component mounts
+if ('scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
 import { ThemeProvider, useTheme } from './core/theme/ThemeContext';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
@@ -19,9 +24,24 @@ function MainPage() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    // Ensure we start at the top on initial mount (mobile fix)
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    const scrollTarget = sessionStorage.getItem('scrollToSection');
+    sessionStorage.removeItem('scrollToSection');
 
+    if (scrollTarget) {
+      // Wait one frame so DOM is fully laid out
+      requestAnimationFrame(() => {
+        const el = document.getElementById(scrollTarget);
+        if (el) {
+          el.scrollIntoView({ behavior: 'instant' });
+        }
+      });
+    } else {
+      // Fresh visit or reload — start from top
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       const sections = [
         'home',
@@ -58,7 +78,7 @@ function MainPage() {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 50;
+      const offset = 40;
       const top = element.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
     }
@@ -85,8 +105,10 @@ function MainPage() {
 function ScrollToTop() {
   const location = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  }, [location.pathname, location.search, location.hash]);
+    if (location.pathname !== '/') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  }, [location.pathname]);
   return null;
 }
 
