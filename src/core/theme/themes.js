@@ -66,8 +66,10 @@ export const themes = {
       },
       // Decorative elements
       decorative: {
-        particle: 'bg-purple-500/10',
         gradientCircle: 'bg-gradient-to-r from-purple-500 to-pink-500',
+        grid: {
+          dotColor: 'rgba(168, 85, 247, 0.28)',
+        },
       },
     },
     // Utility class generators
@@ -148,8 +150,10 @@ export const themes = {
       },
       // Decorative elements
       decorative: {
-        particle: 'bg-blue-50/10',
         gradientCircle: 'bg-gradient-to-r from-gray-300 to-gray-400',
+        grid: {
+          dotColor: 'transparent',
+        },
       },
     },
     // Utility class generators

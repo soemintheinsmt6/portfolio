@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { Code, ChevronDown, Mail } from 'lucide-react';
 import { useTheme } from '../core/theme/ThemeContext';
@@ -15,23 +15,6 @@ export default function Hero() {
   const [displayText, setDisplayText] = useState(roles[0]); // Start with full text
   const [isDeleting, setIsDeleting] = useState(false);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
-
-  // Memoize particle configurations — fewer on mobile for performance
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const particleCount = prefersReducedMotion ? 0 : isMobile ? 6 : 15;
-  const particles = useMemo(() =>
-    [...Array(particleCount)].map((_, i) => ({
-      id: i,
-      width: Math.random() * 300 + 50,
-      height: Math.random() * 300 + 50,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      yAnimation: Math.random() * 60 - 30,
-      xAnimation: Math.random() * 60 - 30,
-      scaleAnimation: Math.random() * 0.3 + 0.8,
-      duration: Math.random() * 5 + 8,
-    }))
-    , [particleCount]);
 
   // Delay the start of typewriter animation
   useEffect(() => {
@@ -76,30 +59,15 @@ export default function Hero() {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden">
-        {particles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className={`absolute ${theme.colors.decorative.particle} rounded-full`}
-            style={{
-              width: particle.width,
-              height: particle.height,
-              left: particle.left,
-              top: particle.top,
-            }}
-            animate={{
-              y: [0, particle.yAnimation],
-              x: [0, particle.xAnimation],
-              scale: [1, particle.scaleAnimation, 1],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
-          />
-        ))}
-      </div>
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle, ${theme.colors.decorative.grid.dotColor} 1px, transparent 1px)`,
+          backgroundSize: '24px 24px',
+          maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 75%)',
+        }}
+      />
 
       <motion.div style={{ opacity, scale }} className="text-center z-10 px-4">
         <motion.div
