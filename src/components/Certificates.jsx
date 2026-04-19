@@ -9,7 +9,8 @@ import CertificationIllustrationUrl from '../assets/Illustrations/certification.
 export default function Certificates() {
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const visible = certificates.slice(0, 5);
+  const visible = certificates.filter((c) => c.featured).slice(0, 6);
+  const hasMore = certificates.length > visible.length;
   const [svgContent, setSvgContent] = useState('');
 
   useEffect(() => {
@@ -102,41 +103,25 @@ export default function Certificates() {
                 </motion.div>
               ))}
 
-              {/* See More Card - 6th item in 2x3 grid */}
-              {certificates.length > 5 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  onClick={() => navigate('/certificates')}
-                  className={`${theme.classes.card} p-5 group cursor-pointer block relative overflow-hidden`}
-                >
-                  <div className="flex items-start gap-3">
-                    <div className={`p-2 rounded-lg ${theme.colors.background.secondary} group-hover:scale-110 transition-transform flex-shrink-0`}>
-                      <ArrowRight className={`w-5 h-5 ${theme.colors.text.link}`} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className={`text-lg font-semibold mb-1 ${theme.colors.text.primary}`}>
-                        View All Certificates
-                      </h3>
-                      <p className={`text-sm ${theme.colors.text.secondary}`}>
-                        View the full list of certificates
-                      </p>
-                      {/* Mobile: inline link - consistent with certificate cards */}
-                      <span
-                        className={`md:hidden mt-2 inline-flex items-center gap-1 text-sm ${theme.colors.text.link}`}
-                      >
-                        See more <ExternalLink className="w-3 h-3" />
-                      </span>
-                    </div>
-                    {/* Desktop: hover icon indicator */}
-                    <ExternalLink className={`hidden md:block w-4 h-4 ${theme.colors.text.tertiary} opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0`} />
-                  </div>
-                </motion.div>
-              )}
             </div>
+
+            {hasMore && (
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                whileHover={{ scale: 1.01 }}
+                onClick={() => navigate('/certificates')}
+                className={`${theme.classes.card} mt-4 w-full p-4 group flex items-center justify-center gap-2 cursor-pointer`}
+                aria-label="View all certificates"
+              >
+                <span className={`text-base font-medium ${theme.colors.text.primary}`}>
+                  View All Certificates
+                </span>
+                <ArrowRight className={`w-4 h-4 ${theme.colors.text.link} group-hover:translate-x-1 transition-transform`} />
+              </motion.button>
+            )}
           </div>
         </div>
       </div>

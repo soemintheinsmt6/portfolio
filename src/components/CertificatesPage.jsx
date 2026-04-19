@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ExternalLink, ArrowLeft, Award } from 'lucide-react';
 import { certificates } from '../data';
+import { CATEGORIES } from '../data/certificates';
 import { useTheme } from '../core/theme/ThemeContext';
 
 export default function CertificatesPage() {
   const { theme } = useTheme();
   const navigate = useNavigate();
+  const [activeCategory, setActiveCategory] = useState('all');
   const goBack = () => {
     sessionStorage.setItem('scrollToSection', 'certificates');
     navigate('/');
   };
+
+  const availableCategories = useMemo(
+    () => CATEGORIES.filter((c) => c.id === 'all' || certificates.some((cert) => cert.category === c.id)),
+    []
+  );
+
+  const filtered = useMemo(
+    () => (activeCategory === 'all' ? certificates : certificates.filter((c) => c.category === activeCategory)),
+    [activeCategory]
+  );
 
   return (
     <div className={`min-h-screen ${theme.colors.background.main} ${theme.colors.text.primary}`}>
@@ -20,7 +32,7 @@ export default function CertificatesPage() {
           <div className="relative mb-8">
             <motion.button
               onClick={goBack}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full ${theme.colors.background.card} ${theme.colors.border.card} ${theme.colors.text.secondary} inline-flex items-center gap-2`}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 px-4 py-2 rounded-full ${theme.colors.background.card} ${theme.colors.border.card} ${theme.colors.text.secondary} inline-flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300`}
               aria-label="Back to Home"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -37,8 +49,28 @@ export default function CertificatesPage() {
             </motion.h2>
           </div>
 
+          <div className="flex flex-wrap justify-start md:justify-center gap-2 mb-8">
+            {availableCategories.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`px-4 py-2 rounded-full text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 ${
+                    isActive
+                      ? 'bg-blue-100 text-blue-700 border border-blue-200'
+                      : `${theme.colors.background.card} ${theme.colors.text.secondary} ${theme.colors.border.card}`
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
+          </div>
+
           <div className="grid md:grid-cols-2 gap-6">
-            {certificates.map((cert, idx) => (
+            {filtered.map((cert, idx) => (
               <motion.div
                 key={cert.id || idx}
                 initial={{ opacity: 0, y: 12 }}
