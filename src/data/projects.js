@@ -23,7 +23,7 @@ const PROJECTS = [
     tech: ['Flutter', 'Clean Architecture', 'WebSocket', 'Riverpod', 'Provider', 'Bitrise'],
     type: 'Enterprise',
     year: '2023 - Present',
-    link: 'https://testflight.apple.com/join/syAmsdsM',
+    link: 'https://apps.apple.com/us/app/megaeasez-hr/id6758825547',
     image: megaZImage,
     highlights: ['Real-time sync', 'Multi-app system', 'Push notifications', 'Split-screen layout']
   },

@@ -5,6 +5,7 @@ import { ExternalLink, ArrowLeft, Award } from 'lucide-react';
 import { certificates } from '../data';
 import { CATEGORIES } from '../data/certificates';
 import { useTheme } from '../core/theme/ThemeContext';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export default function CertificatesPage() {
   const { theme } = useTheme();
@@ -47,6 +48,10 @@ export default function CertificatesPage() {
             >
               All <span className={theme.classes.gradientText}>Certificates</span>
             </motion.h2>
+
+            <div className="absolute right-0 top-1/2 -translate-y-1/2">
+              <ThemeSwitcher />
+            </div>
           </div>
 
           <div className="flex flex-wrap justify-start md:justify-center gap-2 mb-8">
