@@ -3,6 +3,7 @@ import slazhImage from '../assets/images/slazh.jpg';
 import megaZImage from '../assets/images/mega-z.png';
 import mobileServiceManagerImage from '../assets/images/mobile-service-manager.jpg';
 import tmoviesImage from '../assets/images/tmovies.PNG';
+import gckImage from '../assets/images/gck.png';
 
 const PROJECTS = [
   {
@@ -13,6 +14,8 @@ const PROJECTS = [
     type: 'iOS',
     year: '2021 - 2023',
     link: 'https://apps.apple.com/us/app/slazh/id6447933375',
+    appStore: 'https://apps.apple.com/us/app/slazh/id6447933375',
+    playStore: 'https://play.google.com/store/apps/details?id=com.slazh.ecommerce',
     image: slazhImage,
     highlights: ['Secure payments', 'Custom animations', 'Seamless product listing', 'Offline/Online cart']
   },
@@ -24,6 +27,7 @@ const PROJECTS = [
     type: 'Enterprise',
     year: '2023 - Present',
     link: 'https://apps.apple.com/us/app/megaeasez-hr/id6758825547',
+    appStore: 'https://apps.apple.com/us/app/megaeasez-hr/id6758825547',
     image: megaZImage,
     highlights: ['Real-time sync', 'Multi-app system', 'Push notifications', 'Split-screen layout']
   },
@@ -38,6 +42,19 @@ const PROJECTS = [
     highlights: ['Service Tracking', 'PDF/Excel exports', 'Revenue analytics', 'Technician performance']
   },
   {
+    id: 'gck',
+    title: 'GCK',
+    description: 'Production ERP that unifies an entire trading business — Admin, Shareholders, Sales and Warehouse — into one role-based platform across iOS, Android, macOS and Windows. Replaces fragmented spreadsheets and manual workflows with audited finance reporting, voucher pipelines, commission tracking and live inventory visibility.',
+    tech: ['Flutter', 'Clean Architecture', 'Bloc', 'get_it', 'dartz', 'Responsive UI'],
+    type: 'Cross-platform',
+    year: '2026',
+    link: 'https://apps.apple.com/us/app/gck/id6762456506',
+    appStore: 'https://apps.apple.com/us/app/gck/id6762456506',
+    playStore: 'https://play.google.com/store/apps/details?id=com.trading.gck',
+    image: gckImage,
+    highlights: ['Role-based access', 'Voucher & inventory management', 'Payment, delivery & finance reporting', 'Responsive mobile/tablet/desktop']
+  },
+  {
     id: 'tmovies',
     title: 'Tmovies',
     description: 'Feature-rich movie streaming app with offline downloads and Picture-in-Picture support across Android, iOS and Android TV.',
@@ -45,6 +62,8 @@ const PROJECTS = [
     type: 'Cross-platform',
     year: '2024 - 2025',
     link: 'https://play.google.com/store/apps/details?id=com.thebillionaire.movie_server',
+    playStore: 'https://play.google.com/store/apps/details?id=com.thebillionaire.movie_server',
+    testFlight: 'https://testflight.apple.com/join/uqbpmpss',
     image: tmoviesImage,
     highlights: ['Offline downloads', 'PiP mode', 'Multi-platform', 'VLC plugin', 'Better player controls']
   },

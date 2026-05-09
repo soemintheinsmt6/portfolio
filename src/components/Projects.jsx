@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import { Smartphone, ExternalLink, Image } from 'lucide-react';
 import { projects } from '../data';
 import { useTheme } from '../core/theme/ThemeContext';
+import appStoreIcon from '../assets/images/app-store.webp';
+import playStoreIcon from '../assets/images/play-store.png';
+import testFlightIcon from '../assets/images/testflight.webp';
 
 export default function Projects() {
   const { theme } = useTheme();
@@ -94,6 +97,43 @@ export default function Projects() {
                       <span className={`text-sm ${theme.colors.text.secondary} font-medium`}>
                         {project.year}
                       </span>
+                      {(project.appStore || project.playStore || project.testFlight) && (
+                        <div className="ml-auto flex items-center gap-2">
+                          {project.appStore && (
+                            <a
+                              href={project.appStore}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`Download ${project.title} on the App Store`}
+                              className="inline-flex items-center justify-center hover:opacity-80 transition-opacity"
+                            >
+                              <img src={appStoreIcon} alt="App Store" className="w-7 h-7" />
+                            </a>
+                          )}
+                          {project.testFlight && (
+                            <a
+                              href={project.testFlight}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`Join ${project.title} on TestFlight`}
+                              className="inline-flex items-center justify-center hover:opacity-80 transition-opacity"
+                            >
+                              <img src={testFlightIcon} alt="TestFlight" className="w-7 h-7" />
+                            </a>
+                          )}
+                          {project.playStore && (
+                            <a
+                              href={project.playStore}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`Get ${project.title} on Google Play`}
+                              className="inline-flex items-center justify-center hover:opacity-80 transition-opacity"
+                            >
+                              <img src={playStoreIcon} alt="Google Play" className="w-6 h-6" />
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
 
                     <h3 className={`text-xl md:text-2xl font-bold mb-4 ${theme.colors.text.primary}`}>
