@@ -42,19 +42,6 @@ const PROJECTS = [
     highlights: ['Service Tracking', 'PDF/Excel exports', 'Revenue analytics', 'Technician performance']
   },
   {
-    id: 'gck',
-    title: 'GCK',
-    description: 'Production ERP that unifies an entire trading business — Admin, Shareholders, Sales and Warehouse — into one role-based platform across iOS, Android, macOS and Windows. Replaces fragmented spreadsheets and manual workflows with audited finance reporting, voucher pipelines, commission tracking and live inventory visibility.',
-    tech: ['Flutter', 'Clean Architecture', 'Bloc', 'get_it', 'dartz', 'Responsive UI'],
-    type: 'Cross-platform',
-    year: '2026',
-    link: 'https://apps.apple.com/us/app/gck/id6762456506',
-    appStore: 'https://apps.apple.com/us/app/gck/id6762456506',
-    playStore: 'https://play.google.com/store/apps/details?id=com.trading.gck',
-    image: gckImage,
-    highlights: ['Role-based access', 'Voucher & inventory management', 'Payment, delivery & finance reporting', 'Responsive mobile/tablet/desktop']
-  },
-  {
     id: 'tmovies',
     title: 'Tmovies',
     description: 'Feature-rich movie streaming app with offline downloads and Picture-in-Picture support across Android, iOS and Android TV.',
@@ -66,6 +53,19 @@ const PROJECTS = [
     testFlight: 'https://testflight.apple.com/join/uqbpmpss',
     image: tmoviesImage,
     highlights: ['Offline downloads', 'PiP mode', 'Multi-platform', 'VLC plugin', 'Better player controls']
+  },
+  {
+    id: 'gck',
+    title: 'GCK',
+    description: 'Production ERP that unifies an entire trading business — Admin, Shareholders, Sales and Warehouse — into one role-based platform across iOS, Android, macOS and Windows. Replaces fragmented spreadsheets and manual workflows with audited finance reporting, voucher pipelines, commission tracking and live inventory visibility.',
+    tech: ['Flutter', 'Clean Architecture', 'Bloc', 'get_it', 'dartz', 'Responsive UI'],
+    type: 'Cross-platform',
+    year: '2026',
+    link: 'https://apps.apple.com/us/app/gck/id6762456506',
+    appStore: 'https://apps.apple.com/us/app/gck/id6762456506',
+    playStore: 'https://play.google.com/store/apps/details?id=com.trading.gck',
+    image: gckImage,
+    highlights: ['Role-based access', 'Voucher & inventory management', 'Payment, delivery & finance reporting', 'Responsive mobile/tablet/desktop']
   },
 ];
 

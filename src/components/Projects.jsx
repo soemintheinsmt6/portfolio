@@ -166,7 +166,7 @@ export default function Projects() {
                         {project.tech.map((tech, i) => (
                           <span
                             key={i}
-                            className={`text-xs px-3 py-1.5 rounded-full ${theme.colors.badge.default} ${theme.colors.text.secondary}`}
+                            className={`text-xs px-3 py-1.5 rounded-full ${theme.colors.badge.tech} ${theme.colors.badge.techText}`}
                           >
                             {tech}
                           </span>

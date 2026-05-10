@@ -47,7 +47,7 @@ export default function Skills({ useSectionBackground = true }) {
                   <motion.span
                     key={i}
                     whileHover={{ scale: 1.1 }}
-                    className={`text-sm px-3 py-1 ${theme.colors.badge.default} ${theme.colors.text.primary} rounded-full ${theme.colors.badge.hoverGradient} transition-colors cursor-default`}
+                    className={`text-sm px-3 py-1 ${theme.colors.badge.tech} ${theme.colors.badge.techText} rounded-full ${theme.colors.badge.hoverGradient} hover:text-white hover:border-transparent transition-colors cursor-default`}
                   >
                     {skill}
                   </motion.span>
