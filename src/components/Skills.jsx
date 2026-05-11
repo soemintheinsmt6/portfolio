@@ -8,7 +8,7 @@ export default function Skills({ useSectionBackground = true }) {
   const backgroundColor = useSectionBackground ? theme.colors.background.section : 'bg-transparent';
 
   return (
-    <section id="skills" className={`py-20 px-4 ${backgroundColor}`}>
+    <section id="skills" className={`py-20 px-4 sm:px-6 lg:px-8 ${backgroundColor}`}>
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}

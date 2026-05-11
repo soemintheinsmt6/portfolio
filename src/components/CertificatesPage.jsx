@@ -28,7 +28,7 @@ export default function CertificatesPage() {
 
   return (
     <div className={`min-h-screen ${theme.colors.background.main} ${theme.colors.text.primary}`}>
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="relative mb-8">
             <motion.button

@@ -51,7 +51,7 @@ function ExperienceCard({ exp, index }) {
 export default function Experience() {
   const { theme } = useTheme();
   return (
-    <section id="experience" className={`py-20 px-4 ${theme.colors.background.section}`}>
+    <section id="experience" className={`py-20 px-4 sm:px-6 lg:px-8 ${theme.colors.background.section}`}>
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
