@@ -12,6 +12,7 @@ const CERTIFICATES = [
   { id: 'google-ai-essentials', category: 'ai', title: 'Google AI Essentials', issuer: 'Google', link: 'https://www.coursera.org/account/accomplishments/specialization/certificate/E08ZWTCCOYFQ' },
   { id: 'uc-irvine-english', category: 'language', title: 'Advanced Academic Speaking and Listening Specialization', issuer: 'University of California, Irvine', link: 'https://www.coursera.org/account/accomplishments/specialization/certificate/6P5E8SR6C7K7' },
   { id: 'upenn-english-for-career-development', category: 'language', title: 'English for Career Development', issuer: 'University of Pennsylvania', link: 'https://www.coursera.org/account/accomplishments/certificate/9MAZGM9FKHOO' },
+  { id: 'gatech-improve-english-communication', category: 'language', title: 'Improve Your English Communication Skills Specialization', issuer: 'Georgia Institute of Technology', link: 'https://www.coursera.org/account/accomplishments/specialization/certificate/1MZBZGYLJBEK' },
   { id: 'bsc', category: 'education', title: 'B.Sc Industrial Chemistry', issuer: 'Yadanabon University' },
 ];
 
