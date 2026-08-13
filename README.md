@@ -71,19 +71,28 @@ Notes:
 
 ## Environment Variables
 
-Create a `.env` file at the project root:
+Google Analytics is configured for deployment in the Vercel project dashboard:
+
+1. Open **Project Settings → Environment Variables**.
+2. Add `VITE_GA_ID` with the GA4 measurement ID (`G-XXXXXXXXXX`).
+3. Enable it for the **Production** environment and redeploy the project.
+
+Vite embeds `VITE_GA_ID` at build time and exposes it to the app through
+`import.meta.env.VITE_GA_ID`. The variable must therefore be present before the
+Vercel production build runs.
+
+For optional local analytics testing, create a `.env.local` file (it is ignored
+by Git):
 
 ```env
 VITE_GA_ID=G-XXXXXXXXXX
 ```
 
-Vite exposes this at `import.meta.env.VITE_GA_ID`.
-
 ## Google Analytics (SPA)
 
 - `index.html` dynamically loads `gtag.js` using `VITE_GA_ID` and sets `send_page_view: false`.
 - `AnalyticsTracker` in `src/App.jsx` sends a page view on every route change:
-  - Tracks both the main page (`/`) and certificates page (`/certificates`).
+  - Tracks the main (`/`), certificates (`/certificates`) and skills (`/skills`) routes.
 
 ## Tech
 
