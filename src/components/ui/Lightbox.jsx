@@ -73,7 +73,9 @@ export default function Lightbox({ images, title, index, onIndexChange, onClose 
           key={images[index]}
           src={images[index]}
           alt={`${title}, screen ${index + 1} of ${count}`}
-          className="max-h-full max-w-full rounded-[18px] object-contain"
+          /* Capped so tall screens don't balloon on a large monitor, and so a
+             small source (the Karaweik render is 844px) is never upscaled. */
+          className="max-h-[min(100%,840px)] max-w-full rounded-[18px] object-contain"
         />
       </div>
 

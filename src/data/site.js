@@ -44,7 +44,7 @@ const SITE = {
   // updates the hero without anyone remembering to.
   stats: [
     { value: String(YEARS), label: 'Years shipping' },
-    { value: String(projects.length), label: 'Products shipped' },
+    { value: String(projects.filter((p) => p.released !== false).length), label: 'Products shipped' },
     { value: '4', label: 'Platforms' },
     { value: String(certificates.length), label: 'Certifications' },
   ],

@@ -9,6 +9,7 @@ import { projects } from '../data';
 const STORES = [
   { key: 'appStore', label: 'App Store' },
   { key: 'playStore', label: 'Google Play' },
+  { key: 'apkPure', label: 'APKPure' },
   { key: 'testFlight', label: 'TestFlight' },
 ];
 
@@ -51,7 +52,7 @@ function ProjectRow({ project, index }) {
                   className={`flex items-center gap-xs ${ACTION} hover:text-ink`}
                 >
                   <span className="h-px w-lg bg-accent" aria-hidden="true" />
-                  View {screens.length} screens
+                  View {screens.length} screen{screens.length === 1 ? '' : 's'}
                 </button>
               ) : null}
 
@@ -90,13 +91,17 @@ function ProjectRow({ project, index }) {
 }
 
 export default function Projects() {
+  // Count only what's publicly released; anything still in testing is called out.
+  const shipped = projects.filter((p) => p.released !== false).length;
+  const building = projects.length - shipped;
+
   return (
     <Section id="work">
       <SectionHeader
         index="01"
         eyebrow="Work"
         title="What I've shipped"
-        meta={`${projects.length} in production`}
+        meta={building ? `${shipped} shipped · ${building} in testing` : `${shipped} shipped`}
       />
       <div className="border-b border-hairline">
         {projects.map((project, index) => (

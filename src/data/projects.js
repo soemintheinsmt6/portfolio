@@ -19,6 +19,11 @@ import sl02 from '../assets/images/slazh/02.jpg';
 import sl03 from '../assets/images/slazh/03.jpg';
 import sl04 from '../assets/images/slazh/04.jpg';
 import sl05 from '../assets/images/slazh/05.jpg';
+import fz01 from '../assets/images/fightzone/01.jpg';
+import fz02 from '../assets/images/fightzone/02.jpg';
+import fz03 from '../assets/images/fightzone/03.jpg';
+import fz04 from '../assets/images/fightzone/04.jpg';
+import fz05 from '../assets/images/fightzone/05.jpg';
 
 // Ordered as the work reads on the page: flagship first, then by recency.
 const PROJECTS = [
@@ -27,7 +32,7 @@ const PROJECTS = [
     title: 'GCK',
     description:
       'Production ERP unifying admin, shareholders, sales and warehouse into one role-based platform. Replaces fragmented spreadsheets with audited finance reporting, voucher pipelines and live inventory.',
-    tech: ['Flutter', 'Clean Architecture', 'Bloc', 'get_it', 'GitHub Actions'],
+    tech: ['Flutter', 'Clean Architecture', 'Role-based access', 'Finance reporting', 'Four platforms'],
     type: 'Cross-platform',
     platform: 'Cross-platform',
     year: '2026',
@@ -43,11 +48,40 @@ const PROJECTS = [
     ],
   },
   {
+    id: 'fight-zone',
+    title: 'Fight Zone',
+    description:
+      'A gym in the members’ pockets — class schedules, a technique video library and package purchases, kept current over WebSocket with push notifications, on phone and tablet.',
+    tech: ['Flutter', 'Bloc', 'YouTube streaming', 'Native HTTP stacks', 'Widget tests'],
+    type: 'Cross-platform',
+    platform: 'iOS & Android',
+    year: '2026 — Present',
+    // Live on APKPure. Google Play is in closed testing (its listing 404s until
+    // public) and the Apple Developer Program enrolment is in progress —
+    // uncomment each as it goes live.
+    apkPure: 'https://apkpure.com/p/com.play.fight_zone',
+    // playStore: 'https://play.google.com/store/apps/details?id=com.play.fight_zone',
+    screens: [fz01, fz02, fz03, fz04, fz05],
+    highlights: [
+      'Class & technique video library',
+      'Package and points purchase',
+      'Push notifications',
+      'Phone and tablet layouts',
+    ],
+  },
+  {
     id: 'mobile-service-manager',
     title: 'Mobile Service Manager',
     description:
       'Desktop service management for mobile repair centres — job tracking, technician performance, revenue analytics and PDF/Excel exports.',
-    tech: ['Flutter', 'Riverpod', 'ObjectBox', 'MVVM', 'Repository Pattern'],
+    tech: [
+      'Flutter Desktop',
+      'MVVM',
+      'ObjectBox',
+      'PDF & Excel export',
+      'Revenue analytics',
+      'GitHub Actions',
+    ],
     type: 'Windows & macOS',
     platform: 'Windows & macOS',
     year: '2025',
@@ -58,7 +92,7 @@ const PROJECTS = [
     title: 'Tmovies',
     description:
       'Streaming app with offline downloads, picture-in-picture and a custom player — shipped to Android, iOS and Android TV from one codebase.',
-    tech: ['Flutter', 'Firebase', 'Method Channel', 'ObjectBox', 'Bitrise'],
+    tech: ['Flutter', 'Method Channel', 'Offline downloads', 'Picture-in-Picture', 'Android TV'],
     type: 'Cross-platform',
     platform: 'Mobile & TV',
     year: '2024 — 2025',
@@ -73,7 +107,14 @@ const PROJECTS = [
     title: 'Mega Z ERP',
     description:
       'Four connected apps — HR, Kitchen, Waiter and Customer — held in sync over WebSocket so a live hospitality floor sees the same order at the same moment.',
-    tech: ['Flutter', 'WebSocket', 'Riverpod', 'Provider', 'Bitrise'],
+    tech: [
+      'Flutter',
+      'Riverpod',
+      'WebSocket sync',
+      'Four connected apps',
+      'Split-screen tablet',
+      'Bitrise',
+    ],
     type: 'Enterprise',
     platform: 'Enterprise',
     year: '2023 — Present',
@@ -87,7 +128,7 @@ const PROJECTS = [
     title: 'Slazh',
     description:
       'Fashion e-commerce for iOS — secure payments, Core Animation transitions and a cart that stays intact when the connection drops mid-checkout.',
-    tech: ['Swift', 'Alamofire', 'Realm', 'Core Animation', 'SHA256'],
+    tech: ['Swift', 'Core Animation', 'Secure payments', 'SHA256', 'Offline cart'],
     type: 'iOS',
     platform: 'iOS',
     year: '2021 — 2023',
@@ -102,12 +143,15 @@ const PROJECTS = [
     title: 'Karaweik',
     description:
       'Restaurant app for iOS — menu browsing, food ordering and healthy-eating articles, with the cart kept in SQLite between sessions.',
-    tech: ['Swift', 'URLSession', 'REST', 'SQLite', 'Firebase'],
+    tech: ['Swift', 'URLSession', 'SQLite cart', 'Firebase Auth', 'Delegate & Observer'],
     type: 'iOS',
     platform: 'iOS',
     year: '2019 — 2020',
-    link: 'https://apps.apple.com/mm/app/karaweik/id1540412233',
-    appStore: 'https://apps.apple.com/mm/app/karaweik/id1540412233',
+    // The listing is temporarily down while the Apple Developer Program
+    // membership is renewed — the URL is valid, it just 404s until then.
+    // Uncomment both lines once the app is live again.
+    // link: 'https://apps.apple.com/mm/app/karaweik/id1540412233',
+    // appStore: 'https://apps.apple.com/mm/app/karaweik/id1540412233',
     highlights: [
       'Menu display & food ordering',
       'Cart persisted in SQLite',
