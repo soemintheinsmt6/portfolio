@@ -23,7 +23,7 @@ const YEARS = yearsShipping();
 
 const SITE = {
   name: 'Soe Min Thein',
-  role: 'Mobile engineer',
+  role: 'Mobile Engineer',
   portrait,
   contact: {
     lead: 'Let’s build something ',
@@ -34,8 +34,9 @@ const SITE = {
   email: 'soeminthein020@gmail.com',
   github: 'https://github.com/soemintheinsmt6',
   linkedin: 'https://linkedin.com/in/soemin-thein',
+  source: 'https://github.com/soemintheinsmt6/portfolio',
   headline: {
-    lead: 'Mobile engineer building products people ',
+    lead: 'Mobile Engineer building products people ',
     emphasis: 'keep using.',
   },
   intro: `${inWords(YEARS)} years shipping iOS and Flutter apps — e-commerce, streaming, and the kind of enterprise systems that quietly replace a company's spreadsheets. I care about how an app holds up long after launch.`,

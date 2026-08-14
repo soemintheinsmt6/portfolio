@@ -86,7 +86,7 @@ const PROJECTS = [
     id: 'slazh',
     title: 'Slazh',
     description:
-      'Fashion e-commerce for iOS — secure payments, Core Animation transitions and a cart that survives losing signal mid-checkout.',
+      'Fashion e-commerce for iOS — secure payments, Core Animation transitions and a cart that stays intact when the connection drops mid-checkout.',
     tech: ['Swift', 'Alamofire', 'Realm', 'Core Animation', 'SHA256'],
     type: 'iOS',
     platform: 'iOS',
@@ -96,6 +96,24 @@ const PROJECTS = [
     playStore: 'https://play.google.com/store/apps/details?id=com.slazh.ecommerce',
     screens: [sl01, sl02, sl03, sl04, sl05],
     highlights: ['Secure payments', 'Custom animations', 'Seamless product listing', 'Offline/online cart'],
+  },
+  {
+    id: 'karaweik',
+    title: 'Karaweik',
+    description:
+      'Restaurant app for iOS — menu browsing, food ordering and healthy-eating articles, with the cart kept in SQLite between sessions.',
+    tech: ['Swift', 'URLSession', 'REST', 'SQLite', 'Firebase'],
+    type: 'iOS',
+    platform: 'iOS',
+    year: '2019 — 2020',
+    link: 'https://apps.apple.com/mm/app/karaweik/id1540412233',
+    appStore: 'https://apps.apple.com/mm/app/karaweik/id1540412233',
+    highlights: [
+      'Menu display & food ordering',
+      'Cart persisted in SQLite',
+      'Firebase auth & analytics',
+      'Delegate and Observer patterns',
+    ],
   },
 ];
 
