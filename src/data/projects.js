@@ -1,4 +1,24 @@
 import { deepFreeze } from './utils';
+// App Store screens, cropped to the device — marketing frame removed.
+import gck01 from '../assets/images/gck/01.jpg';
+import gck02 from '../assets/images/gck/02.jpg';
+import gck03 from '../assets/images/gck/03.jpg';
+import gck04 from '../assets/images/gck/04.jpg';
+import gck05 from '../assets/images/gck/05.jpg';
+import mz01 from '../assets/images/megaz/01.jpg';
+import mz02 from '../assets/images/megaz/02.jpg';
+import mz03 from '../assets/images/megaz/03.jpg';
+import mz04 from '../assets/images/megaz/04.jpg';
+import mz05 from '../assets/images/megaz/05.jpg';
+import tm01 from '../assets/images/tmovies/01.jpg';
+import tm02 from '../assets/images/tmovies/02.jpg';
+import tm03 from '../assets/images/tmovies/03.jpg';
+import tm04 from '../assets/images/tmovies/04.jpg';
+import sl01 from '../assets/images/slazh/01.jpg';
+import sl02 from '../assets/images/slazh/02.jpg';
+import sl03 from '../assets/images/slazh/03.jpg';
+import sl04 from '../assets/images/slazh/04.jpg';
+import sl05 from '../assets/images/slazh/05.jpg';
 
 // Ordered as the work reads on the page: flagship first, then by recency.
 const PROJECTS = [
@@ -14,6 +34,7 @@ const PROJECTS = [
     link: 'https://apps.apple.com/us/app/gck/id6762456506',
     appStore: 'https://apps.apple.com/us/app/gck/id6762456506',
     playStore: 'https://play.google.com/store/apps/details?id=com.trading.gck',
+    screens: [gck01, gck02, gck03, gck04, gck05],
     highlights: [
       'Role-based access',
       'Voucher & inventory management',
@@ -44,6 +65,7 @@ const PROJECTS = [
     link: 'https://play.google.com/store/apps/details?id=com.thebillionaire.movie_server',
     playStore: 'https://play.google.com/store/apps/details?id=com.thebillionaire.movie_server',
     testFlight: 'https://testflight.apple.com/join/uqbpmpss',
+    screens: [tm01, tm02, tm03, tm04],
     highlights: ['Offline downloads', 'PiP mode', 'Multi-platform', 'Custom player controls'],
   },
   {
@@ -57,6 +79,7 @@ const PROJECTS = [
     year: '2023 — Present',
     link: 'https://apps.apple.com/us/app/megaeasez-hr/id6758825547',
     appStore: 'https://apps.apple.com/us/app/megaeasez-hr/id6758825547',
+    screens: [mz01, mz02, mz03, mz04, mz05],
     highlights: ['Real-time sync', 'Multi-app system', 'Push notifications', 'Split-screen layout'],
   },
   {
@@ -71,12 +94,18 @@ const PROJECTS = [
     link: 'https://apps.apple.com/us/app/slazh/id6447933375',
     appStore: 'https://apps.apple.com/us/app/slazh/id6447933375',
     playStore: 'https://play.google.com/store/apps/details?id=com.slazh.ecommerce',
+    screens: [sl01, sl02, sl03, sl04, sl05],
     highlights: ['Secure payments', 'Custom animations', 'Seamless product listing', 'Offline/online cart'],
   },
 ];
 
 export const projects = deepFreeze(
-  PROJECTS.map((p) => ({ ...p, tech: [...p.tech], highlights: [...(p.highlights || [])] }))
+  PROJECTS.map((p) => ({
+    ...p,
+    tech: [...p.tech],
+    highlights: [...(p.highlights || [])],
+    screens: [...(p.screens || [])],
+  }))
 );
 
 export default projects;
