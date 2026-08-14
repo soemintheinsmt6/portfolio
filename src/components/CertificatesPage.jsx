@@ -73,7 +73,7 @@ export default function CertificatesPage() {
                 type="button"
                 onClick={() => setActiveCategory(category.id)}
                 aria-pressed={isActive}
-                className={`rounded-sm px-sm py-xs font-mono text-mono-label font-medium uppercase transition-colors duration-200 ${
+                className={`rounded-sm px-sm py-xs font-mono text-mono-label font-medium transition-colors duration-200 ${
                   isActive
                     ? 'bg-action text-action-text'
                     : 'bg-quiet text-ink-2 hover:text-ink'

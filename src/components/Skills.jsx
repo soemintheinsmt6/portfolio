@@ -19,7 +19,7 @@ export default function Skills({ className = '' }) {
         {skills.map((group, index) => (
           <Reveal key={group.id} delay={index * 0.04}>
             <div className="flex flex-col gap-md border-t border-hairline pt-md">
-              <span className="font-mono text-mono-label font-medium uppercase text-ink-3">
+              <span className="font-mono text-mono-label font-medium text-ink-3">
                 {group.category}
               </span>
               <TagRow items={group.items} />

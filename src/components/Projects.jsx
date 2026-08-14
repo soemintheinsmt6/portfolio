@@ -71,7 +71,7 @@ function ProjectRow({ project, index }) {
         </div>
 
         <div className="col-start-2 flex flex-row items-baseline gap-sm text-left md:col-start-3 md:flex-col md:items-end md:gap-xs md:text-right">
-          <span className="font-mono text-mono-label font-medium uppercase">{project.platform}</span>
+          <span className="font-mono text-mono-label font-medium">{project.platform}</span>
           <span className="font-mono text-mono-meta text-ink-3">{project.year}</span>
         </div>
       </article>

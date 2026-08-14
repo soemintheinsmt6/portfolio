@@ -5,6 +5,10 @@ import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
 import Tag from './ui/Tag';
 import { certificates } from '../data';
+import { CATEGORIES } from '../data/certificates';
+
+// Ids are stored lowercase; the labels carry the correct casing (e.g. "AI").
+const CATEGORY_LABEL = Object.fromEntries(CATEGORIES.map((c) => [c.id, c.label]));
 
 export function CertificateRow({ certificate }) {
   const isLink = Boolean(certificate.link);
@@ -22,7 +26,9 @@ export function CertificateRow({ certificate }) {
     >
       <span className={`flex flex-wrap items-baseline gap-sm text-heading-s ${hover}`}>
         {certificate.title}
-        {certificate.featured ? <Tag tone="accent">{certificate.category}</Tag> : null}
+        {certificate.featured ? (
+          <Tag tone="accent">{CATEGORY_LABEL[certificate.category] ?? certificate.category}</Tag>
+        ) : null}
       </span>
       {/* Persistent marker, not hover-revealed: it says which rows open a
           credential, and it works on touch. Both marks are mono, so they share a
