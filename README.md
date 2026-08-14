@@ -1,6 +1,26 @@
-# Portfolio (React + Vite + Framer Motion)
+# Portfolio v2 (React + Vite + Tailwind)
 
-Soe Min Thein's personal portfolio with animated sections, modular structure and Google Analytics.
+Soe Min Thein's personal portfolio. Editorial design system, light and dark
+themes driven by design tokens, and Google Analytics.
+
+## Design system
+
+The site and the Figma file [Portfolio v2 — Rebrand](https://www.figma.com/design/SUkoDF3uk1jXXME5Xo0OjO)
+are one system. Every Figma variable maps to a CSS custom property of the same
+name in `src/styles/tokens.css` — the Figma variable `bg/canvas` emits
+`var(--bg-canvas)` — and `tailwind.config.cjs` exposes those tokens as
+utilities.
+
+- **Voice** — Instrument Serif for statements, Geist for the interface,
+  Geist Mono for data (indices, years, platforms, tech).
+- **Color** — warm off-white paper, warm near-black ink, one vermilion accent
+  used as a *marker* (rules, indices, hover, active nav) and never as a large
+  fill.
+- **Theming** — `data-theme="light|dark"` on `<html>`. An inline script in
+  `index.html` resolves it before first paint so the page never flashes.
+
+Prefer token utilities (`bg-canvas`, `text-ink-2`, `border-hairline`, `p-lg`,
+`text-body-m`) over raw palette values so the two stay in sync.
 
 ## Getting Started
 
@@ -20,54 +40,55 @@ npm run preview
 
 ```text
 src/
-  assets/               # Static assets
-    Illustrations/      # SVG and Lottie animations
-      certification.svg
-      colloborate.svg
-      contact.json
-      developer.json
-      team.json
-    images/             # Project screenshots
-    logos/              # Brand logos
-  components/           # Presentational components
-    About.jsx
-    Certificates.jsx
-    CertificatesPage.jsx
-    Contact.jsx
-    Experience.jsx
-    Footer.jsx
-    Hero.jsx
+  assets/               # Static assets (images and logos, currently unreferenced)
+  components/           # Section components, in page order
     Nav.jsx
-    Projects.jsx
-    Skills.jsx
-    SkillsPage.jsx
+    Hero.jsx
+    Projects.jsx        # 01 — Work (numbered project rows)
+    About.jsx           # 02 — Approach
+    Experience.jsx      # 03 — Where I've built
+    Skills.jsx          # 04 — Toolkit
+    Certificates.jsx    # 05 — Credentials
+    Contact.jsx         # 06 — Contact
+    Footer.jsx
+    CertificatesPage.jsx  # /certificates
+    SkillsPage.jsx        # /skills
     ThemeSwitcher.jsx
-  core/                 # Core services
+    ui/                 # Design-system primitives, mirroring the Figma components
+      Button.jsx        # Style=Primary|Secondary|Ghost, Size=M|S
+      Tag.jsx           # Tone=Neutral|Accent (+ TagRow)
+      SectionHeader.jsx # Rule, indexed eyebrow, serif title, mono meta
+      Section.jsx       # Section rhythm + container
+      Container.jsx     # Page gutter + 1200px measure
+      Reveal.jsx        # Restrained scroll reveal, respects reduce-motion
+  core/
     config/
       ga.js             # GA id from env (VITE_GA_ID)
     theme/
-      ThemeContext.jsx  # Theme provider
-      themes.js         # Theme definitions
-  data/                 # Data modules
-    certificates.js
-    experience.js
-    index.js
+      ThemeContext.jsx  # ThemeProvider
+      useTheme.js       # Context + hook (kept apart for Fast Refresh)
+  data/                 # Frozen content modules
+    site.js             # Profile, headline, stats, about copy, links
     projects.js
+    experience.js
     skills.js
+    certificates.js
+    index.js
     utils.js
-  shared/               # Reusable modules
-    data/
-      index.js          # Re-exports central data
-  App.jsx               # Main app component
-  data.js               # Legacy data exports
-  index.css             # Global styles
+  styles/
+    tokens.css          # Design tokens — mirrors the Figma variables
+  App.jsx               # Routes, scroll spy, analytics
+  index.css             # Tailwind layers + base + component classes
   main.jsx              # Entry point
 public/
-  s-icon.png            # Favicon
+  s-icon.svg            # Favicon
 ```
 
 Notes:
-- Data is split and frozen for immutability in `src/data/*` and re-exported via `src/shared/data`.
+- Content lives in `src/data/*` and is deep-frozen for immutability.
+- The editorial layout renders no screenshots, so project images and company
+  logos are not imported. The files remain in `src/assets/` if a future layout
+  wants them.
 
 ## Environment Variables
 
@@ -97,9 +118,9 @@ VITE_GA_ID=G-XXXXXXXXXX
 ## Tech
 
 - React 19, Vite, TailwindCSS
-- framer-motion for animations
+- framer-motion for scroll reveals
 - react-router-dom for routing
-- lucide-react + inline SVG icons
+- Instrument Serif, Geist and Geist Mono via Google Fonts
 
 ## Scripts
 

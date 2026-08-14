@@ -1,168 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
-import { Code, ChevronDown, Mail } from 'lucide-react';
-import { useTheme } from '../core/theme/ThemeContext';
+import React from 'react';
+import Container from './ui/Container';
+import Button from './ui/Button';
+import Reveal from './ui/Reveal';
+import { site } from '../data';
 
-const roles = ['Mobile Developer', 'iOS Developer', 'Flutter Developer', 'Software Engineer'];
-
-export default function Hero() {
-  const { theme } = useTheme();
-  const prefersReducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [displayText, setDisplayText] = useState(roles[0]); // Start with full text
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isAnimationStarted, setIsAnimationStarted] = useState(false);
-
-  // Delay the start of typewriter animation
-  useEffect(() => {
-    const startDelay = setTimeout(() => {
-      setIsAnimationStarted(true);
-      setIsDeleting(true); // Start by deleting the first role
-    }, 3000); // Wait 3 seconds before starting animation
-
-    return () => clearTimeout(startDelay);
-  }, []);
-
-  useEffect(() => {
-    if (!isAnimationStarted) return;
-
-    const currentRole = roles[roleIndex];
-    const typingSpeed = isDeleting ? 50 : 100;
-    const pauseTime = 2000;
-
-    if (!isDeleting && displayText === currentRole) {
-      // Pause before starting to delete
-      const timeout = setTimeout(() => setIsDeleting(true), pauseTime);
-      return () => clearTimeout(timeout);
-    }
-
-    if (isDeleting && displayText === '') {
-      // Move to next role
-      setIsDeleting(false);
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-      return;
-    }
-
-    const timeout = setTimeout(() => {
-      if (isDeleting) {
-        setDisplayText(currentRole.substring(0, displayText.length - 1));
-      } else {
-        setDisplayText(currentRole.substring(0, displayText.length + 1));
-      }
-    }, typingSpeed);
-
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, roleIndex, isAnimationStarted]);
+export default function Hero({ onNavigate }) {
+  const go = (id) => (event) => {
+    if (!onNavigate) return;
+    event.preventDefault();
+    onNavigate(id);
+  };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle, ${theme.colors.decorative.grid.dotColor} 1px, transparent 1px)`,
-          backgroundSize: '24px 24px',
-          maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 75%)',
-          WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 75%)',
-        }}
-      />
+    <section id="home" className="pb-3xl pt-4xl md:pb-5xl md:pt-6xl">
+      <Container>
+        <Reveal className="flex items-center gap-sm font-mono text-mono-label font-medium uppercase text-ink-3">
+          {site.available ? <span className="h-[6px] w-[6px] rounded-pill bg-accent" /> : null}
+          {site.available ? 'Available for work · ' : ''}
+          {site.location}
+        </Reveal>
 
-      <motion.div style={{ opacity, scale }} className="text-center z-10 px-4">
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          className="mb-8"
+        <Reveal delay={0.05}>
+          <h1 className="mt-2xl max-w-[15ch] font-display text-display-m md:text-[64px] md:leading-[64px] lg:text-display-xl">
+            {site.headline.lead}
+            <span className="italic text-accent-text">{site.headline.emphasis}</span>
+          </h1>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <p className="mt-xl max-w-lead text-body-m text-ink-2 md:text-body-l">{site.intro}</p>
+        </Reveal>
+
+        <Reveal delay={0.15} className="mt-2xl flex flex-wrap items-center gap-lg">
+          <Button href="#work" onClick={go('work')}>
+            See selected work
+          </Button>
+          <Button href={`mailto:${site.email}`} variant="ghost">
+            Email me →
+          </Button>
+        </Reveal>
+
+        <Reveal
+          delay={0.2}
+          className="mt-3xl grid grid-cols-2 gap-lg border-t border-hairline pt-lg md:mt-5xl md:grid-cols-4 md:gap-xl"
         >
-          <div className={`w-32 h-32 mx-auto rounded-full ${theme.colors.decorative.gradientCircle} p-1`}>
-            <div className={`w-full h-full rounded-full ${theme.colors.background.nav} flex items-center justify-center`}>
-              <Code className={`w-16 h-16 ${theme.colors.icon.primary}`} />
+          {site.stats.map((stat) => (
+            <div key={stat.label}>
+              <div className="font-display text-[32px] leading-[34px] md:text-display-m">{stat.value}</div>
+              <div className="mt-xs font-mono text-mono-label font-medium uppercase text-ink-3">
+                {stat.label}
+              </div>
             </div>
-          </div>
-        </motion.div>
-
-        <motion.h1
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.15, duration: 0.3 }}
-          className="text-5xl md:text-6xl font-bold mb-4"
-        >
-          Soe Min Thein
-        </motion.h1>
-
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.25, duration: 0.3 }}
-          className={`text-2xl md:text-3xl mb-4 ${theme.classes.gradientText} font-medium h-9 md:h-11`}
-        >
-          <span>{displayText}</span>
-          <span
-            className="inline-block w-[2px] md:w-[3px] h-7 md:h-8 ml-1 align-middle rounded-sm"
-            style={{
-              backgroundColor: '#38bdf8',
-              animation: 'cursorBlink 1s step-end infinite'
-            }}
-          />
-          <style>{`
-            @keyframes cursorBlink {
-              0%, 100% { opacity: 1; }
-              50% { opacity: 0; }
-            }
-          `}</style>
-        </motion.div>
-
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.35, duration: 0.3 }}
-          className={`text-lg md:text-xl ${theme.colors.text.secondary} mb-8 max-w-2xl mx-auto`}
-        >
-          Blending art and technology to craft meaningful digital experiences...
-        </motion.p>
-
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.45, duration: 0.25 }}
-          className="flex flex-wrap justify-center gap-4"
-        >
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href="mailto:soeminthein020@gmail.com"
-            className={`flex items-center gap-2 px-6 py-3 ${theme.classes.buttonPrimary} rounded-full transition-colors`}
-          >
-            <Mail className="w-5 h-5" />
-            Get in Touch
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href="https://github.com/soemintheinsmt6"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center gap-2 px-6 py-3 ${theme.classes.buttonPrimary} rounded-full transition-colors`}
-          >
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 .297a12 12 0 0 0-3.793 23.393c.6.111.793-.261.793-.58v-2.256c-3.338.726-4.04-1.416-4.04-1.416-.546-1.389-1.333-1.76-1.333-1.76-1.089-.745.083-.73.083-.73 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.776.419-1.305.762-1.605-2.665-.304-5.466-1.333-5.466-5.932 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.5 11.5 0 0 1 6.004 0c2.292-1.552 3.3-1.23 3.3-1.23.654 1.652.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.61-2.804 5.625-5.476 5.922.43.371.815 1.102.815 2.222v3.293c0 .322.192.694.8.576A12 12 0 0 0 12 .297z" />
-            </svg>
-            GitHub
-          </motion.a>
-        </motion.div>
-
-        <motion.div
-          animate={prefersReducedMotion ? {} : { y: [0, 10, 0] }}
-          transition={prefersReducedMotion ? {} : { repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
-          <ChevronDown className={`w-8 h-8 ${theme.colors.icon.primary}`} />
-        </motion.div>
-      </motion.div>
+          ))}
+        </Reveal>
+      </Container>
     </section>
   );
 }
-
-

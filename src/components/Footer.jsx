@@ -1,16 +1,15 @@
 import React from 'react';
-import { useTheme } from '../core/theme/ThemeContext';
+import Container from './ui/Container';
+import { site } from '../data';
 
 export default function Footer() {
-  const { theme } = useTheme();
-
   return (
-    <footer className={`py-4 px-4 sm:px-6 lg:px-8 border-t ${theme.colors.footer.border} ${theme.colors.footer.background}`}>
-      <div className={`max-w-6xl mx-auto text-center text-sm md:text-base ${theme.colors.footer.text}`}>
-        <p>&copy; 2025 Soe Min Thein. All right reserved.</p>
-      </div>
-    </footer>
+    <Container>
+      <footer className="flex flex-wrap justify-between gap-lg border-t border-hairline pb-2xl pt-xl font-mono text-mono-meta text-ink-3">
+        <span>© {new Date().getFullYear()} {site.name}</span>
+        <span>Instrument Serif · Geist · Geist Mono</span>
+        <span>Designed in Figma · Built with React &amp; Vite</span>
+      </footer>
+    </Container>
   );
 }
-
-

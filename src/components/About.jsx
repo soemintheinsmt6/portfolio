@@ -1,53 +1,47 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useTheme } from '../core/theme/ThemeContext';
-import LazyLottie from './LazyLottie';
-import developerAnimation from '../assets/Illustrations/developer.json';
+import Section from './ui/Section';
+import SectionHeader from './ui/SectionHeader';
+import Reveal from './ui/Reveal';
+import { site } from '../data';
 
 export default function About() {
-  const { theme } = useTheme();
+  const { statement, paragraphs, facts } = site.about;
+
   return (
-    <section id="about" className="py-20">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.35 }}
-        >
-          <h2 className={`text-3xl md:text-4xl font-bold mb-8 text-center`}>
-            About <span className={theme.classes.gradientText}>Me</span>
-          </h2>
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <motion.div
-              className="w-full max-w-xs mx-auto md:mx-0 md:w-80 lg:w-96 md:order-2"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.15 }}
-            >
-              <LazyLottie
-                animationData={developerAnimation}
-                loop={true}
-                style={{ width: '100%', height: 'auto' }}
-              />
-            </motion.div>
-            <div className="p-8 flex-1 md:order-1">
-              <p className={`text-lg ${theme.colors.text.primary} leading-relaxed mb-6`}>
-                Hi, my name is <strong>Soe Min Thein</strong>. I'm a <strong>Mobile Developer</strong> experienced in designing, building and maintaining high-quality mobile applications. I focus on creating <strong>reusable, efficient code</strong> and crafting <strong>user-centered experiences</strong> that turn ideas into smooth, intuitive products.
-              </p>
-              <p className={`text-lg ${theme.colors.text.primary} leading-relaxed mb-6`}>
-                I work extensively with <strong>Swift</strong>, <strong>UIKit</strong>, <strong>SwiftUI</strong> and <strong>Flutter</strong>, and I enjoy contributing to <strong>open-source projects</strong> in the broader software engineering community.
-              </p>
-              <p className={`text-lg ${theme.colors.text.primary} leading-relaxed`}>
-                Besides coding, I'm also a <strong>footballer</strong> who enjoys playing competitively in my free time!
-              </p>
-            </div>
+    <Section id="about">
+      <SectionHeader index="02" eyebrow="About" title="Approach" meta={site.location} />
+
+      <div className="grid grid-cols-1 items-start gap-2xl md:grid-cols-2 md:gap-4xl">
+        <Reveal>
+          <p className="max-w-[18ch] font-display text-display-m">
+            {statement.lead}
+            <span className="italic text-accent-text">{statement.emphasis}</span>
+            {statement.trail}
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.05}>
+          <div className="flex flex-col gap-lg text-body-m text-ink-2">
+            {paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+            ))}
           </div>
-        </motion.div>
+
+          <dl className="mt-xl flex flex-col">
+            {facts.map((fact) => (
+              <div
+                key={fact.label}
+                className="flex justify-between gap-lg border-t border-hairline py-sm"
+              >
+                <dt className="font-mono text-mono-label font-medium uppercase text-ink-3">
+                  {fact.label}
+                </dt>
+                <dd className="m-0 text-right text-body-s">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }
-
-

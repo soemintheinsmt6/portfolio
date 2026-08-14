@@ -1,126 +1,79 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Home, Briefcase, FolderOpen, Wrench, Mail } from 'lucide-react';
-import { useTheme } from '../core/theme/ThemeContext';
+import React from 'react';
+import Container from './ui/Container';
+import Button from './ui/Button';
 import ThemeSwitcher from './ThemeSwitcher';
+import { site } from '../data';
 
-// HIG: Bottom tab bar — max 5 items for mobile
-const tabItems = [
-  { label: 'Home', id: 'home', Icon: Home },
-  { label: 'Work', id: 'experience', Icon: Briefcase },
-  { label: 'Projects', id: 'projects', Icon: FolderOpen },
-  { label: 'Skills', id: 'skills', Icon: Wrench },
-  { label: 'Contact', id: 'contact', Icon: Mail },
+const LINKS = [
+  { id: 'work', label: 'Work' },
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'toolkit', label: 'Toolkit' },
+  { id: 'credentials', label: 'Credentials' },
 ];
 
-export default function Nav({ activeSection, onNavigate }) {
-  const { theme } = useTheme();
-  // Inject signature-style font (Great Vibes) once when component mounts
-  useEffect(() => {
-    const id = 'signature-font-great-vibes';
-    if (!document.getElementById(id)) {
-      const link = document.createElement('link');
-      link.id = id;
-      link.rel = 'stylesheet';
-      link.href = 'https://fonts.googleapis.com/css2?family=Pacifico&display=swap';
-      document.head.appendChild(link);
-    }
-  }, []);
-
-  const desktopItems = ['Home', 'About', 'Experience', 'Projects', 'Skills', 'Certificates', 'Contact'];
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: -10 },
-    show: { opacity: 1, y: 0 },
+/** Figma: Nav Link — active state is a vermilion hairline, never a filled pill. */
+function NavLink({ id, label, isActive, onNavigate }) {
+  const handleClick = (event) => {
+    if (!onNavigate) return;
+    event.preventDefault();
+    onNavigate(id);
   };
 
   return (
-    <>
-      {/* Desktop: Top navigation bar */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.3 }}
-        className={`fixed top-0 w-full ${theme.colors.background.nav} backdrop-blur-lg z-50 ${theme.classes.navBorder}`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className={`text-2xl font-bold ${theme.classes.gradientText} cursor-pointer`}
-              onClick={() => onNavigate('home')}
-              style={{ fontFamily: "'Pacifico', cursive" }}
-            >
-              Soeminthein
-            </motion.div>
+    <a
+      href={`#${id}`}
+      onClick={handleClick}
+      aria-current={isActive ? 'true' : undefined}
+      className={`group flex flex-col gap-2xs transition-colors duration-200 ${
+        isActive ? 'text-ink' : 'text-ink-2 hover:text-ink'
+      }`}
+    >
+      <span className="text-label-m font-medium">{label}</span>
+      <span
+        className={`h-px bg-accent transition-opacity duration-200 ${
+          isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+        }`}
+      />
+    </a>
+  );
+}
 
-            <motion.div
-              className="hidden md:flex items-center space-x-2"
-              variants={containerVariants}
-              initial="hidden"
-              animate="show"
-            >
-              {desktopItems.map((item) => (
-                <motion.button
-                  key={item}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => onNavigate(item.toLowerCase())}
-                  className={`px-4 py-2 border-none bg-transparent outline-none focus:outline-none ${activeSection === item.toLowerCase()
-                    ? theme.classes.activeNav
-                    : `${theme.colors.text.secondary} hover:${theme.colors.text.primary}`
-                    } transition-colors`}
-                >
-                  {item}
-                </motion.button>
-              ))}
-              <motion.div variants={itemVariants}>
-                <ThemeSwitcher />
-              </motion.div>
-            </motion.div>
+export default function Nav({ activeSection, onNavigate }) {
+  return (
+    <header className="surface-veil sticky top-0 z-50 border-b border-hairline backdrop-blur-md backdrop-saturate-150">
+      <Container className="flex h-[72px] items-center justify-between gap-xl">
+        <a href="/" className="flex items-baseline gap-sm">
+          <span className="text-label-m font-medium">{site.name}</span>
+          <span className="hidden font-mono text-mono-meta text-ink-3 sm:inline">{site.role}</span>
+        </a>
 
-            {/* Mobile: only show logo + theme switcher in top bar */}
-            <div className="flex items-center gap-2 md:hidden">
-              <ThemeSwitcher />
-            </div>
-          </div>
+        <nav className="hidden items-center gap-xl lg:flex">
+          {LINKS.map((link) => (
+            <NavLink
+              key={link.id}
+              {...link}
+              isActive={activeSection === link.id}
+              onNavigate={onNavigate}
+            />
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-md">
+          <ThemeSwitcher />
+          <Button
+            href="#contact"
+            size="s"
+            onClick={(event) => {
+              if (!onNavigate) return;
+              event.preventDefault();
+              onNavigate('contact');
+            }}
+          >
+            Get in touch
+          </Button>
         </div>
-      </motion.nav>
-
-      {/* Mobile: HIG-style bottom tab bar — always visible */}
-      <nav
-        className={`fixed bottom-0 left-0 right-0 z-50 md:hidden ${theme.colors.background.nav} backdrop-blur-lg border-t ${theme.colors.border.nav}`}
-        style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
-      >
-        <div className="flex justify-around items-center h-14">
-          {tabItems.map(({ label, id, Icon }) => {
-            const isActive = activeSection === id;
-            return (
-              <button
-                key={id}
-                onClick={() => onNavigate(id)}
-                className={`flex flex-col items-center justify-center min-h-[44px] min-w-[44px] px-1 py-1 border-none bg-transparent outline-none focus:outline-none transition-colors ${
-                  isActive ? theme.classes.activeNav : theme.colors.text.secondary
-                }`}
-                aria-label={label}
-              >
-                <Icon className="w-5 h-5" />
-                <span className="text-[10px] mt-0.5 leading-tight">{label}</span>
-              </button>
-            );
-          })}
-        </div>
-      </nav>
-    </>
+      </Container>
+    </header>
   );
 }

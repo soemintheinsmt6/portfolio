@@ -2,102 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-/* your existing custom styles below */
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-synthesis: none;
+    scroll-behavior: smooth;
+    /* clear the sticky header when jumping to a section */
+    scroll-padding-top: 96px;
+  }
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-family: theme('fontFamily.sans');
+    font-size: 17px;
+    line-height: 28px;
+  }
 
-  font-synthesis: none;
-  text-rendering: qoptimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  /* The display face is set optically; let it sit tight. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    font-weight: inherit;
+  }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
+  p {
+    margin: 0;
+  }
 
-a:hover {
-  color: #535bf2;
-}
+  ::selection {
+    background: var(--accent-base);
+    color: var(--paper-0);
+  }
 
-body {
-  margin: 0;
-  /* allow content to use full width (removed centering flex to avoid side gutters) */
-  min-width: 320px;
-  min-height: 100vh;
-}
+  :focus-visible {
+    outline: var(--border-w-strong) solid var(--accent-base);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
+  /* Respect the OS reduce-motion setting. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  /* make buttons transparent by default so Tailwind utility classes control visible backgrounds
-     This prevents the navigation items from having a persistent dark pill background */
-  background-color: transparent;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* HIG: Respect user's Reduce Motion accessibility setting */
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer components {
+  /**
+   * Translucent sticky surface. Tailwind's `/opacity` modifier can't apply to
+   * colors held in plain CSS variables, so the blend is written out here.
+   */
+  .surface-veil {
+    background-color: var(--bg-canvas);
+    background-color: color-mix(in srgb, var(--bg-canvas) 85%, transparent);
   }
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    /* keep buttons transparent in light mode too; specific components can opt into a background
-       using Tailwind utility classes (e.g., `bg-purple-600`) */
-    background-color: transparent;
+  /* Page gutter + max measure, matching the Figma layout grid. */
+  .container-page {
+    width: 100%;
+    max-width: calc(var(--content-max) + var(--page-margin) * 2);
+    margin-inline: auto;
+    padding-inline: var(--page-margin);
   }
 }

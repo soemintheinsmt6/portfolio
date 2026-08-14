@@ -1,0 +1,157 @@
+/* ============================================================
+   Design tokens — Portfolio v2
+   Mirrors the Figma file "Portfolio v2 — Rebrand" 1:1.
+
+   Primitives  -> raw ramps, never used directly by components
+   Semantics   -> what components read
+   Scale       -> spacing, radius, border width
+
+   Figma variable "bg/canvas" emits var(--bg-canvas), and so on.
+   ============================================================ */
+
+:root {
+  /* ---------- primitives (Figma collection: Primitives) ---------- */
+  --paper-0: #ffffff;
+  --paper-50: #fbfaf7;
+  --paper-100: #f4f2ed;
+  --paper-200: #e8e5dd;
+  --paper-300: #d8d4c9;
+
+  --ink-900: #14130f;
+  --ink-800: #26241e;
+  --ink-700: #3a372f;
+  --ink-600: #5c594e;
+  --ink-500: #8a8577;
+  --ink-400: #ada89a;
+
+  --night-900: #100f0d;
+  --night-800: #171613;
+  --night-700: #1f1e1a;
+  --night-600: #2b2924;
+  --night-500: #3a3831;
+
+  --vermilion-600: #b23417;
+  --vermilion-500: #d9411e;
+  --vermilion-400: #f06440;
+  --vermilion-300: #ff8a63;
+
+  /* ---------- scale (Figma collection: Scale) ---------- */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+  --space-5xl: 128px;
+  --space-6xl: 160px;
+
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-pill: 999px;
+
+  --border-w-hairline: 1px;
+  --border-w-strong: 2px;
+
+  /* ---------- layout ---------- */
+  --content-max: 1200px;
+  --page-margin: 120px;
+}
+
+/* ---------- semantics: light (Figma collection: Color / Light) ---------- */
+:root,
+:root[data-theme='light'] {
+  --bg-canvas: var(--paper-50);
+  --bg-surface: var(--paper-0);
+  --bg-raised: var(--paper-100);
+  --bg-inverse: var(--ink-900);
+
+  --text-primary: var(--ink-900);
+  --text-secondary: var(--ink-600);
+  --text-tertiary: var(--ink-500);
+  --text-inverse: var(--paper-50);
+  --text-accent: var(--vermilion-600);
+
+  --border-hairline: var(--paper-200);
+  --border-strong: var(--paper-300);
+
+  --accent-base: var(--vermilion-500);
+  --accent-hover: var(--vermilion-600);
+
+  --action-primary-bg: var(--ink-900);
+  --action-primary-text: var(--paper-50);
+  --action-quiet-bg: var(--paper-100);
+
+  color-scheme: light;
+}
+
+/* ---------- semantics: dark (Figma collection: Color Dark) ---------- */
+:root[data-theme='dark'] {
+  --bg-canvas: var(--night-900);
+  --bg-surface: var(--night-800);
+  --bg-raised: var(--night-700);
+  --bg-inverse: var(--paper-50);
+
+  --text-primary: var(--paper-50);
+  --text-secondary: var(--ink-400);
+  --text-tertiary: var(--ink-500);
+  --text-inverse: var(--ink-900);
+  --text-accent: var(--vermilion-300);
+
+  --border-hairline: var(--night-600);
+  --border-strong: var(--night-500);
+
+  --accent-base: var(--vermilion-400);
+  --accent-hover: var(--vermilion-300);
+
+  --action-primary-bg: var(--paper-50);
+  --action-primary-text: var(--ink-900);
+  --action-quiet-bg: var(--night-700);
+
+  color-scheme: dark;
+}
+
+/* Before the theme script runs (and for no-JS), follow the OS. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg-canvas: var(--night-900);
+    --bg-surface: var(--night-800);
+    --bg-raised: var(--night-700);
+    --bg-inverse: var(--paper-50);
+
+    --text-primary: var(--paper-50);
+    --text-secondary: var(--ink-400);
+    --text-tertiary: var(--ink-500);
+    --text-inverse: var(--ink-900);
+    --text-accent: var(--vermilion-300);
+
+    --border-hairline: var(--night-600);
+    --border-strong: var(--night-500);
+
+    --accent-base: var(--vermilion-400);
+    --accent-hover: var(--vermilion-300);
+
+    --action-primary-bg: var(--paper-50);
+    --action-primary-text: var(--ink-900);
+    --action-quiet-bg: var(--night-700);
+
+    color-scheme: dark;
+  }
+}
+
+/* ---------- responsive page margin (matches the Figma grid) ---------- */
+@media (max-width: 1080px) {
+  :root {
+    --page-margin: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-margin: 20px;
+  }
+}

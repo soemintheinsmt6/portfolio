@@ -1,115 +1,48 @@
-import { motion } from 'framer-motion';
+import React from 'react';
+import Section from './ui/Section';
+import SectionHeader from './ui/SectionHeader';
+import Reveal from './ui/Reveal';
 import { experience } from '../data';
-import { useTheme } from '../core/theme/ThemeContext';
-import collaborateIllustration from '../assets/Illustrations/colloborate.svg';
-
-function ExperienceCard({ exp, index }) {
-  const { theme } = useTheme();
-
-  return (
-    <motion.div
-      key={index}
-      initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.35 }}
-      whileHover={{ scale: 1.02 }}
-      className={theme.classes.card + ' p-8'}
-    >
-      <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-4">
-        <div className="flex items-center gap-4">
-          {exp.logo && (
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden flex-shrink-0">
-              <img
-                src={exp.logo}
-                alt={`${exp.company} logo`}
-                className="w-full h-full object-cover rounded-xl"
-              />
-            </div>
-          )}
-          <div>
-            <h3 className={`text-xl font-bold ${theme.colors.text.accent} mb-1`}>{exp.title}</h3>
-            <p className={`text-lg ${theme.colors.text.secondary}`}>{exp.company}</p>
-          </div>
-        </div>
-        <span className={`${theme.colors.text.accentSecondary} font-semibold mt-2 md:mt-0`}>{exp.period}</span>
-      </div>
-      <p className={`${theme.colors.text.tertiary} mb-4`}>{exp.description}</p>
-
-      <ul className="space-y-2">
-        {exp.achievements.map((achievement, i) => (
-          <li key={i} className={`flex items-start gap-2 ${theme.colors.text.secondary}`}>
-            <span className={theme.colors.text.accent}>▹</span>
-            <span>{achievement}</span>
-          </li>
-        ))}
-      </ul>
-    </motion.div>
-  );
-}
 
 export default function Experience() {
-  const { theme } = useTheme();
   return (
-    <section id="experience" className={`py-20 px-4 sm:px-6 lg:px-8 ${theme.colors.background.section}`}>
-      <div className="max-w-6xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold mb-12 text-center"
-          transition={{ duration: 0.35 }}
-        >
-          Professional <span className={theme.classes.gradientText}>Journey</span>
-        </motion.h2>
+    <Section id="experience">
+      <SectionHeader
+        index="03"
+        eyebrow="Experience"
+        title="Where I've built"
+        meta="2019 — present"
+      />
 
-        <div className="flex flex-col lg:flex-row items-start gap-8">
-          <motion.div
-            className="w-full max-w-xs mx-auto lg:mx-0 lg:w-80 xl:w-96 lg:sticky lg:top-24"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-          >
-            <img
-              src={collaborateIllustration}
-              alt="Collaboration illustration"
-              className="w-full h-auto"
-            />
-          </motion.div>
-          {/* Timeline Container */}
-          <div className="flex-1 relative">
-            {/* Timeline Line - starts from first dot */}
-            <div
-              className={`absolute left-4 md:left-6 top-8 bottom-8 w-px ${theme.name === 'minimalist' ? 'bg-gray-300' : 'bg-gradient-to-b from-purple-500 via-pink-500 to-purple-500/20'
-                }`}
-            />
+      <div className="border-b border-hairline">
+        {experience.map((job) => (
+          <Reveal key={job.id}>
+            <article className="grid grid-cols-1 gap-md border-t border-hairline py-2xl md:grid-cols-[220px_1fr] md:gap-2xl">
+              <div className="font-mono text-mono-meta text-ink-3">{job.period}</div>
 
-            <div className="space-y-8">
-              {experience.map((exp, index) => (
-                <div key={exp.id || index} className="relative">
-                  {/* Timeline Dot */}
-                  <div className="absolute left-4 md:left-6 top-8 -translate-x-1/2 z-10">
-                    <div
-                      className={`w-3 h-3 rounded-full ${theme.name === 'minimalist'
-                        ? 'bg-gray-400 ring-4 ring-gray-200'
-                        : 'bg-gradient-to-r from-purple-400 to-pink-400 ring-4 ring-purple-500/20'
-                        }`}
-                    />
-                  </div>
-
-                  {/* Card with left padding for timeline */}
-                  <div className="pl-10 md:pl-12">
-                    <ExperienceCard exp={exp} index={index} />
-                  </div>
+              <div>
+                <div className="flex flex-wrap items-baseline gap-sm">
+                  <h3 className="text-heading-m">{job.title}</h3>
+                  <span className="font-mono text-mono-label font-medium uppercase text-ink-3">
+                    {job.company}
+                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
+
+                <ul className="mt-md flex flex-col gap-sm text-body-s text-ink-2">
+                  {job.achievements.map((achievement) => (
+                    <li key={achievement} className="grid grid-cols-[16px_1fr] gap-xs">
+                      <span aria-hidden="true" className="text-accent">
+                        —
+                      </span>
+                      <span>{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          </Reveal>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 }
-
-

@@ -1,75 +1,51 @@
 import { deepFreeze } from './utils';
-import megaZLogo from '../assets/logos/mega-z-logo.png';
-import slazhLogo from '../assets/logos/slazh-logo.jpg';
-import swanArrLogo from '../assets/logos/swan-arr-logo.jpg';
 
 const EXPERIENCE = [
   {
     id: 'mega-z-mobile-developer',
     title: 'Mobile Developer',
     company: 'Mega Z',
-    logo: megaZLogo,
-    period: '2023 Aug - Present',
-    description: 'ERP solution development for bar and entertainment business with multiple connected mobile applications',
+    period: '2023 Aug — Present',
+    description:
+      'ERP for a bar and entertainment business, delivered as a set of connected mobile applications.',
     achievements: [
-      'Built a multi-app ERP ecosystem (HR, Kitchen, Waiter, Customer) to streamline operational workflows',
-      'Implemented real-time data synchronization and messaging across apps using WebSocket',
-      'Improved customer and staff experience with live order tracking, notifications, and split-screen tablet UI',
-      'Established CI/CD pipelines with Bitrise to automate builds, testing, and deployment across multiple apps'
+      'Built a multi-app ERP ecosystem — HR, Kitchen, Waiter, Customer — on one shared architecture',
+      'Implemented real-time sync and messaging across apps over WebSocket',
+      'Shipped live order tracking, notifications and split-screen tablet layouts',
+      'Automated builds, testing and deployment across every app with Bitrise',
     ],
-    tech_stacks: [
-      'Flutter',
-      'Dart',
-      'Riverpod',
-      'Provider',
-      'WebSocket',
-      'ObjectBox',
-      'Bitrise'
-    ]
+    tech_stacks: ['Flutter', 'Dart', 'Riverpod', 'Provider', 'WebSocket', 'ObjectBox', 'Bitrise'],
   },
   {
     id: 'slazh-ios-developer',
     title: 'iOS Developer',
     company: 'Slazh',
-    logo: slazhLogo,
-    period: '2021 Jun - 2023 Jul',
-    description: 'Fashion e-commerce iOS app development with focus on product design and secure transactions',
+    period: '2021 Jun — 2023 Jul',
+    description: 'Fashion commerce on iOS, focused on product craft and secure transactions.',
     achievements: [
-      'Developed a modular and scalable iOS e-commerce application',
+      'Developed a modular, scalable iOS commerce application',
       'Implemented secure payment processing with encryption and data protection',
-      'Enhanced user experience through social features, custom animations, and performance-focused testing'
+      'Raised the experience with social features and custom Core Animation transitions',
     ],
-    tech_stacks: [
-      'Swift',
-      'Realm',
-      'Mobile Payment Integration',
-      'SHA256 Encryption',
-      'Core Animation',
-    ]
+    tech_stacks: ['Swift', 'Realm', 'Mobile Payments', 'SHA256', 'Core Animation'],
   },
   {
     id: 'swan-arr-junior-ios-developer',
     title: 'Junior iOS Developer',
     company: 'Swan Arr Electronics',
-    logo: swanArrLogo,
-    period: '2019 Aug - 2021 Apr',
-    description: 'iOS application development and Agile methodology',
+    period: '2019 Aug — 2021 Apr',
+    description: 'iOS application development inside an Agile delivery team.',
     achievements: [
-      'Contributed to multiple iOS applications under senior developer guidance',
-      'Applied best coding practices and design principles to improve maintainability',
-      'Participated in Agile sprint cycles, collaborating with cross-functional teams for feature delivery'
+      'Contributed to several iOS apps under senior guidance',
+      'Applied design principles and coding standards that kept the codebase maintainable',
+      'Worked in Agile sprints with cross-functional delivery teams',
     ],
-    tech_stacks: [
-      'Swift',
-      'Alamofire',
-      'Firebase Cloud Messaging',
-      'Analytics'
-    ]
-  }
+    tech_stacks: ['Swift', 'Alamofire', 'Firebase Cloud Messaging', 'Analytics'],
+  },
 ];
 
-export const experience = deepFreeze(EXPERIENCE.map((e) => ({ ...e, achievements: [...e.achievements] })));
+export const experience = deepFreeze(
+  EXPERIENCE.map((e) => ({ ...e, achievements: [...e.achievements], tech_stacks: [...e.tech_stacks] }))
+);
 
 export default experience;
-
-

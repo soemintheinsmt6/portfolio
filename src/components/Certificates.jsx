@@ -1,130 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ExternalLink, ArrowRight, Award } from 'lucide-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Section from './ui/Section';
+import SectionHeader from './ui/SectionHeader';
+import Reveal from './ui/Reveal';
+import Tag from './ui/Tag';
 import { certificates } from '../data';
-import { useTheme } from '../core/theme/ThemeContext';
-import CertificationIllustrationUrl from '../assets/Illustrations/certification.svg?url';
 
-export default function Certificates() {
-  const { theme } = useTheme();
-  const navigate = useNavigate();
-  const visible = certificates.filter((c) => c.featured).slice(0, 6);
-  const hasMore = certificates.length > visible.length;
-  const [svgContent, setSvgContent] = useState('');
-
-  useEffect(() => {
-    fetch(CertificationIllustrationUrl)
-      .then(res => res.text())
-      .then(text => setSvgContent(text))
-      .catch(err => console.error('Failed to load SVG:', err));
-  }, []);
+export function CertificateRow({ certificate }) {
+  const Wrapper = certificate.link ? 'a' : 'div';
+  const wrapperProps = certificate.link
+    ? { href: certificate.link, target: '_blank', rel: 'noreferrer noopener' }
+    : {};
 
   return (
-    <section id="certificates" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold mb-4 text-center"
-        >
-          Professional <span className={theme.classes.gradientText}>Certificates</span>
-        </motion.h2>
+    <Wrapper
+      {...wrapperProps}
+      className="group grid grid-cols-1 items-baseline gap-2xs border-t border-hairline py-md sm:grid-cols-[1fr_auto] sm:gap-lg"
+    >
+      <span className="flex flex-wrap items-baseline gap-sm text-heading-s transition-colors duration-200 group-hover:text-accent-text">
+        {certificate.title}
+        {certificate.featured ? <Tag tone="accent">{certificate.category}</Tag> : null}
+      </span>
+      <span className="font-mono text-mono-meta text-ink-3">{certificate.issuer}</span>
+    </Wrapper>
+  );
+}
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className={`text-center ${theme.colors.text.secondary} mb-12 max-w-2xl mx-auto`}
-        >
-          Recognized achievements and certifications
-        </motion.p>
+export default function Certificates() {
+  const featured = certificates.filter((certificate) => certificate.featured);
 
-        <div className="flex flex-col lg:flex-row gap-12 items-center">
-          {/* Certification Illustration - Under title on mobile, left side on desktop */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-            className="w-full max-w-xs mx-auto lg:mx-0 lg:w-2/5 flex justify-center"
-            dangerouslySetInnerHTML={{ __html: svgContent }}
-            style={{ maxWidth: '400px' }}
-          />
+  return (
+    <Section id="credentials">
+      <SectionHeader
+        index="05"
+        eyebrow="Credentials"
+        title="Certifications"
+        meta={`${certificates.length} total · ${featured.length} featured`}
+      />
 
-          {/* Certificate Cards - Right side on desktop */}
-          <div className="w-full lg:w-3/5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {visible.map((cert, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  className={`${theme.classes.card} p-5 group block relative overflow-hidden`}
-                >
-                  {/* Desktop: clickable overlay */}
-                  <a
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hidden md:block absolute inset-0 z-10"
-                    aria-label={`View ${cert.title}`}
-                  />
-
-                  <div className="flex items-start gap-3">
-                    <div className={`p-2 rounded-lg ${theme.colors.background.secondary} group-hover:scale-110 transition-transform flex-shrink-0`}>
-                      <Award className={`w-5 h-5 ${theme.colors.text.link}`} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className={`text-lg font-semibold mb-1 ${theme.colors.text.primary} line-clamp-2`}>
-                        {cert.title}
-                      </h3>
-                      <p className={`text-sm ${theme.colors.text.secondary}`}>
-                        {cert.issuer}
-                      </p>
-                      {/* Mobile: inline link - aligned with title */}
-                      <a
-                        href={cert.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`md:hidden mt-2 inline-flex items-center gap-1 text-sm min-h-[44px] ${theme.colors.text.link}`}
-                      >
-                        View Certificate <ExternalLink className="w-3 h-3" />
-                      </a>
-                    </div>
-                    {/* Desktop: hover icon indicator */}
-                    <ExternalLink className={`hidden md:block w-4 h-4 ${theme.colors.text.tertiary} opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0`} />
-                  </div>
-                </motion.div>
-              ))}
-
-            </div>
-
-            {hasMore && (
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-                whileHover={{ scale: 1.01 }}
-                onClick={() => navigate('/certificates')}
-                className={`${theme.classes.card} mt-4 w-full p-4 group flex items-center justify-center gap-2 cursor-pointer`}
-                aria-label="View all certificates"
-              >
-                <span className={`text-base font-medium ${theme.colors.text.primary}`}>
-                  View All Certificates
-                </span>
-                <ArrowRight className={`w-4 h-4 ${theme.colors.text.link} group-hover:translate-x-1 transition-transform`} />
-              </motion.button>
-            )}
-          </div>
+      <Reveal>
+        <div className="border-b border-hairline">
+          {featured.map((certificate) => (
+            <CertificateRow key={certificate.id} certificate={certificate} />
+          ))}
         </div>
-      </div>
-    </section>
+
+        <Link
+          to="/certificates"
+          className="mt-lg inline-flex items-center gap-xs text-label-m font-medium transition-colors duration-200 hover:text-accent-text"
+        >
+          All {certificates.length} certifications →
+        </Link>
+      </Reveal>
+    </Section>
   );
 }

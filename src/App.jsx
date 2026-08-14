@@ -1,26 +1,27 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 // Disable browser scroll restoration immediately, before any component mounts
 if ('scrollRestoration' in window.history) {
   window.history.scrollRestoration = 'manual';
 }
-import { ThemeProvider, useTheme } from './core/theme/ThemeContext';
+import { ThemeProvider } from './core/theme/ThemeContext';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
+import Projects from './components/Projects';
 import About from './components/About';
 import Experience from './components/Experience';
-import Projects from './components/Projects';
 import Skills from './components/Skills';
+import Certificates from './components/Certificates';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Certificates from './components/Certificates';
 import CertificatesPage from './components/CertificatesPage';
 import SkillsPage from './components/SkillsPage';
 import { GA_TRACKING_ID } from './core/config/ga';
 
+const SECTIONS = ['home', 'work', 'about', 'experience', 'toolkit', 'credentials', 'contact'];
+
 function MainPage() {
-  const { theme } = useTheme();
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
@@ -43,27 +44,17 @@ function MainPage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = [
-        'home',
-        'about',
-        'experience',
-        'projects',
-        'skills',
-        'certificates',
-        'contact',
-      ];
-      const current = sections.find((section) => {
+      const current = SECTIONS.find((section) => {
         const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return rect.top <= 100 && rect.bottom >= 100;
       });
-      // If at bottom of the page, always set 'contact' active
+
+      // At the bottom of the page, contact is always the active section
       const isAtBottom =
-        window.innerHeight + Math.round(window.scrollY) >=
-        Math.round(document.body.scrollHeight);
+        window.innerHeight + Math.round(window.scrollY) >= Math.round(document.body.scrollHeight);
+
       if (isAtBottom) {
         setActiveSection('contact');
       } else if (current) {
@@ -71,32 +62,30 @@ function MainPage() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
+  const scrollToSection = useCallback((id) => {
     const element = document.getElementById(id);
-    if (element) {
-      const offset = 40;
-      const top = element.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  };
+    if (!element) return;
+    const offset = 88; // clears the sticky header
+    const top = element.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }, []);
 
   return (
-    <div className={`${theme.colors.background.main} ${theme.colors.text.primary} min-h-screen pb-14 md:pb-0`}>
-      <Nav
-        activeSection={activeSection}
-        onNavigate={scrollToSection}
-      />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Certificates />
-      <Contact />
+    <div className="min-h-screen bg-canvas text-ink">
+      <Nav activeSection={activeSection} onNavigate={scrollToSection} />
+      <main>
+        <Hero onNavigate={scrollToSection} />
+        <Projects />
+        <About />
+        <Experience />
+        <Skills />
+        <Certificates />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );
