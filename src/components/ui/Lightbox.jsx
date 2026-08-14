@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion as Motion, useReducedMotion } from 'framer-motion';
 
 /**
@@ -43,7 +44,10 @@ export default function Lightbox({ images, title, index, onIndexChange, onClose 
   const controlClass =
     'rounded-sm p-xs font-mono text-mono-label font-medium uppercase text-[var(--ink-400)] transition-colors duration-200 hover:text-[var(--paper-0)] disabled:opacity-40';
 
-  return (
+  // Portalled for the same reason as the menu: any ancestor with a transform or
+  // filter (framer-motion applies one while animating) would become the
+  // containing block and trap this overlay inside the row.
+  return createPortal(
     <Motion.div
       role="dialog"
       aria-modal="true"
@@ -93,6 +97,7 @@ export default function Lightbox({ images, title, index, onIndexChange, onClose 
           Next ›
         </button>
       </div>
-    </Motion.div>
+    </Motion.div>,
+    document.body
   );
 }

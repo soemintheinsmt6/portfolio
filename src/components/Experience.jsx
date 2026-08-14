@@ -28,6 +28,15 @@ export default function Experience() {
                   </span>
                 </div>
 
+                {/* The claim of the role, stated before the supporting detail —
+                    so the ladder reads even if someone skims the bullets. */}
+                {job.scope ? (
+                  <p className="mt-sm flex items-baseline gap-sm text-body-s">
+                    <span className="mt-[9px] h-px w-lg shrink-0 bg-accent" aria-hidden="true" />
+                    <span>{job.scope}</span>
+                  </p>
+                ) : null}
+
                 <ul className="mt-md flex flex-col gap-sm text-body-s text-ink-2">
                   {job.achievements.map((achievement) => (
                     <li key={achievement} className="grid grid-cols-[16px_1fr] gap-xs">

@@ -10,7 +10,12 @@ import { CATEGORIES } from '../data/certificates';
 // Ids are stored lowercase; the labels carry the correct casing (e.g. "AI").
 const CATEGORY_LABEL = Object.fromEntries(CATEGORIES.map((c) => [c.id, c.label]));
 
-export function CertificateRow({ certificate }) {
+/**
+ * `showCategory` is on for the homepage only — /certificates has filter chips,
+ * which already state the category. Even there it's desktop-only: on a narrow
+ * screen a long title pushes the chip onto a line of its own.
+ */
+export function CertificateRow({ certificate, showCategory = false }) {
   const isLink = Boolean(certificate.link);
   const Wrapper = isLink ? 'a' : 'div';
   const wrapperProps = isLink
@@ -24,10 +29,18 @@ export function CertificateRow({ certificate }) {
       {...wrapperProps}
       className={`${isLink ? 'group' : ''} grid grid-cols-1 items-baseline gap-2xs border-t border-hairline py-md sm:grid-cols-[1fr_auto] sm:gap-lg`}
     >
-      <span className={`flex flex-wrap items-baseline gap-sm text-heading-s ${hover}`}>
+      {/* Inline flow, not flex: the chip should follow the last word of the title
+          and only wrap when there's genuinely no room, rather than being pushed
+          onto a line of its own whenever the title fills the width. */}
+      <span className={`text-heading-s ${hover}`}>
         {certificate.title}
-        {certificate.featured ? (
-          <Tag tone="accent">{CATEGORY_LABEL[certificate.category] ?? certificate.category}</Tag>
+        {showCategory && certificate.category ? (
+          <>
+            {' '}
+            <Tag tone="accent" className="hidden align-[0.1em] md:inline-flex">
+              {CATEGORY_LABEL[certificate.category] ?? certificate.category}
+            </Tag>
+          </>
         ) : null}
       </span>
       {/* Persistent marker, not hover-revealed: it says which rows open a
@@ -56,7 +69,7 @@ export default function Certificates() {
       <Reveal>
         <div className="border-b border-hairline">
           {featured.map((certificate) => (
-            <CertificateRow key={certificate.id} certificate={certificate} />
+            <CertificateRow key={certificate.id} certificate={certificate} showCategory />
           ))}
         </div>
 

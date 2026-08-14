@@ -28,6 +28,15 @@ function ProjectRow({ project, index }) {
   const screens = project.screens || [];
   const stores = STORES.filter((store) => project[store.key]);
 
+  // Rendered in two places — inline under the title on mobile, in the right-hand
+  // column on desktop. Exactly one is ever visible.
+  const meta = (
+    <>
+      <span className="font-mono text-mono-label font-medium">{project.platform}</span>
+      <span className="font-mono text-mono-meta text-ink-3">{project.year}</span>
+    </>
+  );
+
   return (
     <Reveal>
       <article className="group grid grid-cols-[32px_1fr] items-start gap-md border-t border-hairline py-xl md:grid-cols-[48px_1fr_220px] md:gap-2xl">
@@ -36,7 +45,12 @@ function ProjectRow({ project, index }) {
         </span>
 
         <div className="flex flex-col gap-md">
-          <h3 className="text-heading-m font-semibold md:text-heading-l">{project.title}</h3>
+          <div className="flex flex-col gap-xs">
+            <h3 className="text-heading-m font-semibold md:text-heading-l">{project.title}</h3>
+            {/* On mobile the meta belongs with the title; the third grid column
+                that carries it on desktop sits below everything else here. */}
+            <div className="flex flex-row items-baseline gap-sm md:hidden">{meta}</div>
+          </div>
 
           <p className="max-w-measure text-body-m text-ink-2">{project.description}</p>
 
@@ -71,10 +85,7 @@ function ProjectRow({ project, index }) {
           ) : null}
         </div>
 
-        <div className="col-start-2 flex flex-row items-baseline gap-sm text-left md:col-start-3 md:flex-col md:items-end md:gap-xs md:text-right">
-          <span className="font-mono text-mono-label font-medium">{project.platform}</span>
-          <span className="font-mono text-mono-meta text-ink-3">{project.year}</span>
-        </div>
+        <div className="col-start-3 hidden flex-col items-end gap-xs text-right md:flex">{meta}</div>
       </article>
 
       {screenIndex !== null ? (

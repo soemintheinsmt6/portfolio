@@ -8,6 +8,7 @@ const EXPERIENCE = [
     period: '2023 Aug — Present',
     description:
       'ERP for a bar and entertainment business, delivered as a set of connected mobile applications.',
+    scope: 'Architecting a four-app ERP ecosystem and the pipeline that ships it.',
     achievements: [
       'Built a multi-app ERP ecosystem — HR, Kitchen, Waiter, Customer — on one shared architecture',
       'Implemented real-time sync and messaging across apps over WebSocket',
@@ -21,9 +22,10 @@ const EXPERIENCE = [
     title: 'iOS Developer',
     company: 'Slazh',
     period: '2021 Jun — 2023 Jul',
-    description: 'Fashion commerce on iOS, focused on product craft and secure transactions.',
+    description: 'Fashion e-commerce on iOS, focused on product craft and secure transactions.',
+    scope: 'Owning a production e-commerce app end to end, from architecture to store release.',
     achievements: [
-      'Developed a modular, scalable iOS commerce application',
+      'Developed a modular, scalable iOS e-commerce application',
       'Implemented secure payment processing with encryption and data protection',
       'Raised the experience with social features and custom Core Animation transitions',
     ],
@@ -35,6 +37,7 @@ const EXPERIENCE = [
     company: 'Swan Arr Electronics',
     period: '2019 Aug — 2021 Apr',
     description: 'iOS application development inside an Agile delivery team.',
+    scope: 'Contributing features across several iOS apps under senior guidance.',
     achievements: [
       'Contributed to several iOS apps under senior guidance',
       'Applied design principles and coding standards that kept the codebase maintainable',
