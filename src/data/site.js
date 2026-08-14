@@ -1,6 +1,7 @@
 import { deepFreeze } from './utils';
 import { projects } from './projects';
 import { certificates } from './certificates';
+import portrait from '../assets/images/portrait.jpg';
 
 // Junior iOS Developer at Swan Arr Electronics, August 2019.
 const CAREER_START = { year: 2019, month: 7 }; // month is 0-indexed
@@ -23,6 +24,7 @@ const YEARS = yearsShipping();
 const SITE = {
   name: 'Soe Min Thein',
   role: 'Mobile engineer',
+  portrait,
   contact: {
     lead: 'Let’s build something ',
     emphasis: 'enduring.',
@@ -54,6 +56,7 @@ const SITE = {
     paragraphs: [
       'Most of my work has been enterprise mobile, where those decisions compound every sprint. So I lean on clean architecture, repository patterns and real test coverage, and I keep the code boring enough that the next person can move fast in it.',
       "I work across Swift, UIKit, SwiftUI and Flutter, and I've taken products the whole way — from an empty repo to CI pipelines, store review and the maintenance that follows.",
+      'More recently I have folded AI-assisted development into that workflow. It moves quickly through the mechanical work, but I read what it produces the way I would review any pull request — the architecture decisions stay mine.',
     ],
     facts: [
       { label: 'Currently', value: 'Mobile Developer at Mega Z' },

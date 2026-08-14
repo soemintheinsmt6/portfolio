@@ -20,6 +20,24 @@ export default function About() {
             <span className="block italic text-accent-text">{statement.emphasis}</span>
             <span className="block">{statement.trail.trim()}</span>
           </p>
+
+          {/* Set as a plate: hairline frame, rule, mono caption. Square source in a
+              4:5 frame, crop biased right because the subject sits right of centre. */}
+          <figure className="m-0 mt-2xl w-full max-w-[320px]">
+            <img
+              src={site.portrait}
+              alt={site.name}
+              width="320"
+              height="400"
+              loading="lazy"
+              decoding="async"
+              className="aspect-[4/5] w-full rounded-sm border border-hairline object-cover object-[65%_50%]"
+            />
+            <figcaption className="mt-sm flex items-center gap-sm border-t border-hairline pt-sm font-mono text-mono-meta text-ink-3">
+              <span className="h-px w-lg bg-accent" aria-hidden="true" />
+              {site.name}, {site.role.toLowerCase()}
+            </figcaption>
+          </figure>
         </Reveal>
 
         <Reveal delay={0.05}>
