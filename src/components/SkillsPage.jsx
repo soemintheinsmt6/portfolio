@@ -8,7 +8,7 @@ export default function SkillsPage() {
   const navigate = useNavigate();
 
   const goBack = () => {
-    sessionStorage.setItem('scrollToSection', 'toolkit');
+    sessionStorage.setItem('scrollToSection', 'skills');
     navigate('/');
   };
 
@@ -27,7 +27,8 @@ export default function SkillsPage() {
         </Container>
       </header>
 
-      <Skills />
+      {/* Tighter top than on the homepage: there's no previous chapter to separate from. */}
+      <Skills className="pt-2xl md:pt-3xl" />
     </div>
   );
 }

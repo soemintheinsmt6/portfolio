@@ -63,7 +63,7 @@ const PROJECTS = [
     id: 'slazh',
     title: 'Slazh',
     description:
-      'Fashion commerce for iOS — secure payments, Core Animation transitions and a cart that survives losing signal mid-checkout.',
+      'Fashion e-commerce for iOS — secure payments, Core Animation transitions and a cart that survives losing signal mid-checkout.',
     tech: ['Swift', 'Alamofire', 'Realm', 'Core Animation', 'SHA256'],
     type: 'iOS',
     platform: 'iOS',

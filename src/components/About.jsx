@@ -9,14 +9,16 @@ export default function About() {
 
   return (
     <Section id="about">
-      <SectionHeader index="02" eyebrow="About" title="Approach" meta={site.location} />
+      <SectionHeader index="02" eyebrow="About" title="Approach" />
 
-      <div className="grid grid-cols-1 items-start gap-2xl md:grid-cols-2 md:gap-4xl">
+      <div className="grid grid-cols-1 items-start gap-2xl lg:grid-cols-2 lg:gap-4xl">
         <Reveal>
-          <p className="max-w-[18ch] font-display text-display-m">
-            {statement.lead}
-            <span className="italic text-accent-text">{statement.emphasis}</span>
-            {statement.trail}
+          {/* Display type breaks where the copy says, not where the browser
+              decides — each part of the statement is its own line. */}
+          <p className="font-display text-heading-l sm:text-display-m">
+            <span className="block">{statement.lead.trim()}</span>
+            <span className="block italic text-accent-text">{statement.emphasis}</span>
+            <span className="block">{statement.trail.trim()}</span>
           </p>
         </Reveal>
 
@@ -31,7 +33,7 @@ export default function About() {
             {facts.map((fact) => (
               <div
                 key={fact.label}
-                className="flex justify-between gap-lg border-t border-hairline py-sm"
+                className="flex items-center justify-between gap-lg border-t border-hairline py-sm"
               >
                 <dt className="font-mono text-mono-label font-medium uppercase text-ink-3">
                   {fact.label}

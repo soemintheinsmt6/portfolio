@@ -13,11 +13,18 @@ export default function Contact() {
             06 — Contact
           </span>
           <h2 className="mt-lg max-w-[14ch] font-display text-display-m md:text-display-l">
-            Let&rsquo;s build something <span className="italic">durable.</span>
+            {site.contact.lead}
+            <span className="italic">{site.contact.emphasis}</span>
           </h2>
         </Reveal>
 
         <Reveal delay={0.05}>
+          {site.availability ? (
+            <p className="mt-xl max-w-lead text-body-m text-ink-2 md:text-body-l">
+              {site.availability}
+            </p>
+          ) : null}
+
           <a
             href={`mailto:${site.email}`}
             className="mt-2xl inline-block break-all border-b-2 border-accent pb-2xs text-heading-m transition-colors duration-200 hover:text-accent-text md:text-heading-l"

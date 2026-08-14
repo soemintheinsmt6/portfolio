@@ -5,12 +5,12 @@ import Reveal from './ui/Reveal';
 import { TagRow } from './ui/Tag';
 import { skills } from '../data';
 
-export default function Skills() {
+export default function Skills({ className = '' }) {
   return (
-    <Section id="toolkit">
+    <Section id="skills" className={className}>
       <SectionHeader
         index="04"
-        eyebrow="Toolkit"
+        eyebrow="Skills"
         title="What I work with"
         meta={`${skills.length} disciplines`}
       />

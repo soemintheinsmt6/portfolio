@@ -58,9 +58,9 @@ export default function Projects() {
     <Section id="work">
       <SectionHeader
         index="01"
-        eyebrow="Selected work"
-        title="Work"
-        meta={`${projects.length} shipped products`}
+        eyebrow="Work"
+        title="What I've shipped"
+        meta={`${projects.length} in production`}
       />
       <div className="border-b border-hairline">
         {projects.map((project, index) => (

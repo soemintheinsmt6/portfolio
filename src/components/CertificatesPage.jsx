@@ -48,7 +48,7 @@ export default function CertificatesPage() {
         </Container>
       </header>
 
-      <Container className="py-4xl md:py-5xl">
+      <Container className="pb-4xl pt-2xl md:pb-5xl md:pt-3xl">
         <Reveal className="flex flex-col gap-lg">
           <hr className="m-0 h-px border-0 bg-ink" />
           <div className="flex flex-col items-start justify-between gap-sm md:flex-row md:items-end md:gap-xl">

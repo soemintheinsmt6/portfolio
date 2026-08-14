@@ -47,7 +47,7 @@ src/
     Projects.jsx        # 01 — Work (numbered project rows)
     About.jsx           # 02 — Approach
     Experience.jsx      # 03 — Where I've built
-    Skills.jsx          # 04 — Toolkit
+    Skills.jsx          # 04 — Skills
     Certificates.jsx    # 05 — Credentials
     Contact.jsx         # 06 — Contact
     Footer.jsx

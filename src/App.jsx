@@ -19,7 +19,22 @@ import CertificatesPage from './components/CertificatesPage';
 import SkillsPage from './components/SkillsPage';
 import { GA_TRACKING_ID } from './core/config/ga';
 
-const SECTIONS = ['home', 'work', 'about', 'experience', 'toolkit', 'credentials', 'contact'];
+const SECTIONS = ['home', 'work', 'about', 'experience', 'skills', 'credentials', 'contact'];
+
+const HEADER_HEIGHT = 72; // the sticky nav
+const BREATHING_ROOM = 24;
+
+/**
+ * Sections carry a large top padding for the page's editorial rhythm, so
+ * scrolling to the element's border box would leave that padding stranded at
+ * the top of the viewport. Aim at the content box instead, and land it just
+ * below the sticky header.
+ */
+function sectionScrollTop(element) {
+  const paddingTop = parseFloat(window.getComputedStyle(element).paddingTop) || 0;
+  const documentTop = element.getBoundingClientRect().top + window.scrollY;
+  return Math.max(0, documentTop + paddingTop - HEADER_HEIGHT - BREATHING_ROOM);
+}
 
 function MainPage() {
   const [activeSection, setActiveSection] = useState('home');
@@ -33,7 +48,7 @@ function MainPage() {
       requestAnimationFrame(() => {
         const el = document.getElementById(scrollTarget);
         if (el) {
-          el.scrollIntoView({ behavior: 'instant' });
+          window.scrollTo({ top: sectionScrollTop(el), behavior: 'instant' });
         }
       });
     } else {
@@ -69,9 +84,7 @@ function MainPage() {
   const scrollToSection = useCallback((id) => {
     const element = document.getElementById(id);
     if (!element) return;
-    const offset = 88; // clears the sticky header
-    const top = element.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
+    window.scrollTo({ top: sectionScrollTop(element), behavior: 'smooth' });
   }, []);
 
   return (
