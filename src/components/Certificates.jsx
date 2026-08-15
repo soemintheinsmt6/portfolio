@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
-import Reveal from './ui/Reveal';
+import { Stagger, StaggerItem } from './ui/Reveal';
 import Tag from './ui/Tag';
 import { certificates } from '../data';
 import { CATEGORIES } from '../data/certificates';
@@ -48,7 +48,16 @@ export function CertificateRow({ certificate, showCategory = false }) {
           width and the issuer text stays right-aligned across every row. */}
       <span className={`flex items-center gap-xs font-mono text-mono-meta text-ink-3 ${hover}`}>
         {certificate.issuer}
-        <span aria-hidden="true">{isLink ? '↗' : '—'}</span>
+        <span
+          aria-hidden="true"
+          className={
+            isLink
+              ? 'inline-block transition-transform duration-200 group-hover:-translate-y-px group-hover:translate-x-px'
+              : undefined
+          }
+        >
+          {isLink ? '↗' : '—'}
+        </span>
       </span>
     </Wrapper>
   );
@@ -66,20 +75,30 @@ export default function Certificates() {
         meta={`${certificates.length} total · ${featured.length} featured`}
       />
 
-      <Reveal>
+      <Stagger each={0.04}>
         <div className="border-b border-hairline">
           {featured.map((certificate) => (
-            <CertificateRow key={certificate.id} certificate={certificate} showCategory />
+            <StaggerItem key={certificate.id}>
+              <CertificateRow certificate={certificate} showCategory />
+            </StaggerItem>
           ))}
         </div>
 
-        <Link
-          to="/certificates"
-          className="mt-lg inline-flex items-center gap-xs text-label-m font-medium transition-colors duration-200 hover:text-accent-text"
-        >
-          All {certificates.length} certifications →
-        </Link>
-      </Reveal>
+        <StaggerItem>
+          <Link
+            to="/certificates"
+            className="group mt-lg inline-flex items-center gap-xs text-label-m font-medium transition-colors duration-200 hover:text-accent-text"
+          >
+            All {certificates.length} certifications{' '}
+            <span
+              aria-hidden="true"
+              className="inline-block transition-transform duration-200 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </Link>
+        </StaggerItem>
+      </Stagger>
     </Section>
   );
 }

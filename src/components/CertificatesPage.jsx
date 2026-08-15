@@ -1,7 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AnimatePresence, motion as Motion, useReducedMotion } from 'framer-motion';
 import Container from './ui/Container';
 import Reveal from './ui/Reveal';
+import { DURATION, EASE_OUT } from '../core/motion';
 import ThemeSwitcher from './ThemeSwitcher';
 import { CertificateRow } from './Certificates';
 import { certificates } from '../data';
@@ -10,6 +12,7 @@ import { CATEGORIES } from '../data/certificates';
 export default function CertificatesPage() {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('all');
+  const prefersReducedMotion = useReducedMotion();
 
   const goBack = () => {
     sessionStorage.setItem('scrollToSection', 'credentials');
@@ -40,9 +43,15 @@ export default function CertificatesPage() {
           <button
             type="button"
             onClick={goBack}
-            className="font-mono text-mono-label font-medium uppercase text-ink-2 transition-colors duration-200 hover:text-ink"
+            className="group font-mono text-mono-label font-medium uppercase text-ink-2 transition-colors duration-200 hover:text-ink"
           >
-            ← Back
+            <span
+              aria-hidden="true"
+              className="inline-block transition-transform duration-200 group-hover:-translate-x-1"
+            >
+              ←
+            </span>{' '}
+            Back
           </button>
           <ThemeSwitcher />
         </Container>
@@ -73,23 +82,47 @@ export default function CertificatesPage() {
                 type="button"
                 onClick={() => setActiveCategory(category.id)}
                 aria-pressed={isActive}
-                className={`rounded-sm px-sm py-xs font-mono text-mono-label font-medium transition-colors duration-200 ${
-                  isActive
-                    ? 'bg-action text-action-text'
-                    : 'bg-quiet text-ink-2 hover:text-ink'
+                className={`relative rounded-sm px-sm py-xs font-mono text-mono-label font-medium transition-colors duration-200 ${
+                  isActive ? 'text-action-text' : 'bg-quiet text-ink-2 hover:text-ink'
                 }`}
               >
-                {category.label}
+                {/* One selection marker for the whole row: it slides to the chip
+                    you picked instead of one chip lighting up as another dims. */}
+                {isActive ? (
+                  <Motion.span
+                    layoutId="certificate-filter"
+                    className="absolute inset-0 rounded-sm bg-action"
+                    transition={
+                      prefersReducedMotion
+                        ? { duration: 0 }
+                        : { duration: DURATION.base, ease: EASE_OUT }
+                    }
+                  />
+                ) : null}
+                <span className="relative">{category.label}</span>
               </button>
             );
           })}
         </Reveal>
 
-        <div className="mt-2xl border-b border-hairline">
-          {filtered.map((certificate) => (
-            <CertificateRow key={certificate.id} certificate={certificate} />
-          ))}
-        </div>
+        {/* Filtering rearranges a list that's already on screen, so the rows
+            close the gap rather than snapping into it. */}
+        <Motion.div layout={!prefersReducedMotion} className="mt-2xl border-b border-hairline">
+          <AnimatePresence initial={false} mode="popLayout">
+            {filtered.map((certificate) => (
+              <Motion.div
+                key={certificate.id}
+                layout={!prefersReducedMotion}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={prefersReducedMotion ? undefined : { opacity: 0, y: -4 }}
+                transition={{ duration: DURATION.fast, ease: EASE_OUT }}
+              >
+                <CertificateRow certificate={certificate} />
+              </Motion.div>
+            ))}
+          </AnimatePresence>
+        </Motion.div>
       </Container>
     </div>
   );

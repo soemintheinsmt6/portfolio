@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion as Motion, useReducedMotion } from 'framer-motion';
+import { fastTransition } from '../../core/motion';
 
 const VARIANTS = {
   primary:
@@ -13,6 +15,17 @@ const SIZES = {
 };
 
 /**
+ * A boxed button lifts by a hair and settles under the press; a ghost button is
+ * really a text link with an arrow, so it steps sideways instead — the direction
+ * it would take you.
+ */
+const GESTURES = {
+  primary: { whileHover: { y: -1 }, whileTap: { y: 0, scale: 0.985 } },
+  secondary: { whileHover: { y: -1 }, whileTap: { y: 0, scale: 0.985 } },
+  ghost: { whileHover: { x: 2 }, whileTap: { x: 0 } },
+};
+
+/**
  * Figma: Button — Style=Primary|Secondary|Ghost, Size=M|S.
  * Renders an anchor when `href` is set, otherwise a button.
  */
@@ -24,6 +37,8 @@ export default function Button({
   children,
   ...rest
 }) {
+  const prefersReducedMotion = useReducedMotion();
+
   const classes = [
     'inline-flex items-center gap-xs rounded-sm border',
     'font-sans text-label-m font-medium',
@@ -33,17 +48,19 @@ export default function Button({
     className,
   ].join(' ');
 
+  const gestures = prefersReducedMotion ? {} : { ...GESTURES[variant], transition: fastTransition };
+
   if (href) {
     return (
-      <a href={href} className={classes} {...rest}>
+      <Motion.a href={href} className={classes} {...gestures} {...rest}>
         {children}
-      </a>
+      </Motion.a>
     );
   }
 
   return (
-    <button type="button" className={classes} {...rest}>
+    <Motion.button type="button" className={classes} {...gestures} {...rest}>
       {children}
-    </button>
+    </Motion.button>
   );
 }

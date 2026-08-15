@@ -50,6 +50,22 @@
     border-radius: var(--radius-sm);
   }
 
+  /**
+   * Theme swap: cross-fade the palette rather than snapping to it. The class is
+   * only on the root for the length of the swap (see core/theme/ThemeContext),
+   * so hover and focus states keep their own, faster timing the rest of the time.
+   */
+  html.theme-switching,
+  html.theme-switching *,
+  html.theme-switching *::before,
+  html.theme-switching *::after {
+    transition:
+      background-color var(--dur-slow) var(--ease-out),
+      border-color var(--dur-slow) var(--ease-out),
+      color var(--dur-slow) var(--ease-out),
+      fill var(--dur-slow) var(--ease-out) !important;
+  }
+
   /* Respect the OS reduce-motion setting. */
   @media (prefers-reduced-motion: reduce) {
     html {

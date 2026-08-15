@@ -3,6 +3,11 @@ import Container from './ui/Container';
 import Reveal from './ui/Reveal';
 import { site } from '../data';
 
+const SOCIALS = [
+  { key: 'github', label: 'GitHub' },
+  { key: 'linkedin', label: 'LinkedIn' },
+];
+
 export default function Contact() {
   return (
     <section id="contact" className="py-4xl md:py-6xl">
@@ -33,22 +38,23 @@ export default function Contact() {
           </a>
 
           <div className="mt-3xl flex flex-wrap gap-xl font-mono text-mono-label font-medium uppercase">
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="text-ink-2 transition-colors duration-200 hover:text-accent-text"
-            >
-              GitHub ↗
-            </a>
-            <a
-              href={site.linkedin}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="text-ink-2 transition-colors duration-200 hover:text-accent-text"
-            >
-              LinkedIn ↗
-            </a>
+            {SOCIALS.map((social) => (
+              <a
+                key={social.label}
+                href={site[social.key]}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group text-ink-2 transition-colors duration-200 hover:text-accent-text"
+              >
+                {social.label}{' '}
+                <span
+                  aria-hidden="true"
+                  className="inline-block transition-transform duration-200 group-hover:-translate-y-px group-hover:translate-x-px"
+                >
+                  ↗
+                </span>
+              </a>
+            ))}
           </div>
         </Reveal>
       </Container>

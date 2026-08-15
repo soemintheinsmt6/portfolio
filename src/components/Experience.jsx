@@ -2,6 +2,7 @@ import React from 'react';
 import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
+import { rowDelay } from '../core/motion';
 import { experience } from '../data';
 
 export default function Experience() {
@@ -15,8 +16,8 @@ export default function Experience() {
       />
 
       <div className="border-b border-hairline">
-        {experience.map((job) => (
-          <Reveal key={job.id}>
+        {experience.map((job, index) => (
+          <Reveal key={job.id} delay={rowDelay(index)}>
             <article className="grid grid-cols-1 gap-md border-t border-hairline py-2xl md:grid-cols-[220px_1fr] md:gap-2xl">
               <div className="font-mono text-mono-meta text-ink-3">{job.period}</div>
 

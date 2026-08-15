@@ -9,6 +9,25 @@ function readInitialTheme() {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
+/**
+ * The palette lives in CSS variables, and a variable swap repaints instantly —
+ * every surface on the page flips in one frame. Flagging the root for the
+ * length of the swap lets index.css cross-fade it instead. It's a class rather
+ * than a permanent rule so that hover states keep their own, faster timing.
+ */
+const CROSSFADE_MS = 500; // matches --dur-slow
+let crossfadeTimer;
+
+function crossfadePalette() {
+  if (typeof document === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const root = document.documentElement;
+  root.classList.add('theme-switching');
+  clearTimeout(crossfadeTimer);
+  crossfadeTimer = setTimeout(() => root.classList.remove('theme-switching'), CROSSFADE_MS);
+}
+
 export const ThemeProvider = ({ children }) => {
   const [theme, setThemeState] = useState(readInitialTheme);
 
@@ -21,6 +40,7 @@ export const ThemeProvider = ({ children }) => {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
     const onChange = (event) => {
       if (localStorage.getItem(STORAGE_KEY)) return;
+      crossfadePalette();
       setThemeState(event.matches ? 'dark' : 'light');
     };
     media.addEventListener('change', onChange);
@@ -29,6 +49,7 @@ export const ThemeProvider = ({ children }) => {
 
   const setTheme = useCallback((next) => {
     if (!THEMES.includes(next)) return;
+    crossfadePalette();
     setThemeState(next);
     try {
       localStorage.setItem(STORAGE_KEY, next);

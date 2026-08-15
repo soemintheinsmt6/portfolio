@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion as Motion, useReducedMotion } from 'framer-motion';
 
 // Disable browser scroll restoration immediately, before any component mounts
 if ('scrollRestoration' in window.history) {
@@ -17,6 +18,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CertificatesPage from './components/CertificatesPage';
 import SkillsPage from './components/SkillsPage';
+import { DURATION, EASE_OUT } from './core/motion';
 import { GA_TRACKING_ID } from './core/config/ga';
 
 const SECTIONS = ['home', 'work', 'about', 'experience', 'skills', 'credentials', 'contact'];
@@ -104,14 +106,80 @@ function MainPage() {
   );
 }
 
-function ScrollToTop() {
-  const location = useLocation();
+/**
+ * Routes cross-fade rather than cut. `mode="wait"` means the outgoing page is
+ * gone before the incoming one mounts, which is also what makes the scroll
+ * position safe to set here: a page resets the scroll as it mounts, so the
+ * visitor never sees the old page jump to the top on its way out.
+ *
+ * The homepage opts out — it restores its own position when returning from a
+ * sub-page (see MainPage).
+ */
+let isFirstPage = true;
+
+function Page({ resetScroll = true, children }) {
+  const prefersReducedMotion = useReducedMotion();
+  // The transition is for moving *between* pages. On the very first paint the
+  // page's own content is already arriving (the hero cascade, the reveals), and
+  // a second fade over the top of it only makes the load feel slower.
+  const isEntry = useRef(isFirstPage);
+
   useEffect(() => {
-    if (location.pathname !== '/') {
+    isFirstPage = false;
+    if (resetScroll) {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
-  }, [location.pathname]);
-  return null;
+  }, [resetScroll]);
+
+  if (prefersReducedMotion) return children;
+
+  return (
+    <Motion.div
+      /* `false` here suppresses this element's entrance only. Setting
+         `initial={false}` on the AnimatePresence instead would put every
+         descendant in the same state, and take the scroll reveals with it. */
+      initial={isEntry.current ? false : { opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0, transition: { duration: DURATION.base, ease: EASE_OUT } }}
+      exit={{ opacity: 0, y: -8, transition: { duration: DURATION.fast, ease: 'easeIn' } }}
+    >
+      {children}
+    </Motion.div>
+  );
+}
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <Page resetScroll={false}>
+              <MainPage />
+            </Page>
+          }
+        />
+        <Route
+          path="/certificates"
+          element={
+            <Page>
+              <CertificatesPage />
+            </Page>
+          }
+        />
+        <Route
+          path="/skills"
+          element={
+            <Page>
+              <SkillsPage />
+            </Page>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
+  );
 }
 
 function AnalyticsTracker() {
@@ -131,13 +199,8 @@ export default function App() {
   return (
     <ThemeProvider>
       <Router>
-        <ScrollToTop />
         <AnalyticsTracker />
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/certificates" element={<CertificatesPage />} />
-          <Route path="/skills" element={<SkillsPage />} />
-        </Routes>
+        <AnimatedRoutes />
       </Router>
     </ThemeProvider>
   );

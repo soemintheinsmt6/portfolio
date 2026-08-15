@@ -2,7 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion as Motion, useReducedMotion } from 'framer-motion';
 import Container from './ui/Container';
+import { DURATION, EASE_OUT, overlay, staggerParent } from '../core/motion';
 import { site } from '../data';
+
+/** Section names arrive one after another, in reading order. */
+const item = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: DURATION.base, ease: EASE_OUT } },
+};
 
 /**
  * Full-screen section index for narrow screens. An editorial menu rather than a
@@ -33,6 +40,25 @@ export default function MobileMenu({ links, activeSection, onSelect, onClose }) 
     };
   }, [onClose]);
 
+  const motionProps = prefersReducedMotion
+    ? {}
+    : {
+        variants: overlay,
+        initial: 'hidden',
+        animate: 'visible',
+        exit: 'exit',
+      };
+
+  const listProps = prefersReducedMotion
+    ? {}
+    : {
+        variants: staggerParent(0.05, 0.06),
+        initial: 'hidden',
+        animate: 'visible',
+      };
+
+  const itemProps = prefersReducedMotion ? {} : { variants: item };
+
   // Portalled to <body>: the header carries backdrop-blur, which makes it the
   // containing block for fixed-position descendants — a nested overlay would be
   // clipped to the 72px bar instead of covering the viewport.
@@ -42,9 +68,7 @@ export default function MobileMenu({ links, activeSection, onSelect, onClose }) 
       aria-modal="true"
       aria-label="Sections"
       className="fixed inset-0 z-[90] flex flex-col bg-canvas lg:hidden"
-      initial={prefersReducedMotion ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.18 }}
+      {...motionProps}
     >
       <Container className="flex h-[72px] shrink-0 items-center justify-between border-b border-hairline">
         <span className="font-display text-heading-s">{site.name}</span>
@@ -59,32 +83,37 @@ export default function MobileMenu({ links, activeSection, onSelect, onClose }) 
       </Container>
 
       <Container className="flex flex-1 flex-col justify-center gap-lg py-2xl">
-        <nav className="flex flex-col">
+        <Motion.nav className="flex flex-col" {...listProps}>
           {links.map((link, i) => (
-            <button
+            <Motion.button
               key={link.id}
               type="button"
               onClick={() => onSelect(link.id)}
-              className="flex items-baseline gap-md border-b border-hairline py-md text-left"
+              className="group flex items-baseline gap-md border-b border-hairline py-md text-left"
+              whileTap={prefersReducedMotion ? undefined : { x: 4 }}
+              {...itemProps}
             >
               <span
-                className={`font-mono text-mono-meta ${
+                className={`font-mono text-mono-meta transition-colors duration-200 ${
                   activeSection === link.id ? 'text-accent-text' : 'text-ink-3'
                 }`}
               >
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <span className="font-display text-display-m">{link.label}</span>
-            </button>
+              <span className="font-display text-display-m transition-transform duration-300 group-active:translate-x-1">
+                {link.label}
+              </span>
+            </Motion.button>
           ))}
-        </nav>
+        </Motion.nav>
 
-        <a
+        <Motion.a
           href={`mailto:${site.email}`}
           className="mt-lg break-all font-mono text-mono-label font-medium uppercase text-ink-2 transition-colors duration-200 hover:text-accent-text"
+          {...itemProps}
         >
           {site.email}
-        </a>
+        </Motion.a>
       </Container>
     </Motion.div>,
     document.body

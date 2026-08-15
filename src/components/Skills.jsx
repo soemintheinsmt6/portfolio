@@ -3,6 +3,7 @@ import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
 import { TagRow } from './ui/Tag';
+import { rowDelay } from '../core/motion';
 import { skills } from '../data';
 
 export default function Skills({ className = '' }) {
@@ -17,7 +18,7 @@ export default function Skills({ className = '' }) {
 
       <div className="grid grid-cols-1 gap-2xl md:grid-cols-2 md:gap-3xl md:gap-x-4xl">
         {skills.map((group, index) => (
-          <Reveal key={group.id} delay={index * 0.04}>
+          <Reveal key={group.id} delay={rowDelay(index, 0.04)}>
             <div className="flex flex-col gap-md border-t border-hairline pt-md">
               <span className="font-mono text-mono-label font-medium text-ink-3">
                 {group.category}

@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import {
+  AnimatePresence,
+  motion as Motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from 'framer-motion';
 import Container from './ui/Container';
 import Button from './ui/Button';
 import ThemeSwitcher from './ThemeSwitcher';
 import MobileMenu from './MobileMenu';
+import { DURATION, EASE_OUT } from '../core/motion';
 import { site } from '../data';
 
 const LINKS = [
@@ -17,8 +25,15 @@ const LINKS = [
 // The desktop bar omits Contact — the button beside it already goes there.
 const BAR_LINKS = LINKS.filter((l) => l.id !== 'contact');
 
-/** Figma: Nav Link — active state is a vermilion hairline, never a filled pill. */
-function NavLink({ id, label, isActive, onNavigate }) {
+/**
+ * Figma: Nav Link — active state is a vermilion hairline, never a filled pill.
+ *
+ * There is only one active hairline in the bar and it travels between links as
+ * the page scrolls (shared `layoutId`), so the indicator reads as one object
+ * moving rather than six that blink. Hover draws its own rule, growing from the
+ * left, and stands down when the link is the active one.
+ */
+function NavLink({ id, label, isActive, onNavigate, animate }) {
   const handleClick = (event) => {
     if (!onNavigate) return;
     event.preventDefault();
@@ -35,36 +50,68 @@ function NavLink({ id, label, isActive, onNavigate }) {
       }`}
     >
       <span className="text-label-m font-medium">{label}</span>
-      <span
-        className={`h-px bg-accent transition-opacity duration-200 ${
-          isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-        }`}
-      />
+      <span className="relative h-px">
+        <span
+          className={`absolute inset-0 origin-left scale-x-0 bg-strong transition-transform duration-300 ${
+            isActive ? '' : 'group-hover:scale-x-100'
+          }`}
+        />
+        {isActive ? (
+          <Motion.span
+            layoutId="nav-active-rule"
+            className="absolute inset-0 bg-accent"
+            transition={
+              animate ? { duration: DURATION.base, ease: EASE_OUT } : { duration: 0 }
+            }
+          />
+        ) : null}
+      </span>
     </a>
   );
 }
 
 export default function Nav({ activeSection, onNavigate }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Set when a menu item is chosen, read once the menu has finished leaving.
+  const pendingSectionRef = useRef(null);
+
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, 'change', (value) => {
+    setScrolled(value > 8);
+  });
 
   const goTo = (id) => {
+    pendingSectionRef.current = id;
     setMenuOpen(false);
-    // The menu locks body scroll while open, and its cleanup only runs once
-    // React commits the unmount. Scrolling in the same tick would be swallowed
-    // by that lock, so wait for the DOM to settle first.
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => onNavigate?.(id));
-    });
+  };
+
+  // The menu locks body scroll while open and only releases it on unmount,
+  // which AnimatePresence defers until the exit animation is done. Scrolling
+  // any earlier would be swallowed by that lock.
+  const handleMenuExited = () => {
+    const id = pendingSectionRef.current;
+    pendingSectionRef.current = null;
+    if (id) requestAnimationFrame(() => onNavigate?.(id));
   };
 
   return (
-    <header className="surface-veil sticky top-0 z-50 border-b border-hairline backdrop-blur-md backdrop-saturate-150">
+    <header
+      className={`surface-veil sticky top-0 z-50 border-b backdrop-blur-md backdrop-saturate-150 transition-colors duration-300 ${
+        scrolled ? 'border-hairline' : 'border-transparent'
+      }`}
+    >
       <Container className="flex h-[72px] items-center justify-between gap-xl">
         {/* The wordmark is set in the display face, as the name is everywhere
             else on the page — it should outrank the nav links, not match them. */}
-        <a href="/" className="flex items-baseline gap-sm">
+        <a href="/" className="group flex items-baseline gap-sm">
           <span className="font-display text-heading-s">{site.name}</span>
-          <span className="hidden font-mono text-mono-meta text-ink-3 sm:inline">{site.role}</span>
+          <span className="hidden font-mono text-mono-meta text-ink-3 transition-colors duration-200 group-hover:text-accent-text sm:inline">
+            {site.role}
+          </span>
         </a>
 
         <nav className="hidden items-center gap-xl lg:flex">
@@ -74,6 +121,7 @@ export default function Nav({ activeSection, onNavigate }) {
               {...link}
               isActive={activeSection === link.id}
               onNavigate={onNavigate}
+              animate={!prefersReducedMotion}
             />
           ))}
         </nav>
@@ -106,14 +154,16 @@ export default function Nav({ activeSection, onNavigate }) {
         </div>
       </Container>
 
-      {menuOpen ? (
-        <MobileMenu
-          links={LINKS}
-          activeSection={activeSection}
-          onSelect={goTo}
-          onClose={() => setMenuOpen(false)}
-        />
-      ) : null}
+      <AnimatePresence onExitComplete={handleMenuExited}>
+        {menuOpen ? (
+          <MobileMenu
+            links={LINKS}
+            activeSection={activeSection}
+            onSelect={goTo}
+            onClose={() => setMenuOpen(false)}
+          />
+        ) : null}
+      </AnimatePresence>
     </header>
   );
 }

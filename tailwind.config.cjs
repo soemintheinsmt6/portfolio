@@ -82,6 +82,14 @@ module.exports = {
         measure: '62ch',
         lead: '58ch',
       },
+      // Every CSS transition on the site eases out on the same curve as the
+      // framer-motion ones in core/motion.js — `ease-linear` and friends are
+      // still available where something genuinely needs a different feel.
+      transitionTimingFunction: {
+        DEFAULT: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        out: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'in-out': 'cubic-bezier(0.65, 0, 0.35, 1)',
+      },
     },
   },
   plugins: [],

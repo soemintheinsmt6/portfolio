@@ -13,9 +13,15 @@ export default function Footer() {
           href={site.source}
           target="_blank"
           rel="noreferrer noopener"
-          className="rounded-sm transition-colors duration-200 hover:text-accent-text"
+          className="group rounded-sm transition-colors duration-200 hover:text-accent-text"
         >
-          Source <span aria-hidden="true">↗</span>
+          Source{' '}
+          <span
+            aria-hidden="true"
+            className="inline-block transition-transform duration-200 group-hover:-translate-y-px group-hover:translate-x-px"
+          >
+            ↗
+          </span>
         </a>
       </footer>
     </Container>

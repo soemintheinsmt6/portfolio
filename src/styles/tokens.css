@@ -60,6 +60,15 @@
   /* ---------- layout ---------- */
   --content-max: 1200px;
   --page-margin: 120px;
+
+  /* ---------- motion ----------
+     Kept in step with core/motion.js, which holds the same numbers for
+     framer-motion. Change one, change the other. */
+  --dur-fast: 180ms;
+  --dur-base: 280ms;
+  --dur-slow: 500ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 /* ---------- semantics: light (Figma collection: Color / Light) ---------- */

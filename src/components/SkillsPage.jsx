@@ -19,9 +19,15 @@ export default function SkillsPage() {
           <button
             type="button"
             onClick={goBack}
-            className="font-mono text-mono-label font-medium uppercase text-ink-2 transition-colors duration-200 hover:text-ink"
+            className="group font-mono text-mono-label font-medium uppercase text-ink-2 transition-colors duration-200 hover:text-ink"
           >
-            ← Back
+            <span
+              aria-hidden="true"
+              className="inline-block transition-transform duration-200 group-hover:-translate-x-1"
+            >
+              ←
+            </span>{' '}
+            Back
           </button>
           <ThemeSwitcher />
         </Container>

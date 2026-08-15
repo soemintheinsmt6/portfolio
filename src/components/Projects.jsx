@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
 import Lightbox from './ui/Lightbox';
 import { TagRow } from './ui/Tag';
+import { rowDelay } from '../core/motion';
 import { projects } from '../data';
 
 const STORES = [
@@ -38,9 +40,11 @@ function ProjectRow({ project, index }) {
   );
 
   return (
-    <Reveal>
+    <Reveal delay={rowDelay(index)}>
       <article className="group grid grid-cols-[32px_1fr] items-start gap-md border-t border-hairline py-xl md:grid-cols-[48px_1fr_220px] md:gap-2xl">
-        <span className="pt-xs font-mono text-mono-meta text-ink-3 transition-colors duration-200 group-hover:text-accent-text">
+        {/* The number steps aside as the pointer arrives — the row's only tell
+            that the whole thing is live, short of underlining it. */}
+        <span className="pt-xs font-mono text-mono-meta text-ink-3 transition-[color,transform] duration-300 group-hover:translate-x-1 group-hover:text-accent-text motion-reduce:group-hover:translate-x-0">
           {String(index + 1).padStart(2, '0')}
         </span>
 
@@ -63,9 +67,13 @@ function ProjectRow({ project, index }) {
                   type="button"
                   onClick={() => setScreenIndex(0)}
                   aria-haspopup="dialog"
-                  className={`flex items-center gap-xs ${ACTION} hover:text-ink`}
+                  className={`group/screens flex items-center gap-xs ${ACTION} hover:text-ink`}
                 >
-                  <span className="h-px w-lg bg-accent" aria-hidden="true" />
+                  {/* The rule draws itself out towards the label on hover. */}
+                  <span
+                    className="h-px w-lg bg-accent transition-[width] duration-300 group-hover/screens:w-xl"
+                    aria-hidden="true"
+                  />
                   View {screens.length} screen{screens.length === 1 ? '' : 's'}
                 </button>
               ) : null}
@@ -76,9 +84,15 @@ function ProjectRow({ project, index }) {
                   href={project[store.key]}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className={ACTION}
+                  className={`group/store ${ACTION}`}
                 >
-                  {store.label} <span aria-hidden="true">↗</span>
+                  {store.label}{' '}
+                  <span
+                    aria-hidden="true"
+                    className="inline-block transition-transform duration-200 group-hover/store:-translate-y-px group-hover/store:translate-x-px"
+                  >
+                    ↗
+                  </span>
                 </a>
               ))}
             </div>
@@ -88,15 +102,19 @@ function ProjectRow({ project, index }) {
         <div className="col-start-3 hidden flex-col items-end gap-xs text-right md:flex">{meta}</div>
       </article>
 
-      {screenIndex !== null ? (
-        <Lightbox
-          images={screens}
-          title={project.title}
-          index={screenIndex}
-          onIndexChange={setScreenIndex}
-          onClose={() => setScreenIndex(null)}
-        />
-      ) : null}
+      {/* Present so the viewer can fade back out to the row it came from,
+          rather than being cut on close. */}
+      <AnimatePresence>
+        {screenIndex !== null ? (
+          <Lightbox
+            images={screens}
+            title={project.title}
+            index={screenIndex}
+            onIndexChange={setScreenIndex}
+            onClose={() => setScreenIndex(null)}
+          />
+        ) : null}
+      </AnimatePresence>
     </Reveal>
   );
 }

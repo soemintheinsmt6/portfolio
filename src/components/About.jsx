@@ -21,9 +21,11 @@ export default function About() {
             <span className="block">{statement.trail.trim()}</span>
           </p>
 
-          {/* Set as a plate: hairline frame, rule, mono caption. Square frame matches
-              the source, so the photograph is shown uncropped. */}
-          <figure className="m-0 mt-2xl w-full max-w-[320px]">
+          {/* Set as a plate: hairline frame, rule, mono caption. Square frame
+              matches the source, so the photograph is shown uncropped. It
+              carries its own reveal, a beat behind the statement — the plate is
+              a separate thought, and the two rising as one block feels heavy. */}
+          <Reveal as="figure" delay={0.12} className="m-0 mt-2xl w-full max-w-[320px]">
             <img
               src={site.portrait}
               alt={site.name}
@@ -37,7 +39,7 @@ export default function About() {
               <span className="h-px w-lg bg-accent" aria-hidden="true" />
               {site.name}, {site.role}
             </figcaption>
-          </figure>
+          </Reveal>
         </Reveal>
 
         <Reveal delay={0.05}>
