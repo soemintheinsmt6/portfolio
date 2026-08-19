@@ -25,3 +25,6 @@ dist-ssr
 
 *.env
 .claude
+
+# Font cache for scripts/build-icons.py — fetched on demand, not source.
+.cache
