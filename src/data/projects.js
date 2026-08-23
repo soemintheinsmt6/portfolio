@@ -24,6 +24,9 @@ import fz02 from '../assets/images/fightzone/02.jpg';
 import fz03 from '../assets/images/fightzone/03.jpg';
 import fz04 from '../assets/images/fightzone/04.jpg';
 import fz05 from '../assets/images/fightzone/05.jpg';
+import msm01 from '../assets/images/msm/01.jpg';
+import msm02 from '../assets/images/msm/02.jpg';
+import msm03 from '../assets/images/msm/03.jpg';
 
 // Ordered as the work reads on the page: flagship first, then by recency.
 const PROJECTS = [
@@ -85,6 +88,7 @@ const PROJECTS = [
     type: 'Windows & macOS',
     platform: 'Windows & macOS',
     year: '2025',
+    screens: [msm01, msm02, msm03],
     highlights: ['Service tracking', 'PDF/Excel exports', 'Revenue analytics', 'Technician performance'],
   },
   {
