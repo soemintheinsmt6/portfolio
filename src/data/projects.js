@@ -62,6 +62,7 @@ const PROJECTS = [
     // Live on APKPure. Google Play is in closed testing (its listing 404s until
     // public) and the Apple Developer Program enrolment is in progress —
     // uncomment each as it goes live.
+    appStore: 'https://apps.apple.com/us/app/fight-zone-fitness/id6803832741',
     apkPure: 'https://apkpure.com/p/com.play.fight_zone',
     // playStore: 'https://play.google.com/store/apps/details?id=com.play.fight_zone',
     screens: [fz01, fz02, fz03, fz04, fz05],
@@ -124,6 +125,7 @@ const PROJECTS = [
     year: '2023 — Present',
     link: 'https://apps.apple.com/us/app/megaeasez-hr/id6758825547',
     appStore: 'https://apps.apple.com/us/app/megaeasez-hr/id6758825547',
+    testFlight: 'https://testflight.apple.com/join/FBHY5gcp',
     screens: [mz01, mz02, mz03, mz04, mz05],
     highlights: ['Real-time sync', 'Multi-app system', 'Push notifications', 'Split-screen layout'],
   },
@@ -132,7 +134,7 @@ const PROJECTS = [
     title: 'Slazh',
     description:
       'Fashion e-commerce for iOS — secure payments, Core Animation transitions and a cart that stays intact when the connection drops mid-checkout.',
-    tech: ['Swift', 'Core Animation', 'Secure payments', 'SHA256', 'Offline cart'],
+    tech: ['Swift', 'Alamofire', 'Core Animation', 'Secure payments', 'SHA256', 'Realm'],
     type: 'iOS',
     platform: 'iOS',
     year: '2021 — 2023',
