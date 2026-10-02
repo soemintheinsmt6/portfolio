@@ -24,6 +24,11 @@ import fz02 from '../assets/images/fightzone/02.jpg';
 import fz03 from '../assets/images/fightzone/03.jpg';
 import fz04 from '../assets/images/fightzone/04.jpg';
 import fz05 from '../assets/images/fightzone/05.jpg';
+import bt01 from '../assets/images/breakthrough/01.jpg';
+import bt02 from '../assets/images/breakthrough/02.jpg';
+import bt03 from '../assets/images/breakthrough/03.jpg';
+import bt04 from '../assets/images/breakthrough/04.jpg';
+import bt05 from '../assets/images/breakthrough/05.jpg';
 import msm01 from '../assets/images/msm/01.jpg';
 import msm02 from '../assets/images/msm/02.jpg';
 import msm03 from '../assets/images/msm/03.jpg';
@@ -58,10 +63,9 @@ const PROJECTS = [
     tech: ['Flutter', 'Bloc', 'YouTube streaming', 'Native HTTP stacks', 'Widget tests'],
     type: 'Cross-platform',
     platform: 'iOS & Android',
-    year: '2026 — Present',
+    year: '2026',
     // Live on APKPure. Google Play is in closed testing (its listing 404s until
-    // public) and the Apple Developer Program enrolment is in progress —
-    // uncomment each as it goes live.
+    // public)
     appStore: 'https://apps.apple.com/us/app/fight-zone-fitness/id6803832741',
     apkPure: 'https://apkpure.com/p/com.play.fight_zone',
     // playStore: 'https://play.google.com/store/apps/details?id=com.play.fight_zone',
@@ -71,6 +75,28 @@ const PROJECTS = [
       'Package and points purchase',
       'Push notifications',
       'Phone and tablet layouts',
+    ],
+  },
+  {
+    id: 'breakthrough',
+    title: 'Breakthrough',
+    description:
+      'Learning app for Breakthrough Leadership Academy — course discovery, progress tracking and a resource library, playing Vimeo and YouTube lessons and downloading them for offline study.',
+    tech: ['Flutter', 'Bloc', 'Clean Architecture', 'Drift (SQLite)', 'Vimeo & YouTube players', 'Background audio'],
+    type: 'Cross-platform',
+    platform: 'iOS & Android',
+    year: '2026',
+    // Android applicationId is com.lms.breakthrough; add playStore once its
+    // listing is public (it 404s until then).
+    link: 'https://apps.apple.com/us/app/breakthrough-myanmar/id6814717971',
+    appStore: 'https://apps.apple.com/us/app/breakthrough-myanmar/id6814717971',
+    screens: [bt01, bt02, bt03, bt04, bt05],
+    highlights: [
+      'Course discovery & curriculum',
+      'Lesson progress tracking',
+      'Offline downloads',
+      'Audio books with background playback',
+      'Coaches & resource library',
     ],
   },
   {

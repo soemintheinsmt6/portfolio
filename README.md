@@ -40,7 +40,7 @@ npm run preview
 
 ```text
 src/
-  assets/               # Static assets (images and logos, currently unreferenced)
+  assets/               # Screenshots and portrait (logos unreferenced)
   components/           # Section components, in page order
     Nav.jsx
     Hero.jsx
@@ -54,7 +54,7 @@ src/
     CertificatesPage.jsx  # /certificates
     SkillsPage.jsx        # /skills
     ThemeSwitcher.jsx
-    ui/                 # Design-system primitives, mirroring the Figma components
+    ui/                 # Design-system primitives (not yet in the Figma file)
       Button.jsx        # Style=Primary|Secondary|Ghost, Size=M|S
       Tag.jsx           # Tone=Neutral|Accent (+ TagRow)
       SectionHeader.jsx # Rule, indexed eyebrow, serif title, mono meta
@@ -86,9 +86,9 @@ public/
 
 Notes:
 - Content lives in `src/data/*` and is deep-frozen for immutability.
-- The editorial layout renders no screenshots, so project images and company
-  logos are not imported. The files remain in `src/assets/` if a future layout
-  wants them.
+- Project screenshots and the portrait are imported and rendered — screenshots
+  through the lightbox on each project row, the portrait as the plate in About.
+  Company logos in `src/assets/logos/` remain unreferenced.
 
 ## Environment Variables
 
