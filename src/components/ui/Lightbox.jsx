@@ -9,6 +9,8 @@ import { DURATION, EASE_OUT, overlay } from '../../core/motion';
  * — enough to say "there are more of these", not a carousel flourish.
  */
 const SLIDE = 48;
+/** Drag distance (velocity-weighted) that counts as a swipe. */
+const SWIPE = 60;
 
 const screenVariants = {
   enter: (direction) => ({
@@ -73,6 +75,16 @@ export default function Lightbox({ images, title, index, onIndexChange, onClose 
     };
   }, [go, onClose]);
 
+  // Warm the neighbours so Next/Prev slide in a decoded image rather than an
+  // empty box on a slow connection.
+  useEffect(() => {
+    if (count < 2) return;
+    [index + 1, index - 1].forEach((i) => {
+      const img = new Image();
+      img.src = images[(i + count) % count];
+    });
+  }, [images, index, count]);
+
   const controlClass =
     'rounded-sm p-xs font-mono text-mono-label font-medium uppercase text-[var(--ink-400)] transition-colors duration-200 hover:text-[var(--paper-0)] disabled:opacity-40';
 
@@ -133,6 +145,17 @@ export default function Lightbox({ images, title, index, onIndexChange, onClose 
               initial="enter"
               animate="center"
               exit="exit"
+              /* Swipe on touch: past a short throw or a quick flick, move on;
+                 otherwise the image springs back to centre. */
+              drag={count > 1 ? 'x' : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.6}
+              onDragEnd={(_, { offset, velocity }) => {
+                const swipe = offset.x + velocity.x * 0.2;
+                if (swipe < -SWIPE) go(1);
+                else if (swipe > SWIPE) go(-1);
+              }}
+              draggable={false}
             />
           </AnimatePresence>
         )}
