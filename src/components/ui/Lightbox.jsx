@@ -88,9 +88,19 @@ export default function Lightbox({ images, title, index, onIndexChange, onClose 
   const controlClass =
     'rounded-sm p-xs font-mono text-mono-label font-medium uppercase text-[var(--ink-400)] transition-colors duration-200 hover:text-[var(--paper-0)] disabled:opacity-40';
 
+  // `onUpdate` keeps the fade on framer-motion's own frame loop. Handed to the
+  // browser (WAAPI), the opacity animation is cancelled a frame before its end
+  // value is written, so the scrim blinks to its start value as it lands: the
+  // page flashes through on open, and the scrim snaps back on close.
   const scrimProps = prefersReducedMotion
     ? {}
-    : { variants: overlay, initial: 'hidden', animate: 'visible', exit: 'exit' };
+    : {
+        variants: overlay,
+        initial: 'hidden',
+        animate: 'visible',
+        exit: 'exit',
+        onUpdate: () => {},
+      };
 
   const imageClass =
     'max-h-[min(100%,840px)] max-w-full rounded-[18px] object-contain';
@@ -145,6 +155,8 @@ export default function Lightbox({ images, title, index, onIndexChange, onClose 
               initial="enter"
               animate="center"
               exit="exit"
+              /* Same WAAPI hand-off blink as the scrim, see scrimProps. */
+              onUpdate={() => {}}
               /* Swipe on touch: past a short throw or a quick flick, move on;
                  otherwise the image springs back to centre. */
               drag={count > 1 ? 'x' : false}
