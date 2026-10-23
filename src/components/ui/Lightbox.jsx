@@ -12,6 +12,16 @@ const SLIDE = 48;
 /** Drag distance (velocity-weighted) that counts as a swipe. */
 const SWIPE = 60;
 
+/**
+ * The shared overlay exit is a quick ease-in, which holds the near-black scrim
+ * and then drops it in the last few frames. Over the light theme that final
+ * jump to the cream page reads as a blink, so the viewer lets go gradually.
+ */
+const scrimVariants = {
+  ...overlay,
+  exit: { opacity: 0, transition: { duration: DURATION.base, ease: 'easeOut' } },
+};
+
 const screenVariants = {
   enter: (direction) => ({
     opacity: 0,
@@ -95,7 +105,7 @@ export default function Lightbox({ images, title, index, onIndexChange, onClose 
   const scrimProps = prefersReducedMotion
     ? {}
     : {
-        variants: overlay,
+        variants: scrimVariants,
         initial: 'hidden',
         animate: 'visible',
         exit: 'exit',
